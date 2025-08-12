@@ -10,7 +10,7 @@ Run [the following commands](https://gohugo.io/getting-started/quick-start/) to 
 hugo new site mattykakesmakes (generates)
 cd mattykakesmakes
 git init
-git submodule add https://github.com/nusserstudios/tailbliss.git themes/tailbliss
+git submodule add git@github.com:mattrussmill/tailbliss.git themes/tailbliss
 npm -g install postcss
 echo "theme = 'tailbliss'" >> hugo.toml
 ```
