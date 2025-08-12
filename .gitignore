@@ -1,5 +1,6 @@
 # Hugo
 .hugo_build.lock
+public/
 resources/
 
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
@@ -10,6 +11,7 @@ resources/
 # Folders
 _obj
 _test
+node_modules/
 
 # Architecture specific extensions/prefixes
 *.[568vq]
@@ -26,6 +28,4 @@ _testmain.go
 *.exe
 *.test
 
-/public
-/node_modules
 .DS_Store

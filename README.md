@@ -37,3 +37,10 @@ Start Hugo development server
 ```
 hugo server
 ```
+
+# Quick Reference
+### Hugo
+* [Hugo Directory Structure](https://gohugo.io/getting-started/directory-structure/)
+
+### Other
+* [Favicon Generator](https://realfavicongenerator.net/)

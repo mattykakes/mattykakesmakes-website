@@ -1,0 +1,12 @@
+[meta]
+# Classic favicon formats
+favicon_ico = "/favicon/favicon.ico"
+favicon_svg = "/favicon/favicon.svg"
+favicon_96 = "/favicon/favicon-96x96.png"
+
+# Progressive web app icons
+manifest = "/favicon/manifest.json"
+
+# Colors
+theme_color = "#a2d3db"
+background_color = "#ffffff"
