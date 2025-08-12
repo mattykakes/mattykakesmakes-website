@@ -1,1 +1,4 @@
 
+[submodule "themes/tailbliss"]
+	path = themes/tailbliss
+	url = https://github.com/mattrussmill/tailbliss.git
