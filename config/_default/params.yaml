@@ -1,0 +1,33 @@
+meta:
+  # Classic favicon formats
+  favicon_ico: /favicon/favicon.ico
+  favicon_svg: /favicon/favicon.svg
+  favicon_96: /favicon/favicon-96x96.png
+
+# Progressive web app icons 
+manifest: /favicon/manifest.json
+
+# Colors
+theme_color: "#a2d3db"
+background_color: "#ffffff"
+
+# Index
+welcome:
+  heading: "Hi, I'm Matt..."
+  subheading: "...and this is Matty Kakes Makes!"
+  description: "The digital garage where code meets chaos, CAD meets caffeine, and half-baked ideas somehow turn into working(ish) projects."
+
+p1:
+  heading: "What you'll find here..."
+  image: "images/pages/our-mission.png"
+  content:
+    - text: "Engineering Projects - From serious production-ready"
+    - text: "Technical Blogs - Deep dives, write-ups, technical opinions, and tutorials"
+    - text: "Creative Builds - I love pushing ideas from “that’s dumb” to “that’s actually kind of brilliant.” Sometimes functional, sometimes just fun, always a little weird."
+
+p2:
+  heading: Why "Matty Kakes"?
+  content:
+    - text: "Because every project is a bit like a cake: you start with a recipe, throw in your own flavor, and hope it doesn’t collapse in the oven. And if it does? Well, that’s part of the fun."
+    - text: "Mistakes aren’t just inevitable — they’re the secret ingredient. Every time something wobbles, sparks, or fails spectacularly, it leaves behind a lesson. Maybe it’s about how a something actually works (or doesn’t), maybe it’s about why that “clever shortcut” wasn’t so clever after all. Either way, those stumbles are where the real learning happens."
+    - text: "The truth is, nothing creative comes out perfect the first time. Trial and error isn’t just normal — it’s the engine that drives better ideas. The failures shape the successes, and the detours often lead to the most interesting results."
