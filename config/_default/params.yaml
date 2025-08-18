@@ -7,6 +7,11 @@ meta:
 # Progressive web app icons 
 manifest: /favicon/manifest.json
 
+# Section Toggles
+disable_theme_toggle: true
+disable_stay_uptodate: true
+
+
 # Colors
 theme_color: "#a2d3db"
 background_color: "#ffffff"
@@ -19,11 +24,13 @@ welcome:
 
 p1:
   heading: "What you'll find here..."
-  image: "images/pages/our-mission.png"
+  image: "images/pages/index_digital_garage_1_mkm.png"
+  image_quality: 35
   content:
-    - text: "Engineering Projects - From serious production-ready"
-    - text: "Technical Blogs - Deep dives, write-ups, technical opinions, and tutorials"
-    - text: "Creative Builds - I love pushing ideas from “that’s dumb” to “that’s actually kind of brilliant.” Sometimes functional, sometimes just fun, always a little weird."
+    - text: "The goal isn’t always to make something perfect — it’s to use building as a creative outlet, a way to express ideas in physical form. Sometimes that means making something surprisingly useful, other times it means creating something delightfully absurd. Either way, every build is a chance to experiment, learn, and turn imagination into something you can actually hold in your hands."
+    - text: "Engineering Projects - From software to hardware, this is where code, circuits, and machines collide. Expect projects that range from practical tools to strange experiments that maybe shouldn’t work… but somehow do."
+    - text: "Technical Blogs - Deep dives, lessons learned, and professional opinions. These posts are equal parts documentation, storytelling, and lessons learn from both personal and professional experiences."
+    - text: "Creative Builds - This is where ideas take a playful detour. Some projects are practical, others are purely for fun, and a few land somewhere in between."
 
 p2:
   heading: Why "Matty Kakes"?
