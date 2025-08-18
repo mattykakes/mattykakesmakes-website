@@ -9,6 +9,7 @@ manifest: /favicon/manifest.json
 
 # Section Toggles
 disable_theme_toggle: true
+disable_p2: false
 disable_stay_uptodate: true
 
 
@@ -17,6 +18,8 @@ theme_color: "#a2d3db"
 background_color: "#ffffff"
 
 # Index
+description: "Home"
+
 welcome:
   heading: "Hi, I'm Matt..."
   subheading: "...and this is Matty Kakes Makes!"
@@ -34,6 +37,8 @@ p1:
 
 p2:
   heading: Why "Matty Kakes"?
+  image: images/pages/index_failed_cake_1_mkm.png
+  image_quality: 50
   content:
     - text: "Because every project is a bit like a cake: you start with a recipe, throw in your own flavor, and hope it doesn’t collapse in the oven. And if it does? Well, that’s part of the fun."
     - text: "Mistakes aren’t just inevitable — they’re the secret ingredient. Every time something wobbles, sparks, or fails spectacularly, it leaves behind a lesson. Maybe it’s about how a something actually works (or doesn’t), maybe it’s about why that “clever shortcut” wasn’t so clever after all. Either way, those stumbles are where the real learning happens."

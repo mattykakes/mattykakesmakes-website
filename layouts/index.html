@@ -67,6 +67,7 @@
         </div>
     </div>
 
+    {{ if not .Site.Params.Disable_p2}}
     <!-- Why section -->
     <div class="overflow-hidden sm:pt-6 lg:relative">
         <div class="max-w-md px-4 mx-auto sm:max-w-3xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-12 lg:px-8">
@@ -112,6 +113,7 @@
             </div>
         </div>
     </div>
+    {{ end }}
 
     <!-- Blog section -->
     <div class="relative px-1 pt-8 pb-4 bg-transparent lg:px-8 lg:pt-12 lg:mb-4 md:mt-12">
