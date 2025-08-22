@@ -7,17 +7,21 @@ meta:
 # Progressive web app icons 
 manifest: /favicon/manifest.json
 
+# Default Open Graph image
+og_image: /images/og/mkm_og_logo.png
+
 # Section Toggles
 disable_theme_toggle: true
 disable_p2: false
 disable_stay_uptodate: true
 
-
 # Colors
 theme_color: "#a2d3db"
 background_color: "#ffffff"
 
-# Index
+# Index / Home Defaults
+author: Matthew Miller
+authorimage: images/global/author.webp
 description: "Home"
 
 welcome:
