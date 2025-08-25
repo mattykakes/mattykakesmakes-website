@@ -19,6 +19,27 @@ disable_stay_uptodate: true
 theme_color: "#a2d3db"
 background_color: "#ffffff"
 
+# Social Media
+social_media:
+  linkedin:
+    enabled: true
+    url: 'https://www.linkedin.com/in/m-r-miller/'
+  github:
+    enabled: true
+    url: 'https://github.com/mattykakesmakes'
+  bluesky:
+    enabled: true
+    url: 'https://bsky.app/profile/matty-kakes.bsky.social'
+  facebook:
+    enabled: false
+    url: ''
+  instagram:
+    enabled: false
+    url: ''
+  twitter:
+    enabled: false
+    url: ''
+
 # Index / Home Defaults
 author: Matthew Miller
 authorimage: images/global/author.webp
