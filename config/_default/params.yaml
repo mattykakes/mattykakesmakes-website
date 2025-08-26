@@ -11,7 +11,7 @@ manifest: /favicon/manifest.json
 og_image: /images/og/mkm_og_logo.png
 
 # Section Toggles
-disable_theme_toggle: true
+disable_theme_toggle: false
 disable_p2: false
 disable_stay_uptodate: true
 
