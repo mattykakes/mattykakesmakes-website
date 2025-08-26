@@ -1,7 +1,49 @@
 {
+  "name": "TailBliss",
+  "version": "1.0.0",
+  "description": "Hugo + Alpine.js + TailwindCSS",
+  "main": "index.js",
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.12",
+    "@tailwindcss/vite": "^4.1.12",
+    "alpinejs": "^3.14.9",
     "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.0",
     "postcss": "^8.5.6",
-    "postcss-cli": "^11.0.1"
-  }
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^4.1.12",
+    "vite": "^7.1.3"
+  },
+  "scripts": {
+    "start": "concurrently npm:watch:*",
+    "watch:css": "vite build --watch",
+    "watch:hugo": "hugo server",
+    "dev": "concurrently \"npm run watch:css\" \"npm run watch:hugo\"",
+    "build:css": "vite build",
+    "build": "npm run build:css && hugo --minify",
+    "test": "hugo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nusserstudios/tailbliss.git"
+  },
+  "keywords": [
+    "hugo",
+    "tailwind",
+    "tailwindcsgits",
+    "alpinejs",
+    "minimal",
+    "responsive",
+    "light mode",
+    "dark mode",
+    "hugo blog",
+    "categories",
+    "tags"
+  ],
+  "author": "NusserStudios",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/nusserstudios/tailbliss/issues"
+  },
+  "homepage": "https://github.com/nusserstudios/tailbliss"
 }

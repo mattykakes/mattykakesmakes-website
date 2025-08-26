@@ -2,6 +2,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<!-- TODO update this section -->
+
 <!-- Favicon  -->
 <link rel="icon" href="{{ .Site.Params.meta.favicon_ico }}" sizes="any">
 <link rel="icon" href="{{ .Site.Params.meta.favicon_svg }}" type="image/svg+xml">
@@ -25,8 +27,14 @@
   - Passing current context (.) so partial can access site/page variables -->
 {{ partial "meta" . }}
 
-<!-- On page load or when changing themes, best to add inline in `head` to avoid FOUC -->
+{{/* Hide Alpine.js [x-cloak] elements until Alpine initializes to prevent nav menu flicker.
+     The x-cloak directive is located in the head partial to prevent rollup from Vite. */}}
+<style>
+    [x-cloak] { display: none !important; }
+</style>
+
 <script>
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
     if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');
     } else {
@@ -34,23 +42,40 @@
     }
 </script>
 
-<!--  
-  - Get the main stylesheet from Hugo’s assets pipeline 
-  - Path is relative to the /assets directory (NOT /static)
-  - Process it through PostCSS -->
-{{ $styles := resources.Get "/css/style.css" | postCSS }}
-
-<!-- 
-  - Minify: f production build to deploy reduced size files
-  - Fingerprint: append hash to files for cache busting -->
-{{ if hugo.IsProduction }}
-    {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
-{{ else }}
-    {{ $styles = $styles | fingerprint | resources.PostProcess }}
+{{/* Use Vite-generated CSS files with cache busting hashes */}}
+{{ $cssFiles := readDir "static/css" }}
+{{ $mainCSS := "" }}
+{{ range $cssFiles }}
+  {{ if strings.Contains .Name "main." }}
+    {{ if strings.HasSuffix .Name ".css" }}
+      {{ $mainCSS = .Name }}
+    {{ end }}
+  {{ end }}
 {{ end }}
 
-<!--
- - Link to the compiled CSS file with Subresource Integrity (SRI) hash 
- - RelPermalink: the versioned URL of the processed CSS file
- - integrity: cryptographic hash for browser to verify file wasn't altered -->
-<link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" />
+{{ if $mainCSS }}
+	<link rel="stylesheet" href="/css/{{ $mainCSS }}" />
+{{ else }}
+
+	<!--  
+	  - Get the main stylesheet from Hugo’s assets pipeline 
+	  - Path is relative to the /assets directory (NOT /static)
+	  - Process it through PostCSS -->
+	{{ $styles := resources.Get "/css/style.css" | postCSS }}
+
+	<!-- 
+	  - Minify: f production build to deploy reduced size files
+	  - Fingerprint: append hash to files for cache busting -->
+	{{ if hugo.IsProduction }}
+	    {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
+	{{ else }}
+	    {{ $styles = $styles | fingerprint | resources.PostProcess }}
+	{{ end }}
+
+	<!--
+	 - Link to the compiled CSS file with Subresource Integrity (SRI) hash 
+	 - RelPermalink: the versioned URL of the processed CSS file
+	 - integrity: cryptographic hash for browser to verify file wasn't altered -->
+	<link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" />
+
+{{ end }}
