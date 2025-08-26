@@ -23,22 +23,9 @@ cd themes/tailbliss
 npm install
 cd ../..
 ```
-Install [PostCSS Hugo plugin](https://gohugo.io/functions/css/postcss/)
-```
-npm i -D postcss postcss-cli autoprefixer
-```
-Create a PostCSS configuration file in the project root: `postcss.config.js`
-```
-module.exports = {
-  plugins: [
-    require('autoprefixer')
-  ]
-};
-```
-Start Hugo development server
-```
-hugo server
-```
+Copy the `package.json`, `vite.config.mjs`, and `postcss.config` from the Tailbliss theme into the root directory.
+
+Reference the [forked theme readme](https://github.com/mattykakesmakes/tailbliss/blob/main/README.md) for development instructions.
 
 # Quick Reference
 ### Hugo
