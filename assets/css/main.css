@@ -132,7 +132,7 @@
 
 /* Custom prose styles for markdown content */
 .prose {
-  max-width: 65ch;
+  max-width: 80ch;
   color: var(--color-zinc-800);
 }
 
