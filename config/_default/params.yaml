@@ -44,6 +44,7 @@ social_media:
 author: Matthew Miller
 authorimage: images/global/author.webp
 description: "Home"
+copyright_year: "2025"
 
 welcome:
   heading: "Hi, I'm Matt..."
