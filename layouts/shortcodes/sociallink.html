@@ -1,0 +1,17 @@
+{{/* 
+  Usage: 
+    {{< sociallink network="linkedin" text="My LinkedIn" >}}
+*/}}
+
+{{ $network := lower (.Get "network") }}
+{{ $text := .Get "text" }}
+
+{{ with index .Site.Params.social_media $network }}
+  {{ if .enabled }}
+    <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ $text }}</a>
+  {{ else }}
+    {{/* Network is disabled; do not render anything */}}
+  {{ end }}
+{{ else }}
+  {{/* Invalid network name; do not render anything */}}
+{{ end }}
