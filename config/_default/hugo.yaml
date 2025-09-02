@@ -1,5 +1,13 @@
 baseURL: https://example.org/
-languageCode: en-us
 title: Matty Kakes Makes
 theme: tailbliss
+languageCode: en-us
+DefaultContentLanguage: en
+enableEmoji: true
+enableGitInfo: false
+pagination:
+  pagerSize: 9
+darkmode_js:
+  - assets/js/darkmode.js
+enableInlineShortcodes: true
 
