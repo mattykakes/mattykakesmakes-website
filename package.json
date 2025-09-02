@@ -15,13 +15,13 @@
     "vite": "^7.1.3"
   },
   "scripts": {
-    "start": "concurrently npm:watch:*",
-    "watch:css": "vite build --watch",
-    "watch:hugo": "hugo server",
-    "dev": "concurrently \"npm run watch:css\" \"npm run watch:hugo\"",
+    "start": "npm run prepare:hugo && npm run build:css && hugo server --disableFastRender",
     "build:css": "vite build",
-    "build": "npm run build:css && hugo --minify",
-    "test": "hugo"
+    "build": "npm run prepare:hugo && npm run build:css && hugo --minify --gc --cleanDestinationDir",
+    "prepare:hugo": "node scripts/copy-alpine.js",
+    "rebuild": "npm run build:css",
+    "test": "hugo",
+    "optimize": "npm run build && echo 'Build optimized for production'"
   },
   "repository": {
     "type": "git",
