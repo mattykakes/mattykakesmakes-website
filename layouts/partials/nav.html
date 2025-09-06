@@ -4,7 +4,26 @@
             <a href="/" class="flex text-gray-100 transition duration-1000 ease-in-out group">
                 <img src="/images/site-logo.svg" class="w-9 h-9 transition-opacity group-hover:opacity-50 group-focus:opacity-70" alt="{{ .Site.Title }} Logo" />
                 <div class="mt-1 ml-3 text-xl font-black tracking-tight text-gray-100 uppercase transition-colors group-hover:text-gray-400/60">
-                    {{ .Title }}</div>
+                    {{/* Check if this is a taxonomy term page */}}
+                    {{ if eq .Kind "term" }}
+                        {{ $parts := split .RelPermalink "/" }}
+                        {{ $term := index $parts (sub (len $parts) 2) }}
+                        
+                        {{/* Determine suffix based on taxonomy */}}
+                        {{ $suffix := "" }}
+                        {{ if eq .Data.Plural "Categories" }}
+                            {{ $suffix = "Posts" }}
+                        {{ else if eq .Data.Plural "Tags" }}
+                            {{ $suffix = "Tags" }}
+                        {{ else }}
+                            {{ $suffix = "Items" }} {{/* fallback for other taxonomies */}}
+                        {{ end }}
+                    
+                        {{ $term | humanize }} {{ $suffix }}
+                    {{ else }}
+                        {{ .Title }}
+                    {{ end }}
+                </div>
             </a>
             <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open" role="navigation" aria-expanded="false" aria-label="Main" aria-controls="menuItems">
                 <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
