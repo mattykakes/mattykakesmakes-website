@@ -1,0 +1,46 @@
+{{/* 
+    Partial: term-title.html
+    --------------------------------------
+    Purpose:
+      Generates a human-readable title for taxonomy pages (terms) and regular pages.
+      Adds a suffix to taxonomy terms based on their type:
+        - Categories -> "Posts"
+        - Tags       -> "Tags"
+        - Other taxonomies -> "Items"
+      
+    Usage:
+      {{ partial "term-title.html" . }}
+
+    Behavior:
+      - If the page is a taxonomy term (.Kind == "term"):
+          * Extracts the term name from the relative URL
+          * Adds the appropriate suffix
+          * Capitalizes the term name using 'humanize'
+      - Otherwise, outputs the page's .Title
+
+    Notes:
+      - Works for all taxonomies defined in your Hugo config
+      - Can be used in <title> tags, headings, or anywhere a consistent term display is needed
+      - Handles single-level taxonomy term URLs; nested paths may require further logic
+*/}}
+
+{{ $ctx := . }}
+
+{{ if eq $ctx.Kind "term" }}
+    {{ $parts := split $ctx.RelPermalink "/" }}
+    {{ $term := index $parts (sub (len $parts) 2) }}
+    
+    {{/* Determine suffix based on taxonomy */}}
+    {{ $suffix := "" }}
+    {{ if eq $ctx.Data.Plural "Categories" }}
+        {{ $suffix = "Posts" }}
+    {{ else if eq $ctx.Data.Plural "Tags" }}
+        {{ $suffix = "Tags" }}
+    {{ else }}
+        {{ $suffix = "Items" }}
+    {{ end }}
+
+    {{ $term | humanize }} {{ $suffix }}
+{{ else }}
+    {{ $ctx.Title }}
+{{ end }}
