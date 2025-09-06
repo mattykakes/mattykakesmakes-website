@@ -10,7 +10,7 @@
         </nav>
         <div class="flex justify-center mt-8 space-x-6">
             {{ if .Site.Params.Social_media.Linkedin.Enabled }}
-            <a href="{{ $.Site.Params.Social_media.Linkedin.Url }}" class="text-gray-400 hover:text-gray-300">
+            <a href="{{ $.Site.Params.Social_media.Linkedin.Url }}" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gray-300">
                 <span class="sr-only">LinkedIn</span>
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -20,7 +20,7 @@
             </a>
             {{ end }}
             {{ if .Site.Params.Social_media.Facebook.Enabled }}
-            <a href="{{ $.Site.Params.Social_media.Facebook.Url }}" class="text-gray-400 hover:text-gray-300">
+            <a href="{{ $.Site.Params.Social_media.Facebook.Url }}" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gray-300">
                 <span class="sr-only">Facebook</span>
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -30,7 +30,7 @@
             </a>
             {{ end }}
             {{ if .Site.Params.Social_media.Instagram.Enabled }}
-            <a href="{{ $.Site.Params.Social_media.Instagram.Url }}" class="text-gray-400 hover:text-gray-300">
+            <a href="{{ $.Site.Params.Social_media.Instagram.Url }}" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gray-300">
                 <span class="sr-only">Instagram</span>
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -40,7 +40,7 @@
             </a>
             {{ end }}
             {{ if .Site.Params.Social_media.Twitter.Enabled }}
-            <a href="{{ $.Site.Params.Social_media.Twitter.Url }}" class="text-gray-400 hover:text-gray-300">
+            <a href="{{ $.Site.Params.Social_media.Twitter.Url }}" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gray-300">
                 <span class="sr-only">Twitter</span>
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path
@@ -49,7 +49,7 @@
             </a>
             {{ end }}
             {{ if .Site.Params.Social_media.Bluesky.Enabled }}
-            <a href="{{ $.Site.Params.Social_media.Bluesky.Url }}" class="text-gray-400 hover:text-gray-300">
+            <a href="{{ $.Site.Params.Social_media.Bluesky.Url }}" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gray-300">
             <span class="sr-only">Bluesky</span>
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
                     <g transform="translate(0,2)">
@@ -61,7 +61,7 @@
             </a>
             {{ end }}
             {{ if .Site.Params.Social_media.Github.Enabled }}
-            <a href="{{ $.Site.Params.Social_media.Github.Url }}" class="text-gray-400 hover:text-gray-300">
+            <a href="{{ $.Site.Params.Social_media.Github.Url }}" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gray-300">
                 <span class="sr-only">GitHub</span>
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path fill-rule="evenodd"

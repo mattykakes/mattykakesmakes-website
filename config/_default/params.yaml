@@ -23,7 +23,7 @@ background_color: "#ffffff"
 social_media:
   linkedin:
     enabled: true
-    url: 'https://www.linkedin.com/in/m-r-miller/'
+    url: 'https://linkedin.com/in/m-r-miller/'
   github:
     enabled: true
     url: 'https://github.com/mattykakesmakes'
@@ -53,7 +53,7 @@ welcome:
 
 p1:
   heading: "What you'll find here..."
-  image: "images/pages/matt_saas_almagel_2024.jpg"
+  image: "images/pages/matt_garage_idk2_2025.webp"
   image_quality: 35
   content:
     - text: "The goal isn’t always to make something perfect — it’s to use building as a creative outlet, a way to express ideas in physical form. Sometimes that means making something surprisingly useful, other times it means creating something delightfully absurd. Either way, every build is a chance to experiment, learn, and turn imagination into something you can actually hold in your hands."

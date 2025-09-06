@@ -1,0 +1,34 @@
+main:
+  - identifier: projects
+    name: Projects
+    url: /projects/
+    weight: 10
+  - identifier: blog
+    name: Blog
+    url: /blog/
+    weight: 20
+  - identifier: about
+    name: About
+    url: /about/
+    weight: 30
+  - identifier: contact
+    name: Contact
+    url: /contact/
+    weight: 40
+footer:
+  - identifier: projects
+    name: Projects
+    url: /projects/
+    weight: 10
+  - identifier: blog
+    name: Blog
+    url: /blog/
+    weight: 20
+  - identifier: about
+    name: About
+    url: /about/
+    weight: 30
+  - identifier: contact
+    name: Contact
+    url: /contact/
+    weight: 40
