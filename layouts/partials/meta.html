@@ -1,5 +1,5 @@
 <title itemprop="name">{{if .IsHome}} {{ $.Site.Params.description }} | {{ .Title }}
-    {{else}} {{ partial "term-title.html" . }} | {{ .Site.Title }} {{end}}
+    {{else}} {{ partial "taxonomy-term-title.html" . }} | {{ .Site.Title }} {{end}}
 </title>
 <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
 <meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}" />
