@@ -9,7 +9,7 @@
         - Other taxonomies -> "Items"
       
     Usage:
-      {{ partial "term-title.html" . }}
+      {{ partial "taxonomy-term-title.html" . }}
 
     Behavior:
       - If the page is a taxonomy term (.Kind == "term"):
@@ -40,7 +40,7 @@
         {{ $suffix = "Items" }}
     {{ end }}
 
-    {{ $term | humanize }} {{ $suffix }}
+    {{ $term | title }} {{ $suffix }}
 {{ else }}
     {{ $ctx.Title }}
 {{ end }}
