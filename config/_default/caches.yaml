@@ -1,0 +1,16 @@
+# Performance optimizations
+assets:
+  dir: :cacheDir/assets
+  maxAge: 8760h # 1 year
+getcsv:
+  dir: :cacheDir/getcsv
+  maxAge: 3600s # 1 hour
+getjson:
+  dir: :cacheDir/getjson
+  maxAge: 3600s # 1 hour
+images:
+  dir: :cacheDir/images
+  maxAge: 8760h # 1 year
+modules:
+  dir: :cacheDir/modules
+  maxAge: 8760h # 1 year

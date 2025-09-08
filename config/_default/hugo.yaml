@@ -6,7 +6,7 @@ DefaultContentLanguage: en
 enableEmoji: true
 enableGitInfo: false
 pagination:
-  pagerSize: 9
+  pagerSize: 2
 darkmode_js:
   - assets/js/darkmode.js
 enableInlineShortcodes: true

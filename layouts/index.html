@@ -122,11 +122,11 @@
         </div>
         <div class="relative px-2 mx-auto max-w-7xl">
             <div class="text-center">
-                <h2 class="text-3xl font-black tracking-tight text-primary-500 dark:text-primary-300 sm:text-4xl">
+                <h2 class="text-3xl font-black tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">
                     {{ .Site.Params.P3.Heading }}
                 </h2>
                 {{ range .Site.Params.P3.Content }}
-                <p class="mx-auto mt-3 max-w-2xl text-xl text-gray-500 dark:text-gray-300 sm:mt-4">
+                <p class="mx-auto mt-3 max-w-2xl text-xl text-gray-600 dark:text-gray-300 sm:mt-4">
                     {{ .text }}
                 </p>
                 {{ end }}
@@ -155,7 +155,7 @@
                                         {{ .Params.summary }}
                                     </p>
                                 </div>
-                                <div class="flex pt-6 font-medium text-primary-600 dark:text-primary-100 text-md">
+                                <div class="flex pt-6 font-medium text-gray-900 dark:text-gray-200 text-md">
                                     <span class="pr-2 font-black">Tags:</span>
                                     {{ range $elem_index, $elem_val := (.GetTerms "tags") }}
                                     {{- if gt $elem_index 0 }}, {{ end -}}
