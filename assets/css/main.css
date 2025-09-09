@@ -32,7 +32,7 @@
   --color-primary-900: oklch(36% 0.12 85);
   --color-primary-950: oklch(28% 0.08 85);
 
-  /* Secondary Colors - Orange with OKLCH (same as indigo) */
+  /* Secondary Colors - Blue with OKLCH (same as indigo) */
   --color-secondary: oklch(54% 0.13 200);
   --color-secondary-50: oklch(92% 0.02 200);
   --color-secondary-100: oklch(85% 0.04 200);
