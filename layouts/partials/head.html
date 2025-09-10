@@ -2,7 +2,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- TODO update this section -->
+<!-- TODO update apple tabs and manifest section vvv -->
 
 <!-- Favicon  -->
 <link rel="icon" href="{{ .Site.Params.meta.favicon_ico }}" sizes="any">
@@ -26,6 +26,10 @@
   - Include the "meta" partial template, which contains SEO and social media meta tags
   - Passing current context (.) so partial can access site/page variables -->
 {{ partial "meta" . }}
+
+{{/* DNS prefetch and preconnect for external resources */}}
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
 {{/* Hide Alpine.js [x-cloak] elements until Alpine initializes to prevent nav menu flicker.
      The x-cloak directive is located in the head partial to prevent rollup from Vite. */}}
@@ -54,28 +58,15 @@
 {{ end }}
 
 {{ if $mainCSS }}
-	<link rel="stylesheet" href="/css/{{ $mainCSS }}" />
+  <link rel="stylesheet" href="/css/{{ $mainCSS }}">
 {{ else }}
-
-	<!--  
-	  - Get the main stylesheet from Hugo’s assets pipeline 
-	  - Path is relative to the /assets directory (NOT /static)
-	  - Process it through PostCSS -->
-	{{ $styles := resources.Get "/css/style.css" | postCSS }}
-
-	<!-- 
-	  - Minify: f production build to deploy reduced size files
-	  - Fingerprint: append hash to files for cache busting -->
-	{{ if hugo.IsProduction }}
-	    {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
-	{{ else }}
-	    {{ $styles = $styles | fingerprint | resources.PostProcess }}
-	{{ end }}
-
-	<!--
-	 - Link to the compiled CSS file with Subresource Integrity (SRI) hash 
-	 - RelPermalink: the versioned URL of the processed CSS file
-	 - integrity: cryptographic hash for browser to verify file wasn't altered -->
-	<link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" />
-
+  <!-- Fallback to Hugo PostCSS processing if Vite file not found -->
+  {{ $styles := resources.Get "css/main.css" | postCSS }}
+  {{ if hugo.IsProduction }}
+    {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
+  {{ else }}
+    {{ $styles = $styles | fingerprint | resources.PostProcess }}
+  {{ end }}
+	
+  <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
 {{ end }}
