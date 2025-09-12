@@ -1,6 +1,6 @@
 <!-- Footer section -->
 <footer class="bg-gray-900">
-    <div class="max-w-md px-4 py-12 mx-auto overflow-hidden sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+    <div class="max-w-md px-4 py-10 mx-auto overflow-hidden sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
         <nav class="flex flex-wrap justify-center -mx-5 -my-2" aria-label="Footer">
             {{ range site.Menus.footer }}
             <div class="px-5 py-2">
@@ -71,6 +71,13 @@
             </a>
             {{ end }}
         </div>
+
+        {{ if .Site.Params.social_franchising.buy_me_a_coffee.enabled }}
+        <div class="flex justify-center mt-8 space-x-6">
+            <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="{{ $.Site.Params.social_franchising.buy_me_a_coffee.data_slug }}" data-color="#1e2939" data-emoji="☕"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#ffffff" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
+        </div>
+        {{ end }}
+
         <p class="mt-8 text-base text-center text-gray-400">
             &copy; {{ with .Site.Params.copyright_year }}{{ . }}{{ else }}{{ now.Format "2006" }}{{ end }}
             {{ .Site.Title }}. All rights reserved.

@@ -40,6 +40,11 @@ social_media:
     enabled: false
     url: ''
 
+social_franchising:
+  buy_me_a_coffee:
+    enabled: true
+    data_slug: 'mattykakesmakes'
+
 # Index / Home Defaults
 author: Matthew Miller
 authorimage: images/global/author.webp

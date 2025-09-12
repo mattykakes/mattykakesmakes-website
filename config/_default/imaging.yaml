@@ -1,0 +1,4 @@
+# Image processing defaults
+quality: 85
+resampleFilter: Lanczos
+anchor: Smart
