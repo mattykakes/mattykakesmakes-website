@@ -23,7 +23,7 @@
     {{ $alpine := resources.Get "js/alpine.min.js" | fingerprint }}
     <script id="alpine-local" src="{{ $alpine.RelPermalink }}" defer hidden></script>
 
-    {{/* Try CDN first, fallback to local on error */}}
+    {{/*  Try CDN first, fallback to local on error  - TODO this is still serving the local version. Should I get rid of it? Configure?  */}}
     <script defer 
             src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
             onerror="document.getElementById('alpine-local').removeAttribute('hidden');">
