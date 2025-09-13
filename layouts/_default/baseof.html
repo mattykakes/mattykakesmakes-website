@@ -18,15 +18,33 @@
     
 
     {{/* Load Alpine.js with defer to prevent blocking but load the CDN version with onerror,
-       * and keep a hidden local copy built with Hugo Pipes. If the CDN fails or you’re offline,
-       * the local one kicks in automatically. */}}
-    {{ $alpine := resources.Get "js/alpine.min.js" | fingerprint }}
-    <script id="alpine-local" src="{{ $alpine.RelPermalink }}" defer hidden></script>
+       * and keep a hidden local copy built with Hugo Pipes. If the CDN fails the onerror handler
+       * loads the local version. If the CDN is blocked, then window.Alpine is never defined. The
+       * second <script> checks the window.Alpine definition after the DOM loads and injects the
+       * local version if absent. */}}
 
-    {{/*  Try CDN first, fallback to local on error  - TODO this is still serving the local version. Should I get rid of it? Configure?  */}}
+
+
     <script defer 
-            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-            onerror="document.getElementById('alpine-local').removeAttribute('hidden');">
+        src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        onerror="
+          var s=document.createElement('script');
+          s.src='{{ (resources.Get "js/alpine.min.js" | fingerprint).RelPermalink }}';
+          s.defer=true;
+          document.head.appendChild(s);
+        ">
+    </script>
+
+    <script>
+    // If CDN is blocked (no error fired but script never ran)
+    window.addEventListener('DOMContentLoaded', function () {
+        if (!window.Alpine) {
+        var s=document.createElement('script');
+        s.src='{{ (resources.Get "js/alpine.min.js" | fingerprint).RelPermalink }}';
+        s.defer=true;
+        document.head.appendChild(s);
+        }
+    });
     </script>
 </body>
 
