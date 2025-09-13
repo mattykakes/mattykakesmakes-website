@@ -1,35 +1,23 @@
 The Matty Kakes Makes static website repo using [Hugo](https://gohugo.io/) static website generator and [forked](https://github.com/mattrussmill/tailbliss) [tailbliss](https://github.com/nusserstudios/tailbliss) theme.
 
-# Prerequisite Software
+## Prerequisite Software
 * [Go v1.24](https://go.dev/doc/install)
 * [NodeJS v22.14.0](https://nodejs.org/en/download)
     * Recommend using a version manager like NVM, fnm, or Volta
 * [Hugo](https://gohugo.io/about/introduction/) [v0.148](https://gohugo.io/installation/)
 
-# Initial Standup
-Run [the following commands](https://gohugo.io/getting-started/quick-start/) to set up base website
+## Initial Standup
+
+### Clone the theme repository
 ```
-hugo new site mattykakesmakes (generates)
-cd mattykakesmakes
-git init
-git submodule add git@github.com:mattykakesmakes/tailbliss.git themes/tailbliss
-npm -g install postcss
-echo "theme = 'tailbliss'" >> hugo.toml
+git clone git@github.com:mattykakesmakes/tailbliss.git my-site
+cd my-site
 ```
 
-Install theme dependencies
-```
-cd themes/tailbliss
-npm install
-cd ../..
-```
-Copy the `package.json`, `vite.config.mjs`, and `postcss.config` from the Tailbliss theme into the root directory.
+### Install dependencies and setup example content automatically
+`npm install`
 
-Reference the [forked theme readme](https://github.com/mattykakesmakes/tailbliss/blob/main/README.md) for development instructions.
+### Start developing
+`npm run dev`
 
-# Quick Reference
-### Hugo
-* [Hugo Directory Structure](https://gohugo.io/getting-started/directory-structure/)
-
-### Other
-* [Favicon Generator](https://realfavicongenerator.net/)
+Reference the [forked theme readme](https://github.com/mattykakesmakes/tailbliss/blob/main/README.md) for additional development instructions.
