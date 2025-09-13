@@ -11,10 +11,6 @@ main:
     name: About
     url: /about/
     weight: 30
-  - identifier: contact
-    name: Contact
-    url: /contact/
-    weight: 40
 footer:
   - identifier: project
     name: Projects
@@ -28,7 +24,3 @@ footer:
     name: About
     url: /about/
     weight: 30
-  - identifier: contact
-    name: Contact
-    url: /contact/
-    weight: 40
