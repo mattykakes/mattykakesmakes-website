@@ -9,13 +9,9 @@ featured_image_quality: 40
 ---
 
 ## About Me
+Born and raised in Pittsburgh, Pennsylvania, I carry the hands-on work ethic that shaped my city. I take a strong do-it-yourself approach to solving problems and learning new skills. From building and fabrication, to mechanical tinkering, to embedded systems and full-fledged product design, I’m always eager to take on new challenges. If something sparks my curiosity, I’ll find a way to learn it and put it into practice.
 
-
-
-Although I hold a white collar job, I embrase the blue collar work ethic that is my heritage. Born and raised in Pittsburgh, Pennsylvania I believe in doing things the right way and doing them yourself. ?? no too impersonal :/ 
-
-
-
+Outside of work, I spend as much time as possible outdoors - traveling, rock climbing, and mountain biking with my wife and friends. These hobbies aren’t just pastimes; they’re also my favorite excuse to explore new places. Great summits and scenic trails off the beaten path often lead me to unique corners of the world that I might never have discovered otherwise.
 
 ## Why a Website
 We spend almost a third of our working lives with our colleagues, often on long-standing projects where planning, technical decisions, debt prioritization, and documentation quality can make all the difference in how manageable a product is. Traditional resumes, CVs, and interviews can feel impersonal, often focusing on solving on-the-spot puzzles; missing how someone actually prioritizes real work or what they’re like to collaborate with. _Matty Kakes Makes_ is a glimpse into how I approach work, and also a peek at my personality in off-topic tangents.
