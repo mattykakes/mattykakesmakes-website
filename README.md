@@ -6,3 +6,6 @@ The Matty Kakes Makes static website repo using [Hugo](https://gohugo.io/) stati
 * [NodeJS v22.14.0](https://nodejs.org/en/download)
     * Recommend using a version manager like NVM, fnm, or Volta
 * [Hugo](https://gohugo.io/about/introduction/) [v0.148](https://gohugo.io/installation/)
+
+
+## TODO - Fill this readme out since you plan to stop maintaining the tailbliss theme
