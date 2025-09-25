@@ -30,34 +30,42 @@ With my studies focused on computer architecture and embedded systems, a web app
 
 The importance of utility in what I built also played a role. I wanted to build something I might use myself once finished. Something to stand out from the others I'd be competing against. Something with substance! Posting coursework to GitHub just didn't sit well with me at the time. I needed to avoid highlighting fluff. I needed something polished, even if there was a chance it could turn out to be :poop:.
 
-## But Why a Photo Editor?
-It checked all the boxes! ...But really what lead me to this solution was less systematic than it could have been. A spiderweb of logic between exposure to relevant material during my undergraduate studies and what doors I wanted to open in the future is what lead me to this conclusion.
+## Getting Started
+The idea of building a photo editor might seem like a waste of time from the outside, but it really did check all the boxes. Although, what lead me to this solution was less systematic than it could have been. A spiderweb of logic between exposure to relevant material during my undergraduate studies and doors I hoped to open in the future.
 
-### The Project
-I don't remember why I felt this way, but in looking for something practical to build I remember being displeased with free photo editor options at the time (circa early Windows 10). It was enough to convince myself a light wight editor could be my white whale. From a technical perspective it made sense. Application programming is often reactive, [or at least event-driven](https://stackoverflow.com/a/34496621), and object oriented in nature. Additionally if I wanted to build something that was easily expanded upon I'd have to adhere to at least some [SOLID design principles](https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design) and an organized project structure. If I didn't, it would get painful fast -- a good indication to pivot if I was doing something wrong.
+I don't remember why I felt this way, but in looking for something practical to build I remember being displeased with free, simple photo editors at the time (circa early Windows 10). It was enough to convince myself a light weight photo editor could be my white whale. From a technical perspective it made sense. Application programming is often reactive, [or at least event-driven](https://stackoverflow.com/a/34496621), and object oriented in nature. Additionally if I wanted to build something that was easily expanded upon I'd have to adhere to at least some [SOLID design principles](https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design) and an organized project structure. If I didn't, it would get painful fast -- a good indication to pivot if I was doing something wrong.
 
-### The Framework
-There were two BIG requirements I had in selecting a framework: it must be cross-platform and widely adopted. While [wxWidgets](https://wxwidgets.org/) and [GTK](https://www.gtk.org/) were good contenders with their own strengths, [Qt](https://www.qt.io/) was a clear winner. Unlike the others, which are more limited GUI toolkits, Qt is a full fledged application framework. Its ecosystem supports everything from production-grade desktop software to mobile and embedded UIs; even providing a built in [observer pattern](https://en.wikipedia.org/wiki/Observer_pattern) signaling mechanism, powered by its [MOC](https://doc.qt.io/qt-6/moc.html), without the need to introduce additional libraries. The more I read about its adoption across industries, the more I felt confident in my my decision. It was the most versitile option, and therefore the most likely to translate directly into applicable experience. 
+There were two BIG requirements I had in selecting a framework: it must be cross-platform and widely adopted. While [wxWidgets](https://wxwidgets.org/) and [GTK](https://www.gtk.org/) were good contenders with their own strengths, [Qt](https://www.qt.io/) was a clear winner. Unlike the others, which are more limited GUI toolkits, Qt is a full fledged application framework. Its ecosystem supports everything from production-grade desktop software to mobile and embedded UIs; even providing a built in [observer pattern](https://en.wikipedia.org/wiki/Observer_pattern) signaling mechanism, powered by its [MOC](https://doc.qt.io/qt-6/moc.html), without the need to introduce additional libraries. The more I read about its adoption across industries, the more I felt confident in my my decision. It was the most versitile option and therefore likely to translate into applicable experience. 
 
-### The Library
-TODO - With everything bundled so nicely into the Qt framework I still needed an external library to show I could manage external dependencies to integrate into it...... I had taken classes on image processing and even wrote algorithms using CUDA in my undergraduate research work -- was excited to write my own for this project as an exercise but realized that it would take too long?
-opencv
+Everything I needed was bundled into the Qt framework. Yet I still wanted to add an external library. This would demonstrate I understood the build process enough to link and manage external dependencies. Picking up more experience with another popular tool couldn't hurt my chances either. While I had course work in college on writing image processing algorithms, doing it here felt like time-consuming way to reinventing the wheel. It was an easy choice to make. I would use [OpenCV](https://opencv.org/) to perform the actual image operations.
 
 ## Features
-It does what it do
+The qcvTouchUp image editor supports color and light adjustments, sharpening and blurring, and transformations. All operations are GPU accelerated using OpenGL but fall back to the CPU if OpenGL bindings are unavailable. This happens in worker threads separate from the UI which allows for lag-free previews of image edits when manipulating the QWidget menu items. Loading files could be done via drag and drop into the preview area while saving supported jpeg, png, and webp formats.
 
 ## Challenges
+First and foremost had to be the sheer amount of information to learn. Having very little coding experience out side of undergraduate classes at the time, I remember this feeling like a bear of a project. I was very fortunate that both Qt and OpenCV have excellent documentation. In the time before public facing [LLMs](https://en.wikipedia.org/wiki/Large_language_model) like [ChatGPT](https://chatgpt.com/), this was invaluable for free-to-use tools and libraries.
+
+The reactive nature of 
+
+Custom widgets
+
+
 Signal Suppressor
-CPU Fallback and OpenGL/CV over CUDA
 Reactive vs event driven https://stackoverflow.com/questions/34495117/how-is-reactive-programming-different-than-event-driven-programming
 
 ## Shortcomings
-Organization
-Lack of a plan - didn't utilize all of SOLID principles was part of this
+Planning would have to be the biggest one. Something I had to learn from experience is that good software comes from planning your work before writing code. Whether it's enterprise microservice architecture or a small tool's directory structure; planning will set the interest rate for acrewing technical debt -- which only gets worse with time.  This project is a great example of exactly that. I had a general idea of what I wanted to do but it more-or-less fell into place as I went. This lead to time spent on rework, poor application of design principles, and all around head scratching. I bet I could have finished a much more polished project in half the time if I was patient in my approach.
+
+
 UX/UI - never went back to do a full QML menu implementation or design it out
+
+Later abondoned the project once I got what I needed from it and built this instaed https://github.com/mattykakesmakes/QPlumbob
+
+
 
 ## Try it Out!
 Even though this project originated as an early teaching tool for myself, I believe it is still worth playing with.
 
+In writing this blog I found a *BONUS* problem after dusting off the project. rotation bug that appeared while I was writing this article but wasn't there when I tested it years ago
 
 Please download it!
