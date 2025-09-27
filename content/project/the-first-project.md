@@ -59,4 +59,4 @@ I don't remember this being a problem when I built the app, but after dusting of
 ## Try it Out!
 Even though the [qcvTouchUp project](https://github.com/mattykakesmakes/qcvTouchUp) originated as an early teaching tool for myself, I believe it is still worth playing with and am proud of what I built.
 
-If you have access to a x64 version of Windows, download and extract the [archive](https://github.com/mattykakesmakes/qcvTouchUp/releases/tag/V0.0.3) and look for qcvTouchUp.exe to launch it. It takes a moment to load the linked files into memory and there is no splash screen so be patient with the first launch if it is not immediate. Enjoy!
+If you have access to a x64 version of Windows, download and extract the [archive](https://github.com/mattykakesmakes/qcvTouchUp/releases/tag/V0.0.3) and look for qcvTouchUp.exe to launch it. It takes a moment to load the linked packages into memory and there is no splash screen so be patient with the first launch if it is not immediate. Enjoy!
