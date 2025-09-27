@@ -45,27 +45,18 @@ The qcvTouchUp image editor supports color and light adjustments, sharpening and
 ## Challenges
 First and foremost had to be the sheer amount of information to learn. Having very little coding experience out side of undergraduate classes at the time, I remember this feeling like a bear of a project. I was very fortunate that both Qt and OpenCV have excellent documentation. In the time before public facing [LLMs](https://en.wikipedia.org/wiki/Large_language_model) like [ChatGPT](https://chatgpt.com/), this was invaluable for free-to-use tools and libraries.
 
-The reactive nature of 
+The reactive nature of image processing also posed a challenge. I did not have the forseight to implement a smarter image preview strategy like breaking the image up into tiles for processing or scaling the preview to match the photo viewport. OpenCV is generating previews on the full-resolution images. Since the image processing is handled on a separate worker thread than the UI, a [queued connection](https://doc.qt.io/archives/qt-5.15/qt.html#ConnectionType-enum) is used to signal user input changes from the main thread. Since processing a request takes longer than a slider moving across the screen, the queue would fill with requests from each tick mark a slider would pass. The preview would lag waiting for the worker thread to finish with the previous request as the queue grew. The solution was to write a simple [signal/slot filter](https://github.com/mattykakesmakes/qcvTouchUp/blob/master/app_filters/signalsuppressor.h) to ignore incoming requests while work was being performed, queuing only the last request for the observer to operate on. By dropping intermediate requests, I was able to coordinate a preview that was precieved as lag free.
 
-Custom widgets
-
-
-Signal Suppressor
-Reactive vs event driven https://stackoverflow.com/questions/34495117/how-is-reactive-programming-different-than-event-driven-programming
+I remember the [image viewport widget](https://github.com/mattykakesmakes/qcvTouchUp/blob/master/imagewidget.h) also being a bit challenging, yet one of the more fun parts of the project. This widget supports drag-and-drop file opening, point-of-interest scaling (cursor location is the focal point for zoom in/out), region-of-interest selection and translateion for cropping (click and drag when crop tool is selected to select a region, then click and drag the region to relocate it). To do this correctly there was a small amount of geometry needed to translate all of the coordinates based on image location and scale.
 
 ## Shortcomings
 Planning would have to be the biggest one. Something I had to learn from experience is that good software comes from planning your work before writing code. Whether it's enterprise microservice architecture or a small tool's directory structure; planning will set the interest rate for acrewing technical debt -- which only gets worse with time.  This project is a great example of exactly that. I had a general idea of what I wanted to do but it more-or-less fell into place as I went. This lead to time spent on rework, poor application of design principles, and all around head scratching. I bet I could have finished a much more polished project in half the time if I was patient in my approach.
 
+The UX and UI leaves something to be desired. I always intended to go back and redesign the side panel as a [Qt Quick embedded widget](https://doc.qt.io/qt-6/qtquick-embeddedinwidgets-example.html) at the tail end of the project. Instead, the interface lives on as an obvious afterthought at best. I eventually dubbed the project as "super good enough" and started applying to jobs with it as my showcase piece. However there is a small example of an embedded Qt Quick element in the image editor that served as a proof-of-concept for the _later_ that never came. I did end up building a full [QML Android application](https://github.com/mattykakesmakes/QPlumbob) to round out my Qt framework skills. Feel free to check that out, too. It was a [BLE](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy) controller intended to light up a [Sims](https://www.ea.com/games/the-sims) style overhead plumbob for a halloween costume.
 
-UX/UI - never went back to do a full QML menu implementation or design it out
-
-Later abondoned the project once I got what I needed from it and built this instaed https://github.com/mattykakesmakes/QPlumbob
-
-
+I don't remember this being a problem when I built the app, but after dusting off the project to write this article I found a glaring bug. The rotate tool crashes periodically. I don't think I'll take the time to figure out why. It could be anything from (most likely) my fault to driver compatibility issues with old library versions ¯\\(ツ)/¯ .
 
 ## Try it Out!
-Even though this project originated as an early teaching tool for myself, I believe it is still worth playing with.
+Even though the [qcvTouchUp project](https://github.com/mattykakesmakes/qcvTouchUp) originated as an early teaching tool for myself, I believe it is still worth playing with and am proud of what I built.
 
-In writing this blog I found a *BONUS* problem after dusting off the project. rotation bug that appeared while I was writing this article but wasn't there when I tested it years ago
-
-Please download it!
+If you have access to a x64 version of Windows, download and extract the [archive](https://github.com/mattykakesmakes/qcvTouchUp/releases/tag/V0.0.3) and look for qcvTouchUp.exe to launch it. It takes a moment to load the linked files into memory and there is no splash screen so be patient with the first launch if it is not immediate. Enjoy!
