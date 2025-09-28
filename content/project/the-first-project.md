@@ -2,14 +2,14 @@
 title: "The First Project"
 date: 2025-09-27T11:04:36-04:00
 draft: false
-language: en
+lang: en
 featured_image: images/pages/project/the-first-project/qcv-touchup.png
 featured_image_quality: 55
 summary: A blast from the past that changed my career! Revisiting my first portfolio piece and the design decisions behind it.
 description: A C++ photo editor built with Qt and OpenCV — the project that helped launch my career. Looking back years later, I reflect on its design choices, challenges, and lessons learned from my younger self’s work.
 author: Matthew Miller
 authorimage: assets/images/global/author.webp
-categories: Project
+categories: [Software]
 tags: [OpenCV, Qt, C++, Windows, Photography, Editor]
 ---
 

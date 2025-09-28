@@ -1,11 +1,11 @@
 main:
   - identifier: project
     name: Projects
-    url: /categories/project/
+    url: /project/
     weight: 10
   - identifier: blog
     name: Blog
-    url: /categories/blog/
+    url: /blog/
     weight: 20
   - identifier: about
     name: About
@@ -14,11 +14,11 @@ main:
 footer:
   - identifier: project
     name: Projects
-    url: /categories/project/
+    url: /project/
     weight: 10
   - identifier: blog
     name: Blog
-    url: /categories/blog/
+    url: /blog/
     weight: 20
   - identifier: about
     name: About

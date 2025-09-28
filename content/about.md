@@ -2,7 +2,7 @@
 title: "About"
 date: 2025-08-09T11:10:36+08:00
 draft: false
-language: en
+lang: en
 description: About Matt
 featured_image: images/pages/matt_reykjavik_2022.jpg
 featured_image_quality: 40
