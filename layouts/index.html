@@ -87,7 +87,7 @@
                 </div>
             </div>
         </div>
-        <div class="sm:mx-auto sm:max-w-3xl sm:px-6">
+        <div class="mx-4 my-4 sm:mx-auto sm:max-w-3xl sm:px-6">
             <div class="md:py-12 sm:relative sm:mt-12 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
                 <div class="hidden sm:block">
                     <div class="absolute inset-y-0 left-1/2 w-screen bg-gray-50 rounded-l-3xl dark:bg-gray-900/10 lg:left-80 lg:right-0 lg:w-full"></div>
@@ -100,7 +100,7 @@
                         <rect width="404" height="392" fill="url(#837c3e70-6c3a-44e6-8854-cc48c737b659)"></rect>
                     </svg>
                 </div>
-                <div class="relative pl-4 sm:mx-auto sm:max-w-3xl sm:px-0 lg:h-full lg:max-w-none lg:pl-12">
+                <div class="relative mx-4 sm:mx-auto sm:max-w-3xl sm:px-0 lg:h-full lg:max-w-none lg:pl-12">
                     {{ $p2image := resources.Get .Site.Params.P2.Image }}
                     {{ $p2quality := site.Params.P2.image_quality | default 75 }}
                     {{ with $p2image }}
@@ -108,7 +108,6 @@
                             <img imgh src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="p2" class="w-full rounded-lg shadow-xl lg:h-full lg:w-auto lg:max-w-none" loading="lazy" />
                         {{ end }}
                     {{ end }}
-
                 </div>
             </div>
         </div>

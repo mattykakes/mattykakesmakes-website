@@ -6,6 +6,11 @@ lang: en
 description: About Matt
 featured_image: images/pages/matt_reykjavik_2022.jpg
 featured_image_quality: 40
+summary: A bit about me and why I started this website.
+author: Matthew Miller
+authorimage: images/global/author.webp
+categories: [Personal, Hobbies, Opinion]
+tags: [DIY, Outdoors, Work]
 ---
 
 ## About Me
