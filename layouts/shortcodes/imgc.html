@@ -1,0 +1,85 @@
+```go-html-template
+{{/*
+  Shortcode: imgc.html
+  Purpose:   Generate responsive images with WebP + JPEG sources, 
+             a low-quality placeholder (LQIP), and optional CSP-safe styling.
+
+  Usage (in Markdown content):
+    {{< imgc src="example.jpg" alt="A descriptive alt text" >}}
+
+  Optional parameters:
+    - src     (string)  : required, image filename under assets/images/
+    - alt     (string)  : required, alt text for accessibility
+    - quality (integer) : optional, image quality (default = 75)
+
+  Example with quality override:
+    {{< imgc src="hero.jpg" alt="Hero banner" quality="90" >}}
+*/}}
+
+{{- /* Responsive image sizes (in px) */ -}}
+{{- $respSizes := slice "300" "450" "600" "750" "900" "1050" "1200" "1350" "1500" -}}
+
+{{- /* Base path for assets */ -}}
+{{- $imgBase := "images/" -}}
+{{- $src := resources.Get (printf "%s%s" $imgBase (.Get "src")) -}}
+{{- $alt := .Get "alt" -}}
+
+{{- /* Image quality (default 75 if not provided) */ -}}
+{{- $quality := .Get "quality" | default "75" -}}
+
+{{- /* Styling classes */ -}}
+{{- $imgClass := "w-full h-auto animate-fade" -}}
+{{- $sizes := "(min-width: 1024px) 100vw, 50vw" -}}
+
+{{- /* Low-quality placeholder (LQIP) */ -}}
+{{- $lqip := $src.Resize (printf "20x q%s jpg" $quality) -}}
+{{- $lqipB64 := $lqip.Content | base64Encode -}}
+{{- $bgStyle := printf "background:url(data:image/jpeg;base64,%s);background-size:cover;background-repeat:no-repeat;" $lqipB64 -}}
+
+{{- /* Fallback image */ -}}
+{{- $fallback := $src.Resize (printf "600x q%s jpg" $quality) -}}
+
+{{- /* CSP-safe option for Cloudflare Pages */ -}}
+{{- $hash := md5 $src -}}
+{{- if eq .Site.Params.Host "CFP" -}}
+<style>
+  .imgB-{{ $hash }} {
+    {{ $bgStyle | safeCSS }}
+  }
+</style>
+<div class="relative imgB-{{ $hash }} bg-center">
+{{- else -}}
+<div class="relative bg-center" style="{{ $bgStyle | safeCSS }}">
+{{- end }}
+
+  <picture>
+    {{/* WebP sources first */}}
+    <source type="image/webp"
+      srcset="{{ range $i, $w := $respSizes -}}
+        {{- if ge $src.Width $w -}}
+          {{- if $i }}, {{ end -}}{{ ($src.Resize (printf "%sx q%s webp" $w $quality)).RelPermalink }} {{ $w }}w
+        {{- end -}}
+      {{- end }}"
+      sizes="{{ $sizes }}" />
+
+    {{/* JPEG fallback */}}
+    <source type="image/jpeg"
+      srcset="{{ range $i, $w := $respSizes -}}
+        {{- if ge $src.Width $w -}}
+          {{- if $i }}, {{ end -}}{{ ($src.Resize (printf "%sx q%s jpg" $w $quality)).RelPermalink }} {{ $w }}w
+        {{- end -}}
+      {{- end }}"
+      sizes="{{ $sizes }}" />
+
+    {{/* Fallback <img> for non-picture browsers */}}
+    <img
+      class="{{ $imgClass }}"
+      src="{{ $fallback.RelPermalink }}"
+      width="{{ $src.Width }}"
+      height="{{ $src.Height }}"
+      alt="{{ $alt }}"
+      loading="lazy"
+    />
+  </picture>
+</div>
+```

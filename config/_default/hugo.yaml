@@ -1,6 +1,6 @@
 baseURL: https://example.org/
 title: Matty Kakes Makes
-theme: tailbliss
+# theme: tailbliss
 languageCode: en-us
 DefaultContentLanguage: en
 enableEmoji: true
