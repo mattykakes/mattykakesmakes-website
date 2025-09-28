@@ -2,23 +2,24 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- Favicon  -->
+<!-- Favicon (browser tabs) -->
 <link rel="icon" href="{{ .Site.Params.meta.favicon_ico }}" sizes="any">
 <link rel="icon" href="{{ .Site.Params.meta.favicon_svg }}" type="image/svg+xml">
 <link rel="mask-icon" href="{{ .Site.Params.meta.favicon_svg }}" color="{{ .Site.Params.meta.theme_color }}">
 
-<!-- Apple Touch icons for iOS and Windows shortcut -->
-<link rel="apple-touch-icon" href="{{ .Site.Params.meta.favicon_96 }}">
-<link rel="apple-touch-icon" sizes="192x192" href="/favicon/web-app-manifest-192x192.png">
-<link rel="apple-touch-icon" sizes="512x512" href="/favicon/web-app-manifest-512x512.png">
-
-<!-- Web App Manifest for PWA installation -->
-<link rel="manifest" href="{{ .Site.Params.meta.manifest }}">
-
 <!-- Theme and tile metadata -->
 <meta name="theme-color" content="{{ .Site.Params.meta.theme_color }}">
 <meta name="background-color" content="{{ .Site.Params.meta.background_color }}">
-<meta name="msapplication-TileImage" content="/favicon/web-app-manifest-192x192.png">
+
+<!-- Apple Touch icons for iOS and Windows shortcut -->
+<link rel="apple-touch-icon" href="{{ .Site.Params.meta.favicon_96 }}">
+<link rel="apple-touch-icon" sizes="192x192" href="/favicon/web-app-manifest-192x192.png">
+
+<!-- Manifest (Android / Chrome PWA) -->
+<link rel="manifest" href="{{ .Site.Params.meta.manifest }}">
+
+<!-- Windows tiles -->
+<meta name="msapplication-TileImage" content="/favicon/favicon-150x150.png">
 <meta name="msapplication-TileColor" content="{{ .Site.Params.meta.background_color }}">
 
 <!--
