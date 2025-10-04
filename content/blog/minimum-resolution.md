@@ -1,9 +1,9 @@
 ---
-title: "Standard Resolution"
+title: "Minimum Resolution"
 date: 2025-10-02T22:02:00-04:00
 draft: false
 lang: en
-featured_image: images/pages/blog/standard-resolution/frontend-anxiety-meme.png
+featured_image: images/pages/blog/minimum-resolution/frontend-anxiety-meme.png
 featured_image_quality: 25
 summary: An evidence-based look into minimum and maximum screen resolutions for business-focused desktop applications.
 description: todo
@@ -13,11 +13,11 @@ categories: [Software, Design]
 tags: [UX, UI, Screen, Monitor, Application, Frontend]
 ---
 
-In todayʼs broad landscape of monitor configurations, itʼs easy to get lost trying to determine what to officially support when building an application. The first and most important step in determining what to support is to know your audience. You should be able to generalize on what _type_ of user-facing application you are developing. For desktop's, these fall into one of two main categories: <u>niche</u> and <u>general</u> applications.
+In todayʼs broad landscape of monitor configurations, itʼs easy to get lost trying to determine what requirements to use as bounds for officially supported hardware when building an application. The first and most important step in determining what to support is to know your audience. You should be able to generalize what _type_ of user-facing application you are developing. For desktop's, these fall into one of two main categories: <u>niche</u> and <u>general</u> computing.
 
 Niche applications have specialized requirements and usually need to be categorized further. They represent the extremes when determining required screen size to perform a task. Software like high resolution imaging, studio recording, and gaming would be on one extreme while HMI's for control systems and keosk applications are on the other.
 
-General applications -- which include word processing, data analysis, communication, and design tools -- are the workhorses of the modern job. They constitute the majority of software that developers create and that employees rely on. While factors like productivity and corporate budgets often determine equipment choices, the problem persists: how to accurately assess the constraints placed on general application design.
+General computing applications include word processing, data analysis, communication, and design tools. They are the workhorses of the modern job. They constitute the majority of software that developers create and that employees rely on. While factors like productivity and corporate budgets often determine equipment choices, the problem persists: how to accurately assess the constraints placed on general application design.
 
 ## Market Trends
 With so many options available, manufacturers provide guidance to help buyers balance screen size and resolution to best meet their needs. These recommendations typically consider factors such as the task at hand, available workspace, and budget.
@@ -51,18 +51,20 @@ Even in today's market, standard HD screens remain popular. Based on the tables 
 | Graphics or design | 29.7 | 
 | Programming | 16.4 |
 
-However, I think it is safe to assume the largest change to these numbers over the last 20 years would be due to the addition of virtural meetings like [Zoom](https://www.zoom.com/) and [Teams](https://www.microsoft.com/en-us/microsoft-teams/group-chat-software). If treating them like physical meetings and removing them from a more recent dataset I speculate the numbers would be largely the same with general computing dominating the landscape.
+I think it is safe to assume the largest change to these numbers in the last 20 years would be due to the rise in popularity of virtural meetings like [Zoom](https://www.zoom.com/) and [Teams](https://www.microsoft.com/en-us/microsoft-teams/group-chat-software). If treating them like physical meetings and removing them from a more recent dataset I speculate the numbers would be largely the same with general computing dominating the landscape.
 
-## Most Efficient Size
-
-
+## Equipment Configuration
+Two factors that greatly influence what resolution to support 
 
 ultrawide vs dual setup and how ultrawide can be partitioned into two or three smaller screens (for size consideration. Look at samsung article on this one). But would follow the same trend in reducing virtual size if considering 3 monitors  [Samsung](https://www.samsung.com/us/monitors/monitor-buying-guide/best-monitor-size), [Lenovo](https://www.lenovo.com/us/en/glossary/how-big-is-my-monitor), talk about this in the part about how individual screen size shrinks
+
+If you expect your software to be used on a multi screen setup, size down.
 
 ## Accounting for Scale Factor
 
 
 ## Conclusion
+When IT and administrative departments budget for equipment, they typically aim to balance cost and productivity -- maximizing their return on investment. --- tie in why the research backs up what the manufacturers recommend in from their experience in the market and the BOL data
 
 
 
