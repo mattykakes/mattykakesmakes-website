@@ -2,7 +2,6 @@
 title: "The First Project"
 date: 2025-09-27T11:04:36-04:00
 draft: false
-lang: en
 featured_image: images/pages/project/the-first-project/qcv-touchup.png
 featured_image_quality: 55
 summary: A blast from the past that changed my career! Revisiting my first portfolio piece and the design decisions behind it.
