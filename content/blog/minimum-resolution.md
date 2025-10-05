@@ -5,7 +5,7 @@ draft: false
 featured_image: images/pages/blog/minimum-resolution/frontend-anxiety-meme.png
 featured_image_quality: 25
 summary: An evidence-based look into minimum and maximum screen resolutions for business-focused desktop applications.
-description: todo
+description: An evidence-based opinion on minimum and maximum screen resolution requirements for general computing applications.
 author: Matthew Miller
 authorimage: images/global/author.webp
 categories: [Software, Design]
