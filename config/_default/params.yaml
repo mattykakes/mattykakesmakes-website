@@ -54,6 +54,7 @@ copyright_year: "2025"
 welcome:
   heading: "Hi, I'm Matt..."
   subheading: "...and this is Matty Kakes Makes!"
+  Subheading_short: "...and this is"
   description: "The digital garage where code meets chaos, CAD meets caffeine, and half-baked ideas somehow turn into working(ish) projects."
 
 p1:

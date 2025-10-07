@@ -3,23 +3,55 @@
     <div class="bg-gray-200 dark:bg-gray-900">
         <div class="px-4 py-8 mx-auto max-w-screen-xl">
             <div class="grid gap-8 items-center mb-8 sm:mb-0 lg:gap-12 lg:grid-cols-12">
-                <div class="col-span-6 px-4 text-center sm:mb-6 lg:text-left lg:mb-0">
-                    <h1 class="mb-2 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl xl:text-6xl dark:text-white">
-                        {{ .Site.Params.Welcome.Heading }}
-                    </h1>
-                    <h2 class="pb-2 text-3xl font-light text-gray-800 dark:text-gray-300 md:text-4xl">
-                        {{ .Site.Params.Welcome.Subheading }}
-                    </h2>
-                    <p class="mx-auto mb-6 max-w-xl font-normal text-gray-900 lg:mx-0 xl:mb-2 md:text-lg xl:text-xl dark:text-gray-50">
-                        {{ .Site.Params.Welcome.Description }}
-                    </p>
+            
+            <!-- TEXT + LOGO for stacked (mobile + tablet) layout -->
+            <div class="lg:hidden px-4 text-center">
+                <h1 class="mb-2 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl xl:text-6xl dark:text-white">
+                    {{ .Site.Params.Welcome.Heading }}
+                </h1>
+
+                <!-- Split subheading version -->
+                <h2 class="pb-2 text-3xl font-light text-gray-800 dark:text-gray-300 md:text-4xl">
+                    {{ .Site.Params.Welcome.Subheading_Short }}
+                </h2>
+
+                <!-- Centered logo with responsive scaling -->
+                <div class="flex justify-center">
+                    <img 
+                        src="images/full-logo.svg" 
+                        alt="Matty Kakes Makes" 
+                        class="w-full max-w-[28rem] h-auto px-4 sm:px-8" 
+                    />
                 </div>
-                <div class="col-span-6">
-                    <img src="images/full-logo.svg" width="100%" height="" alt="Matty Kakes Makes" class="mx-auto w-full max-w-xl rounded-lg" />
-                </div>
+
+                <!-- Description -->
+                <p class="mx-auto mb-6 max-w-xl font-normal text-gray-900 md:text-lg xl:text-xl dark:text-gray-50">
+                    {{ .Site.Params.Welcome.Description }}
+                </p>
+            </div>
+
+            <!-- DESKTOP layout -->
+            <div class="hidden lg:block col-span-6 px-4 text-left">
+                <h1 class="mb-2 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl xl:text-6xl dark:text-white">
+                {{ .Site.Params.Welcome.Heading }}
+                </h1>
+
+                <h2 class="pb-2 text-3xl font-light text-gray-800 dark:text-gray-300 md:text-4xl">
+                {{ .Site.Params.Welcome.Subheading }}
+                </h2>
+
+                <p class="mx-auto mb-6 max-w-xl font-normal text-gray-900 lg:mx-0 xl:mb-2 md:text-lg xl:text-xl dark:text-gray-50">
+                {{ .Site.Params.Welcome.Description }}
+                </p>
+            </div>
+
+            <div class="hidden lg:block col-span-6">
+                <img src="images/full-logo.svg" alt="Matty Kakes Makes" class="mx-auto w-full max-w-xl rounded-lg" />
             </div>
         </div>
     </div>
+</div>
+
 
     <!-- What you'll find section -->
     <div class="relative my-4">
