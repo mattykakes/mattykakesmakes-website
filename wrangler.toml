@@ -1,34 +1,48 @@
-# wrangler.toml for Hugo site built via npm and deployed on Cloudflare Pages
+# wrangler.toml — configuration for Hugo site deployed via Cloudflare Pages
+
 name = "mattykakesmakes"
-main = "./public"          # Hugo outputs static files here by default
 compatibility_date = "2025-10-07"
 
+# Cloudflare Pages does NOT use `main`, `upload.*`, or `bucket` — remove them.
+# The Pages build system handles the output directory automatically.
+
+# -----------------------------
+# Build Configuration
+# -----------------------------
 [build]
 command = "npm run build"
-cwd = "."                  # Run from repo root
-upload.format = "directory"
-upload.dir = "public"
+cwd = "."  # Run from repo root
+# No need to define `upload` here; Pages uses the `public/` folder automatically for Hugo.
 
-# Enable Pages build caching to speed up subsequent builds
+# Enable build caching to speed up Hugo + npm builds
 [build.cache]
 enabled = true
-# Cache node_modules and Hugo cache to avoid re-downloading dependencies or re-rendering everything
 paths = ["node_modules", "resources"]
 
-# Configure environment variables for Hugo and Node
+# -----------------------------
+# Environment Variables
+# -----------------------------
 [env.production]
 HUGO_VERSION = "0.148.2"
 NODE_VERSION = "22.14.0"
 HUGO_ENV = "production"
 
-# Optional: preview environment
 [env.preview]
 HUGO_VERSION = "0.148.2"
 NODE_VERSION = "22.14.0"
 HUGO_ENV = "development"
 
-# Optionally define a custom routes file (for _redirects or _headers support)
-#[site]
-#bucket = "./public"
-#custom_domain = "example.com"
+# -----------------------------
+# Site Configuration
+# -----------------------------
+# Optional: add this if you have a custom domain or want to make it explicit
+[site]
+# Cloudflare Pages will automatically serve the contents of "public"
+bucket = "./public"
+custom_domain = "mattykakesmakes.com"  # change if using a different domain
 
+# -----------------------------
+# (Optional) Custom Headers or Redirects
+# -----------------------------
+# If you’re using a _headers or _redirects file, you don’t need to define routes here.
+# Cloudflare Pages automatically picks up /public/_headers and /public/_redirects if they exist.
