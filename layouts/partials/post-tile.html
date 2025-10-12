@@ -28,7 +28,7 @@
             <span class="pr-2 font-black">Tags:</span>
             <span>
             {{ range $elem_index, $elem_val := (.GetTerms "tags") }}
-            {{- if gt $elem_index 0 }}, {{ end -}}
+            {{- if gt $elem_index 0 }} {{ end -}}
             <a href="{{ .Permalink }}"
                 class="inline-flex items-center px-2.5 py-0.5 text-sm font-medium text-gray-900 capitalize bg-gray-300 rounded-md hover:bg-primary-200 hover:text-black">{{ strings.TrimPrefix "Tags/" .LinkTitle }}</a>
             {{- end -}}
