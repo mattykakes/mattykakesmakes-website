@@ -3,6 +3,9 @@ meta:
   favicon_ico: /favicon/favicon.ico
   favicon_svg: /favicon/favicon.svg
   favicon_96: /favicon/favicon-96x96.png
+  favicon_150: /favicon/favicon-150x150.png
+  web_am_192: /favicon/web-app-manifest-192x192.png
+  web_am_512: /favicon/web-app-manifest-512x512.png
 
 # Progressive web app icons 
 manifest: /favicon/manifest.json
