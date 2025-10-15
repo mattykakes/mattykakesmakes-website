@@ -12,13 +12,13 @@
 # HTML CONTENT – short cache, always revalidated
 # =====================================================
 /index.html
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 
 /*.html
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 
 /
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 
 # =====================================================
 # STATIC ASSETS – aggressive immutable caching
