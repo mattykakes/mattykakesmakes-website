@@ -9,18 +9,6 @@
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://static.cloudflareinsights.com https://cdnjs.buymeacoffee.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cdnjs.buymeacoffee.com;
 
 # =====================================================
-# HTML CONTENT – short cache, always revalidated
-# =====================================================
-/index.html
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
-
-/*.html
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
-
-/
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
-
-# =====================================================
 # STATIC ASSETS – aggressive immutable caching
 # =====================================================
 /css/*
@@ -33,6 +21,9 @@
   Cache-Control: public, max-age=31536000, immutable
 
 /favicon/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
   Cache-Control: public, max-age=31536000, immutable
 
 *.webp
@@ -50,11 +41,29 @@
 *.ico
   Cache-Control: public, max-age=31536000, immutable
 
-/fonts/*
-  Cache-Control: public, max-age=31536000, immutable
+# =====================================================
+# HTML CONTENT – short browser cache, longer CDN cache
+# =====================================================
+/index.html
+  Cache-Control: public, max-age=3600, s-maxage=43200, stale-while-revalidate=86400
+
+/*.html
+  Cache-Control: public, max-age=3600, s-maxage=43200, stale-while-revalidate=86400
+
+/
+  Cache-Control: public, max-age=3600, s-maxage=43200, stale-while-revalidate=86400
 
 # =====================================================
-# FALLBACK – catch-all for other static files
+# FEEDS – optional extended caching
 # =====================================================
-/*
+/sitemap.xml
+  Cache-Control: public, max-age=3600, s-maxage=43200, stale-while-revalidate=86400
+
+/index.xml
+  Cache-Control: public, max-age=3600, s-maxage=43200, stale-while-revalidate=86400
+
+# =====================================================
+# FALLBACK – catch-all for other static non-HTML files
+# =====================================================
+/*.(json|xml|txt|csv|pdf|mp3|mp4|webm|wav|woff2|ttf|eot|zip|tar.gz|manifest.json)
   Cache-Control: public, max-age=31536000, immutable
