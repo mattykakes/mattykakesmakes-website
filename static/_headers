@@ -67,3 +67,4 @@
 # =====================================================
 /*.(json|xml|txt|csv|pdf|mp3|mp4|webm|wav|woff2|ttf|eot|zip|tar.gz|manifest.json)
   Cache-Control: public, max-age=31536000, immutable
+
