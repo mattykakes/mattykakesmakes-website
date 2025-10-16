@@ -46,6 +46,7 @@ social_media:
 social_franchising:
   buy_me_a_coffee:
     enabled: true
+    url: 'https://buymeacoffee.com/mattykakesmakes'
     data_slug: 'mattykakesmakes'
 
 # Index / Home Defaults

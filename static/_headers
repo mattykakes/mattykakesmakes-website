@@ -8,11 +8,11 @@
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   Content-Security-Policy:
     default-src 'self';
-    script-src 'self' 'unsafe-inline' https://cdnjs.buymeacoffee.com https://static.cloudflareinsights.com;
+    script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com;
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
     img-src 'self' data:;
-    font-src 'self' https://fonts.gstatic.com https://cdnjs.buymeacoffee.com;
-    connect-src 'self' https://cdnjs.buymeacoffee.com;
+    font-src 'self' https://fonts.gstatic.com;
+    connect-src 'self';
 
 # =====================================================
 # STATIC ASSETS – aggressive immutable caching
