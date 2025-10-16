@@ -1,8 +1,8 @@
-```go-html-template
 {{/*
   Shortcode: imgc.html
   Purpose:   Generate responsive images with WebP + JPEG sources, 
              a low-quality placeholder (LQIP), and optional CSP-safe styling.
+             All images are fingerprinted for cache-busting.
 
   Usage (in Markdown content):
     {{< imgc src="example.jpg" alt="A descriptive alt text" >}}
@@ -32,12 +32,12 @@
 {{- $sizes := "(min-width: 1024px) 100vw, 50vw" -}}
 
 {{- /* Low-quality placeholder (LQIP) */ -}}
-{{- $lqip := $src.Resize (printf "20x q%s jpg" $quality) -}}
+{{- $lqip := $src.Resize (printf "20x q%s jpg" $quality) | fingerprint -}}
 {{- $lqipB64 := $lqip.Content | base64Encode -}}
 {{- $bgStyle := printf "background:url(data:image/jpeg;base64,%s);background-size:cover;background-repeat:no-repeat;" $lqipB64 -}}
 
 {{- /* Fallback image */ -}}
-{{- $fallback := $src.Resize (printf "600x q%s jpg" $quality) -}}
+{{- $fallback := $src.Resize (printf "600x q%s jpg" $quality) | fingerprint -}}
 
 {{- /* CSP-safe option for Cloudflare Pages */ -}}
 {{- $hash := md5 $src -}}
@@ -57,7 +57,7 @@
     <source type="image/webp"
       srcset="{{ range $i, $w := $respSizes -}}
         {{- if ge $src.Width $w -}}
-          {{- if $i }}, {{ end -}}{{ ($src.Resize (printf "%sx q%s webp" $w $quality)).RelPermalink }} {{ $w }}w
+          {{- if $i }}, {{ end -}}{{ ($src.Resize (printf "%sx q%s webp" $w $quality) | fingerprint).RelPermalink }} {{ $w }}w
         {{- end -}}
       {{- end }}"
       sizes="{{ $sizes }}" />
@@ -66,7 +66,7 @@
     <source type="image/jpeg"
       srcset="{{ range $i, $w := $respSizes -}}
         {{- if ge $src.Width $w -}}
-          {{- if $i }}, {{ end -}}{{ ($src.Resize (printf "%sx q%s jpg" $w $quality)).RelPermalink }} {{ $w }}w
+          {{- if $i }}, {{ end -}}{{ ($src.Resize (printf "%sx q%s jpg" $w $quality) | fingerprint).RelPermalink }} {{ $w }}w
         {{- end -}}
       {{- end }}"
       sizes="{{ $sizes }}" />
@@ -82,4 +82,3 @@
     />
   </picture>
 </div>
-```

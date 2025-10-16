@@ -3,6 +3,9 @@
 
 <head>
     {{ partial "head.html" . }}
+
+    {{ $navbarJS := resources.Get "js/navbar.js" | minify | fingerprint }}
+    <script defer src="{{ $navbarJS.Permalink }}"></script>
 </head>
 
 <body class="flex flex-col min-h-screen bg-zinc-100 dark:bg-gray-800 ">
@@ -12,40 +15,9 @@
 
     {{/* Load JavaScript asynchronously to prevent main thread blocking */}}
     {{ if not .Site.Params.Disable_theme_toggle }}
-    {{ $js := resources.Get "js/darkmode.js" | js.Build }}
+    {{ $js := resources.Get "js/darkmode.js" | js.Build | minify | fingerprint }}
     <script defer src="{{ $js.RelPermalink }}"></script>
     {{ end }}
-    
-
-    {{/* Load Alpine.js with defer to prevent blocking but load the CDN version with onerror,
-       * and keep a hidden local copy built with Hugo Pipes. If the CDN fails the onerror handler
-       * loads the local version. If the CDN is blocked, then window.Alpine is never defined. The
-       * second <script> checks the window.Alpine definition after the DOM loads and injects the
-       * local version if absent. */}}
-
-
-
-    <script defer 
-        src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-        onerror="
-          var s=document.createElement('script');
-          s.src='{{ (resources.Get "js/alpine.min.js" | fingerprint).RelPermalink }}';
-          s.defer=true;
-          document.head.appendChild(s);
-        ">
-    </script>
-
-    <script>
-    // If CDN is blocked (no error fired but script never ran)
-    window.addEventListener('DOMContentLoaded', function () {
-        if (!window.Alpine) {
-        var s=document.createElement('script');
-        s.src='{{ (resources.Get "js/alpine.min.js" | fingerprint).RelPermalink }}';
-        s.defer=true;
-        document.head.appendChild(s);
-        }
-    });
-    </script>
 </body>
 
 </html>
