@@ -38,7 +38,7 @@ social_media:
     url: ''
   instagram:
     enabled: true
-    url: 'https://www.instagram.com/matty.kakes.makes/'
+    url: 'https://instagram.com/matty.kakes.makes/'
   twitter:
     enabled: false
     url: ''

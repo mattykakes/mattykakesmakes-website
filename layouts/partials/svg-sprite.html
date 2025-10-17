@@ -1,0 +1,31 @@
+{{/* 
+  Partial: svg-sprite.html
+  Purpose:  Load a single SVG sprite sheet containing all social icons.
+            This allows us to reference each icon via <use> in the footer or anywhere else,
+            reducing HTML size and improving caching.
+
+  Usage:
+    1. Place your combined SVG sprite in "assets/icons/social-icons.svg".
+       - Each icon should be wrapped in a <symbol> with a unique id.
+       - Example: <symbol id="icon-linkedin" viewBox="0 0 24 24">...</symbol>
+
+    2. Include this partial once in your base template, typically in "baseof.html" just inside <body>:
+       {{ partial "svg-sprite.html" . }}
+
+    3. Reference icons anywhere with:
+       <svg class="w-6 h-6"><use href="#icon-linkedin"></use></svg>
+
+  Notes:
+    - The sprite file is fingerprinted and minified via Hugo Pipes.
+      This generates a hashed filename for long-term caching and ensures updates are reflected.
+    - The <div style="display:none"> ensures the SVG definitions do not render visually,
+      but remain available in the DOM for <use> references.
+*/}}
+
+{{/* Load the sprite from assets */}}
+{{ $sprite := resources.Get "icons/social-icons.svg" | fingerprint | resources.Minify }}
+
+{{/* Inject the minified sprite inline but hidden in the DOM */}}
+<div style="display:none;">
+  {{ $sprite.Content | safeHTML }}
+</div>

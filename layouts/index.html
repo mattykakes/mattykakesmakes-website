@@ -17,8 +17,9 @@
 
                 <!-- Centered logo with responsive scaling -->
                 <div class="flex justify-center">
+                    {{ $fullLogo := resources.Get "images/logo/full-logo.svg" | fingerprint | resources.Minify }}
                     <img 
-                        src="images/full-logo.svg" 
+                        src="{{ $fullLogo.RelPermalink }}" 
                         alt="Matty Kakes Makes" 
                         class="w-full max-w-[28rem] h-auto px-4 sm:px-8" 
                     />
