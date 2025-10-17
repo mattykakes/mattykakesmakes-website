@@ -50,13 +50,11 @@
 # =====================================================
 # HTML CONTENT – short browser cache, longer CDN cache
 # =====================================================
-/index.html
+/**/*.html
   Cache-Control: public, max-age=3600, s-maxage=43200, stale-while-revalidate=86400
 
-/*.html
-  Cache-Control: public, max-age=3600, s-maxage=43200, stale-while-revalidate=86400
-
-/
+# optional: for directory URLs without .html
+/*/
   Cache-Control: public, max-age=3600, s-maxage=43200, stale-while-revalidate=86400
 
 # =====================================================
