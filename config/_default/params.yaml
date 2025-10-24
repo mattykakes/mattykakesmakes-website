@@ -64,7 +64,8 @@ welcome:
 p1:
   heading: "What you'll find here..."
   image: "images/pages/matt_garage_idk2_2025.webp"
-  image_quality: 35
+  image_quality: 78
+  image_width: 600
   content:
     - text: "The goal isn’t always to make something perfect — it’s to use building as a creative outlet, a way to express ideas in physical form. Sometimes that means making something surprisingly useful, other times it means creating something delightfully absurd. Either way, every build is a chance to experiment, learn, and turn imagination into something you can actually hold in your hands."
     - text: "Engineering Projects - From software to hardware, this is where code, circuits, and machines collide. Expect projects that range from practical tools to strange experiments that maybe shouldn’t work… but somehow do."
@@ -74,7 +75,8 @@ p1:
 p2:
   heading: Why "Matty Kakes"?
   image: images/pages/mkm_broken_cake_1.png
-  image_quality: 35
+  image_quality: 45
+  image_width: 600
   content:
     - text: "Because every project is a bit like a cake: you start with a recipe, throw in your own flavor, and hope it doesn’t collapse in the oven. And if it does? Well, that’s part of the fun."
     - text: "Mistakes aren’t just inevitable — they’re the secret ingredient. Every time something wobbles, sparks, or fails spectacularly, it leaves behind a lesson. Maybe it’s about how something actually works (or doesn’t), maybe it’s about why that “clever shortcut” wasn’t so clever after all. Either way, those stumbles are where the real learning happens."

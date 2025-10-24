@@ -3,7 +3,7 @@
         {{ with .Params.featured_image }}
             {{ with resources.Get . }}
                 {{ $quality := $.Params.featured_image_quality | default 75 }}
-                {{ $postimage := (.Resize (printf "500x webp q%d" $quality)).RelPermalink }}
+                {{ $postimage := (.Resize (printf "450x webp q%d" $quality)).RelPermalink }}
                 <div class="aspect-[16/9] w-full overflow-hidden rounded-t-lg">
                 <img 
                     src="{{ $postimage }}" 

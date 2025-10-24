@@ -3,6 +3,9 @@
     <div class="bg-gray-200 dark:bg-gray-900">
         <div class="px-4 py-8 mx-auto max-w-screen-xl">
             <div class="grid gap-8 items-center mb-8 sm:mb-0 lg:gap-12 lg:grid-cols-12">
+
+            {{/* Shared full logo resource for title section */}}
+            {{ $fullLogo := resources.Get "images/logo/full-logo.svg" | fingerprint | resources.Minify }}
             
             <!-- TEXT + LOGO for stacked (mobile + tablet) layout -->
             <div class="lg:hidden px-4 text-center">
@@ -17,7 +20,6 @@
 
                 <!-- Centered logo with responsive scaling -->
                 <div class="flex justify-center">
-                    {{ $fullLogo := resources.Get "images/logo/full-logo.svg" | fingerprint | resources.Minify }}
                     <img 
                         src="{{ $fullLogo.RelPermalink }}" 
                         alt="Matty Kakes Makes" 
@@ -47,7 +49,7 @@
             </div>
 
             <div class="hidden lg:block col-span-6">
-                <img src="images/full-logo.svg" alt="Matty Kakes Makes" class="mx-auto w-full max-w-xl rounded-lg" />
+                <img src="{{ $fullLogo.RelPermalink }}" alt="Matty Kakes Makes" class="mx-auto w-full max-w-xl rounded-lg" />
             </div>
         </div>
     </div>
@@ -72,9 +74,10 @@
                 <div class="relative px-4 py-6 mx-auto w-full h-auto sm:max-w-3xl sm:px-6 lg:px-0 lg:py-20">
                     <div class="overflow-hidden rounded-2xl shadow-xl">
                         {{ $p1image := resources.Get .Site.Params.P1.Image }}
+                        {{ $p1width := site.Params.P1.image_width }}
                         {{ $p1quality := site.Params.P1.image_quality | default 75 }}
                         {{ with $p1image }}
-                            {{ with .Resize (printf "%dx%d webp q%d" .Width .Height $p1quality) }}
+                            {{ with .Resize (printf "%dx webp q%d" $p1width $p1quality) }}
                                 <img imgh src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" class="w-full rounded-lg h-auto" alt="P1" loading="lazy" />
                             {{ end }}
                         {{ end }}
@@ -135,9 +138,10 @@
                 </div>
                 <div class="relative mx-4 sm:mx-auto sm:max-w-3xl sm:px-0 lg:h-full lg:max-w-none lg:pl-12">
                     {{ $p2image := resources.Get .Site.Params.P2.Image }}
+                    {{ $p2width := site.Params.P2.image_width }}
                     {{ $p2quality := site.Params.P2.image_quality | default 75 }}
                     {{ with $p2image }}
-                        {{ with .Resize (printf "%dx%d webp q%d" .Width .Height $p2quality) }}
+                        {{ with .Resize (printf "%dx webp q%d" $p2width $p2quality) }}
                             <img imgh src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="p2" class="w-full rounded-lg shadow-xl lg:h-full lg:w-auto lg:max-w-none" loading="lazy" />
                         {{ end }}
                     {{ end }}
