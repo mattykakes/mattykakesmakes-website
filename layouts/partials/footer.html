@@ -59,6 +59,14 @@
                 </svg>
             </a>
             {{ end }}
+            {{ if .Site.Params.Social_media.Printables.Enabled }}
+            <a href="{{ $.Site.Params.Social_media.Printables.Url }}" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gray-300">
+                <span class="sr-only">Printables</span>
+                <svg class="w-6 h-6">
+                    <use href="#icon-printables"></use>
+                </svg>
+            </a>
+            {{ end }}
             {{ if .Site.Params.social_franchising.buy_me_a_coffee.enabled }}
             <a href="{{ $.Site.Params.Social_franchising.Buy_me_a_coffee.Url }}" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gray-300">
                 <span class="sr-only">Buy Me a Coffee</span>

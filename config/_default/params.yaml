@@ -30,8 +30,11 @@ social_media:
   github:
     enabled: true
     url: 'https://github.com/mattykakesmakes'
-  bluesky:
+  printables:
     enabled: true
+    url: 'https://www.printables.com/@mattykakes_3056026'
+  bluesky:
+    enabled: false
     url: 'https://bsky.app/profile/matty-kakes.bsky.social'
   facebook:
     enabled: false
