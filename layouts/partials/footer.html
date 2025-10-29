@@ -81,8 +81,16 @@
             &copy; {{ with .Site.Params.copyright_year }}{{ . }}{{ else }}{{ now.Format "2006" }}{{ end }}
             {{ .Site.Title }}. All&nbsp;rights&nbsp;reserved.
         </p>
-        <p class="mt-2 text-base text-center text-gray-400">
-            Theme by <a href="https://nusserstudios.com" class="hover:underline hover:text-primary-600"><span class="font-black uppercase">Nusser</span><span class="font-light uppercase">Studios</span></a>. <br class="sm:hidden" /><span>Modified by Matthew&nbsp;Miller.</span>
-        </p>
+        <div class="mt-2 flex flex-row justify-center gap-1 text-base text-gray-400 flex-wrap text-center">
+            <div>
+                Theme by 
+                <a href="https://nusserstudios.com" class="hover:underline hover:text-primary-600">
+                <span class="font-black uppercase">Nusser</span>
+                <span class="font-light uppercase">Studios</span></a>.
+            </div>
+            <div>
+                Modified by Matthew&nbsp;Miller.
+            </div>
+        </div>
     </div>
 </footer>
