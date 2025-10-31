@@ -1,0 +1,15 @@
+{{/* 
+  This file overrides how Markdown images are rendered in Hugo to
+  fingerprint images from /assets/ for cache-busting while preserving
+  alt text and lazy loading.
+*/}}
+
+{{- $src := .Destination -}}
+{{- $resource := resources.Get $src -}}
+
+{{- if $resource -}}
+  {{- $fp := $resource | fingerprint -}}
+  <img src="{{ $fp.RelPermalink }}" alt="{{ .Text }}" loading="lazy">
+{{- else -}}
+  <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" loading="lazy">
+{{- end -}}
