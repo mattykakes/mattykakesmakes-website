@@ -12,7 +12,7 @@ categories: [Software, Design]
 tags: [Enterprise, Reactive, Browser, Application, Frontend]
 ---
 
-Have you ever worked on a large or long-lived, browser-based front-end that became a bear to maintain -- one that became brittle and frustrating to work on as it grew?
+Have you ever worked on a large or long-running enterprise browser-based front-end that became a bear to maintain -- one that became brittle and frustrating to work on as it grew?
 
 If your application has any of these symptoms, chances are you have:
 * Small changes cause regressions
@@ -326,6 +326,95 @@ Directory prefixes within a large directory like `features/` help us infer how a
 Additionally, consistent naming like sticking to either camel or kebab case helps with directory tree readability and further enhances organization.
 
 # Unscoped State Distribution {#unscoped-state}
+
+Before understanding the importance of scoped state management in browser based applications, we need to understand the differences between [event-driven programming](https://en.wikipedia.org/wiki/Event-driven_programming) and [reactive programming](https://en.wikipedia.org/wiki/Reactive_programming). This includes why a reactive programming model might be preferable in larger applications and what additional challenges are introduced.
+
+Event-driven programming is an imperative programming style where events are pushed to handlers which tell the system exactly what to do when an event occurs. These events are discrete and independent of one another. The system does not track how events relate over time. In browser applications, its most often seen when handlers respond directly to clicks or network responses by triggering a callback function. 
+
+Reactive programming, by contrast, is a declarative programming style. Instead of responding to isolated events it instead models data as streams, or observables, that emit values over time. System logic reacts automatically as data flows through these streams. The programmer describes how data should flow and transform, while the system continuously manages propagation and updates through stream operators.
+
+In larger browser applications, like those found in enterprise software, reactive programming is often used over an event-driven only design. It scales better as applications grow since it models data as continuous streams rather than isolated events. Instead of wiring countless handlers to manage one-to-one interactions through propagation, a single reactive source can drive many subscribers at once — keeping views, components, and services in sync automatically. This turns asynchronous complexity into a predictable dataflow.
+
+However, streams can become tangled when data flows aren’t clearly scoped or documented. Without disciplined structure, the reactive model meant to simplify state propagation can instead lead to a [rat’s nest](https://englishteststore.net/lesson/english-idioms/rats-nest-idiom-meaning-and-example-usage-in-sentences/) of observables — and if you’ve ever worked on a reactive project where tracing state feels like deciphering this state diagram, you know exactly how frustrating that can be.
+
+{{< imgc src="pages/blog/brittle-to-beautiful/confusing-flow.png" alt="Confusing Flow" quality="30" >}}
+
+### Brittle State Management
+
+The first step in preventing brittle state management, in a reactive browser-based application, is understanding what causes it in the first place. The causes can be categorized into three major failure points: 
+
+* Uncontrolled subscriptions
+* No single source of truth
+* Poor separation of concerns
+
+Uncontrolled subscriptions occur when components or services subscribe to multiple observables without clear boundaries or coordination. This can happen in one of two ways: when stream driven states are combine with states from event-driven updates in a careless way or when objects listen to their observables independently. An example would be when states depend on multiple streams without the use of stream operators like `combineLatest`, `merge`, or `switchMap`. Subscriptions begin to compete with one another triggering overlapping events and inconsistent UI updates.
+
+Many times state brittleness can come from not maintaining a single source of truth. This happens when states are split, or modified, across multiple services which leads to an unpredictable state model with no defined direction -- for example, when a shopping cart’s contents are updated in one service but another service still reads an outdated version, causing items to appear duplicated or missing in the UI.
+
+Poor separation of concerns, otherwise known as the [single responsibility principle](https://en.wikipedia.org/wiki/Single-responsibility_principle), is where objects do not adhere to functional boundaries. Often times this occurs when components contain subject sources, or business logic, that instead belong encapsulated within a dedicated service or utility. A lack of logical structure makes the code harder to understand, maintain, and test, as changes in one area can unintentionally affect unrelated parts of the application.
+
+For reactive programming project to maintain a high level of robustness over time, the above issues must be mitigated. A strict state management approach needs to be defined and adhered to. We can achieve this by breaking down state management into two separate categories: local and global states.
+
+### Local State
+
+Local states define how components within a top level feature model communicate. Let's consider another example. In the figure below we have:
+
+* Feature component: consider this the top level component exported from the module
+* Feature module: another feature component consumed by, and kept private to, this module
+* Local component: a single child component private to this module
+
+{{< imgc src="pages/blog/brittle-to-beautiful/local-state-fg.png" alt="Confusing Flow" quality="30" >}}
+
+To maintain strong cohesion, it’s important to restrict how components communicate with one another. In a one-to-one relationship between the feature component and one of its children, restrict communication to event-based communication like props and property binding or simple reactive primitives like signals (e.g. [Angular](https://angular.dev/guide/signals) / [React](https://preactjs.com/guide/v10/signals)).
+
+For components that must communicate laterally, or in a one-to-many  state distribution relationship, use a dedicated service object for orchestration. The service must be restricted to use signals, or a dedicated subscription stream for more complicated scenarios (e.g. [Angular](https://rxjs.dev/) / [React](https://react-rxjs.org/)).
+
+The important part of these restrictions is that services are kept private to each feature module. They should not reach across, or extend beyond, their designated boundary. This restriction prevents broadly scoped lateral one-to-many relationships - maintaining the separation of concerns.
+
+### Global State
+
+For any external (beyond one or two levels vertically) and lateral state sharing we must default to the second category: global state sharing -- using a strong state management pattern. For enterprise applications, this often means using Redux (e.g. [Angular](https://ngrx.io/) / [React](https://redux.js.org/)) to update and distribute global state to subscribers. However, there are plenty of alternatives that require less boilerplate code depending on project requirements (e.g. [MobX](https://mobx.js.org/README.html) and [Akita](https://opensource.salesforce.com/akita/)).
+
+{{< imgc src="pages/blog/brittle-to-beautiful/global-state-fg.png" alt="Confusing Flow" quality="30" >}}
+
+The important part of managing globally accessible, or root, states is that wide reaching state sharing adheres to a unidirectional flow from a single source of truth which is strictly enforced by the design pattern. As an added bonus, patterns like these make scalability straightforward -- allowing for easy sharing and dispatching of states to new objects.
+
+Additionally, using a top-down state management paradigm prevents the implementation of bad vertical state management anti-patterns, like prop drilling, from festering -- which both Angular and React can easily fall victim to.
+
+[Prop drilling](https://www.geeksforgeeks.org/reactjs/what-is-prop-drilling-and-how-to-avoid-it/) is a lazy way to obtain the same vertical reach as Redux’s top-down state distribution. Objects pass a prop, or bind properties, through multiple intermediary components to a deeply nested component that actually needs the data - sometimes even passing data up the dependency tree and back down another branch.
+
+# State Object Mutability {#object-mutability}
+
+For a strict state management plan to succeed, there is one more issue that must be accounted for - maintaining immutability.
+
+Objects are often passed as states instead of primitive types. This is done by reference. Care must be taken to pass read-only versions of these objects through both local and global state pipelines, OR components must make a deep copy of the data needed if they need to change member values instead making an update to the received state object.
+
+Let's explore how mutability can cause unpredictable behavior with another example.
+
+{{< imgc src="pages/blog/brittle-to-beautiful/mutable-state-fg.png" alt="Confusing Flow" quality="30" >}}
+
+In this scenario, a mutable state is distributed from a shared service. Component 2 makes a change to the state it received as part of a calculation before displaying data dependent on the state. Because it was done haphazardly, the object is also changed in components 1 and 3. Our unidirectional and single source of truth for the states effectively breaks.
+
+Now imagine the issue compounds -- component 2 is part of a larger network of components with a shared global state. Lets say component 2 observes another state from the global store and its action depends on the states received from both the local service and global store. Now the referenced object changes asynchronously through a more complex reactive programming model.
+
+A bug is raised in component 3 because of a change to this referenced object -- how do you track this down quickly? What if component 2 also depended on multiple local services shared between a larger network of components?
+
+The point is, once state mutability and unclear ownership are introduced, the entire data flow becomes opaque. Debugging shifts from following clear, intentional state transitions to untangling side effects that ripple unpredictably across the application. Maintaining immutability and well-defined ownership of state is foundational for predictable and maintainable software.
+
+# Loose Rule-Based Compliance {#loose-compliance}
+
+It’s common in the enterprise software world to work within large, shared repositories. Occasionally, developers from other teams need to modify code in projects they depend on but don’t directly own.
+
+Because of this, we often rely on Git history to track down issues such as regression bugs. When many people contribute to the same project without guardrails, individual formatting preferences can start to creep in. Over time, this not only clutters commit history but also makes it harder to review or trace meaningful changes.
+
+
+??
+
+Additionally it hurts readability. It’s important to remember that enterprise applications do not belong to one person. Because of this, no one person should be free to write code formatted in their favorite way. Often times it’s hard to avoid without a safeguard. Teams, or even people within a team, use different tools. How often do developers have different IDE configurations with within the same tool ecosystem? This alone can lead to inconsistencies.
+
+{{< imgc src="pages/blog/brittle-to-beautiful/types_of_headache_other_devs.jpg" alt="Confusing Flow" quality="30" >}}
+
+
 
 
 <script>
