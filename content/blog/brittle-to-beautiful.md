@@ -405,16 +405,45 @@ The point is, once state mutability and unclear ownership are introduced, the en
 
 It’s common in the enterprise software world to work within large, shared repositories. Occasionally, developers from other teams need to modify code in projects they depend on but don’t directly own.
 
-Because of this, we often rely on Git history to track down issues such as regression bugs. When many people contribute to the same project without guardrails, individual formatting preferences can start to creep in. Over time, this not only clutters commit history but also makes it harder to review or trace meaningful changes.
+Because of this, we often rely on Git history to track down issues such as regression bugs. When many people contribute to the same project without guardrails, individual formatting preferences can start to creep in. These preferences can even be applied to adjacent code that isn't part of a functional change. This act can overwrite top-level Git history -- making inspecting code more cumbersome.
 
+Inconsistent formatting also hurts readability. Enterprise applications rarely belong to a single person, which means no one should be free to format code to their personal preference. Often times it’s hard to avoid without a safeguard. Teams, or even developers within a team, use different tools. How often do developers have different IDE configurations with within the same tool ecosystem? This alone can lead to inconsistencies.
 
-??
+{{< imgc src="pages/blog/brittle-to-beautiful/types_of_headache_other_devs.jpg" alt="Confusing Flow" quality="40" >}}
 
-Additionally it hurts readability. It’s important to remember that enterprise applications do not belong to one person. Because of this, no one person should be free to write code formatted in their favorite way. Often times it’s hard to avoid without a safeguard. Teams, or even people within a team, use different tools. How often do developers have different IDE configurations with within the same tool ecosystem? This alone can lead to inconsistencies.
+Enforcing tool configurations is hard. Enforcing strict linting rules are easy. It maintains a clean code base where everyone becomes used to the defined syntactical style.
 
-{{< imgc src="pages/blog/brittle-to-beautiful/types_of_headache_other_devs.jpg" alt="Confusing Flow" quality="30" >}}
+There are many ways to do this. It’s common to make linting a part of the CI pipeline -- where linting must succeed before a package can be built for a release or a branch merged into the main working branch. However, its easy for a busy team to overlook failing builds during a lul in the release schedule leaving cleanup to the unlucky release manager who discovers it.
 
+For this reason, requiring linting to pass locally before changes may be pushed to a remote repository can be advantageous. There are many ways to do this. One popular way is to use a [Git hook](https://git-scm.com/book/ms/v2/Customizing-Git-Git-Hooks) manager like [Husky](https://typicode.github.io/husky/). This way Git hook scripts can be synchronized across local repositories. This is not without risk, as care must be taken to prevent untrusted code execution -- for this reason keeping these scripts concise is important.
 
+As an added bonus, some tools even provide basic architecture enforcement as a part of linting. [Sheriff](https://github.com/softarc-consulting/sheriff) is one such example.
+
+Remember, rule based compliance isn't about control -- it's about providing long-term predictability. Sustainable products require strong conventions.
+
+# No Software Blueprint {#no-blueprint}
+
+How long after a project begins does it take to turn into a house of cards? Four years? Eight? As soon as the engineer maintaining the project leaves for another job?
+
+On the other end, how do you get a team to buy into the initial design? What do you use to hold a design accountable during a pull request or code review?
+
+{{< imgc src="pages/blog/brittle-to-beautiful/skip-steps-dev.png" alt="Confusing Flow" quality="40" >}}
+
+Architecture documents aren’t just for mapping out microservices or cloud infrastructure. They need to exist at the software level, too. It mustn't be a skipped step when starting a project.
+
+Without a written plan, a project can have the best design in the world at its start -- but if it is intended to be long-lived and have many people work on it, it will eventually fall into chaos.
+
+Before beginning development, create an architecture document tailored to the project. Include UI mockup references and outline key topics such as directory structure, object hierarchy, service scope, state management approach, applicable design patterns, and shared terminology.
+
+This document should live in a place that’s easily accessible to contributors. Whether that’s within a company wiki or as a markdown file in the project repository. The important part is that it’s easy to find and reference, ensuring everyone can align on the same architectural vision as the project evolves.
+
+# Conclusion
+
+Browser frameworks often tout _flexibility_ as a feature or an incentive to promote adoption. In reality, this design philosophy is not what you want at the forefront of a framework to build robust, enterprise software.
+
+Even though the issues I talked about here seem small individually -- together they form the foundation for maintainable browser based applications. A necessity when using un-opinionated technologies.
+
+Long term stability isn’t achieved through any single practice. It comes from good planning, well thought out design, and conscious and consistent follow through. Any one of these issues identified in this article could be the first domino to fall leading a project into disrepair Identifying and investing in these fundamentals early will prevent a lot of pain.
 
 
 <script>
