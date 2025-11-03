@@ -1,11 +1,11 @@
 ---
 title: "Brittle to Beautiful"
-date: 2025-10-29T22:02:00-04:00
+date: 2025-11-02T17:32:00-04:00
 draft: false
 featured_image: images/pages/blog/brittle-to-beautiful/bb-graph.jpg
 featured_image_quality: 35
 summary: Building reactive, browser-based front-ends with long term maintainability in mind. 
-description: TODO
+description: A deep dive into the principles and best practices that enable long-term maintainability in modern browser-based front-end development.
 author: Matthew Miller
 authorimage: images/global/author.webp
 categories: [Software, Design]
@@ -411,9 +411,9 @@ Inconsistent formatting also hurts readability. Enterprise applications rarely b
 
 {{< imgc src="pages/blog/brittle-to-beautiful/types_of_headache_other_devs.jpg" alt="Confusing Flow" quality="40" >}}
 
-Enforcing tool configurations is hard. Enforcing strict linting rules are easy. It maintains a clean code base where everyone becomes used to the defined syntactical style.
+Enforcing tool configurations is hard. Enforcing strict linting rules is easy. It maintains a clean code base where everyone becomes used to one, defined syntactical style.
 
-There are many ways to do this. It’s common to make linting a part of the CI pipeline -- where linting must succeed before a package can be built for a release or a branch merged into the main working branch. However, its easy for a busy team to overlook failing builds during a lul in the release schedule leaving cleanup to the unlucky release manager who discovers it.
+There are many ways to do this. It’s common to make linting a part of the [CI](https://en.wikipedia.org/wiki/Continuous_integration) pipeline -- where linting must succeed before a package can be built for a release or a branch merged into the main working branch. However, its easy for a busy team to overlook failing builds during a lul in the release schedule leaving cleanup to the unlucky release manager who discovers it.
 
 For this reason, requiring linting to pass locally before changes may be pushed to a remote repository can be advantageous. There are many ways to do this. One popular way is to use a [Git hook](https://git-scm.com/book/ms/v2/Customizing-Git-Git-Hooks) manager like [Husky](https://typicode.github.io/husky/). This way Git hook scripts can be synchronized across local repositories. This is not without risk, as care must be taken to prevent untrusted code execution -- for this reason keeping these scripts concise is important.
 
