@@ -443,7 +443,7 @@ Browser frameworks often tout _flexibility_ as a feature or an incentive to prom
 
 Even though the issues I talked about here seem small individually -- together they form the foundation for maintainable browser based applications. A necessity when using un-opinionated technologies.
 
-Long term stability isn’t achieved through any single practice. It comes from good planning, well thought out design, and conscious and consistent follow through. Any one of these issues identified in this article could be the first domino to fall leading a project into disrepair Identifying and investing in these fundamentals early will prevent a lot of pain.
+Long term stability isn’t achieved through any single practice. It comes from good planning, well thought out design, and conscious and consistent follow through. Any one of these issues identified in this article could be the first domino to fall leading a project into disrepair. Identifying and investing in these fundamentals early will prevent a lot of pain.
 
 
 <script>
