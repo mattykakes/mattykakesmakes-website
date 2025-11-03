@@ -1,6 +1,13 @@
 {{/* 
   This file overrides how Markdown links are rendered in Hugo to
-  safely opena new tab where that tab cannot access the opener window.
+  only open external links in a new tab while preserving normal
+  scrolling for internal and anchored links.
 */}}
 
-<a href="{{ .Destination | safeURL }}" title="{{ .Title }}" target="_blank" rel="noopener noreferrer">{{ .Text | safeHTML }}</a>
+{{- $href := .Destination | safeURL -}}
+{{- $parsed := urls.Parse $href -}}
+{{- if and $parsed $parsed.Host -}}
+<a href="{{ $href }}" title="{{ .Title }}" target="_blank" rel="noopener noreferrer">{{ .Text | safeHTML }}</a>
+{{- else -}}
+<a href="{{ $href }}" title="{{ .Title }}">{{ .Text | safeHTML }}</a>
+{{- end -}}
