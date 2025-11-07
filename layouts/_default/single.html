@@ -1,8 +1,17 @@
 {{define "main"}}
 <article class="flex-1">
+  <!-- save the page context -->
+  {{ $page := . }} 
+
+  {{ $summary := $page.Params.summary }}
+  {{ if $summary }}
+  <div class="px-6 pt-6 pb-2 mx-auto text-center prose prose-h1:text-2xl dark:text-white">
+    <i>{{ $summary }}</i>
+  </div>
+  {{ end }}
+
   <div class="max-w-3xl mx-auto mt-8 mb-2">
     <div class="px-6">
-      {{ $page := . }} <!-- save the page context -->
       {{ $quality := $page.Params.featured_image_quality | default 75 }}
 
       {{ with $page.Params.featured_image }}
