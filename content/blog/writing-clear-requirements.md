@@ -107,7 +107,7 @@ Requirements must act as the bounds of functionality. Negative requirements are 
 * Bounded requirement
     * `The system shall only allow users to access sensitive data when a user is authenticated and belongs to the ‘sensitive data’ user group.`
 
-### Segmenting work
+### Be declaratively consistent
 Formal requirements are often broken down into individual work items during development. These ticket-level requirements tend to adopt a more informal structure. If well written, even simple paragraph formatting can communicate clear deliverables, preserving structure and traceability.
 
 * Good Example:
