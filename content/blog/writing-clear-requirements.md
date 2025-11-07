@@ -29,7 +29,7 @@ Functional requirements define what a system should do or what it needs to achie
 
 ## Implementation Requirements
 
-Implementation requirements define how the system should be built—specific technologies, tools, constraints, or design decisions that guide implementation. They focus on technical details rather than high-level functionality.
+Implementation requirements define how the system should be built -- specific technologies, tools, constraints, or design decisions that guide implementation. They focus on technical details rather than high-level functionality.
 
 #### Examples:
 * `The data layer shall be implemented using PostgreSQL as the database.`
