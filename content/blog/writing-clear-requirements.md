@@ -2,7 +2,7 @@
 title: "Writing Clear Requirements"
 date: 2025-11-06T21:47:00-04:00
 draft: false
-featured_image: images/pages/blog/writing-clear-requirements/bernie-requirements.jpeg
+featured_image: images/pages/blog/writing-clear-requirements/fmgu1xkalf131.webp
 featured_image_quality: 45
 summary: A short reference for writing clear, structured requirements for systems and products.  
 description: This guide explains how to define, structure, and validate requirements to improve clarity, traceability, and project outcomes—bridging the gap between specification and implementation.
