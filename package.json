@@ -1,21 +1,26 @@
 {
   "name": "MattyKakesMakes",
   "version": "1.0.0",
-  "description": "Hugo + Alpine.js + TailwindCSS = Matty Kakes Makes",
+  "description": "Hugo + TailwindCSS = Matty Kakes Makes",
   "main": "index.js",
   "devDependencies": {
-    "@tailwindcss/postcss": "4.1.14",
-    "@tailwindcss/vite": "4.1.14",
+    "@tailwindcss/postcss": "4.1.17",
+    "@tailwindcss/vite": "4.1.17",
     "autoprefixer": "10.4.21",
     "concurrently": "9.2.1",
     "postcss": "8.5.6",
     "postcss-cli": "11.0.1",
-    "tailwindcss": "4.1.14",
-    "vite": "7.1.10"
+    "tailwindcss": "4.1.17",
+    "vite": "7.2.2"
   },
   "scripts": {
-    "start": "npm run build:css && hugo server --disableFastRender",
-    "build:css": "vite build",
+    "start": "npm run dev",
+    "dev": "npm run build:css:dev && hugo server --disableFastRender --noHTTPCache --disableBrowserError",
+    "dev:watch": "concurrently \"npm run css:watch\" \"npm run hugo:watch\"",
+    "css:watch": "vite build --mode development --watch",
+    "hugo:watch": "hugo server --disableFastRender --noHTTPCache --disableBrowserError",
+    "build:css": "vite build --mode production",
+    "build:css:dev": "vite build --mode development --no-watch",
     "build": "npm run build:css && hugo --minify --gc --cleanDestinationDir",
     "rebuild": "npm run build:css",
     "test": "hugo",
