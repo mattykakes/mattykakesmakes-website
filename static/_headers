@@ -26,20 +26,22 @@
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
 
-*.webp
+# Catch-all for image formats (Cloudflare does not support *.ext patterns)
+/**/*.webp
   Cache-Control: public, max-age=31536000, immutable
 
-*.svg
+/**/*.svg
   Cache-Control: public, max-age=31536000, immutable
 
-*.png
+/**/*.png
   Cache-Control: public, max-age=31536000, immutable
 
-*.jpg
+/**/*.jpg
   Cache-Control: public, max-age=31536000, immutable
 
-*.ico
+/**/*.ico
   Cache-Control: public, max-age=31536000, immutable
+
 
 # =====================================================
 # HTML CONTENT – short browser cache, longer CDN cache
