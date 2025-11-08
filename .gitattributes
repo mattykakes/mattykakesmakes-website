@@ -1,0 +1,78 @@
+# --------------------------------------------------------
+# Global text normalization
+# --------------------------------------------------------
+* text=auto
+
+# --------------------------------------------------------
+# Binary file types — do not treat as text
+# --------------------------------------------------------
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.avif binary
+*.ico binary
+*.svg binary
+
+# Audio / Video
+*.mp3 binary
+*.wav binary
+*.ogg binary
+*.mp4 binary
+*.mov binary
+*.webm binary
+*.m4v binary
+
+# Documents
+*.pdf binary
+*.doc binary
+*.docx binary
+*.xls binary
+*.xlsx binary
+*.ppt binary
+*.pptx binary
+
+# Fonts
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.eot binary
+
+# Archives / data
+*.zip binary
+*.tar binary
+*.gz binary
+*.7z binary
+*.bz2 binary
+
+# 3D / vector / design assets
+*.stl binary
+*.obj binary
+*.step binary
+*.psd binary
+*.ai binary
+*.eps binary
+
+# Hugo / web static files (catchall for other binaries)
+*.bin binary
+*.dat binary
+
+
+# --------------------------------------------------------
+# License attribution by folder
+# --------------------------------------------------------
+
+# Code licensed under Apache 2.0
+layouts/** license=Apache-2.0
+themes/** license=Apache-2.0
+assets/**/*.css license=Apache-2.0
+assets/**/*.js license=Apache-2.0
+config/** license=Apache-2.0
+
+# Content & media are proprietary
+content/** license=Proprietary
+static/** license=Proprietary
+assets/images/** license=Proprietary
