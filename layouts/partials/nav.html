@@ -7,7 +7,7 @@
             <a href="/" class="flex items-center text-gray-100 transition duration-1000 ease-in-out group">
                 {{ $siteLogo := resources.Get "images/logo/site-logo.svg" | fingerprint | resources.Minify }}
                 <img src="{{ $siteLogo.RelPermalink }}" class="w-9 h-9 transition-opacity group-hover:opacity-50 group-focus:opacity-70" alt="{{ .Site.Title }} Logo" />
-                <div class="mt-1 ml-3 text-xl font-black tracking-tight text-gray-100 uppercase transition-colors group-hover:text-gray-400/60">
+                <div class="ml-3 text-xl font-black tracking-tight text-gray-100 uppercase transition-colors group-hover:text-gray-400/60">
                     {{ partial "taxonomy-term-title.html" . }}
                 </div>
             </a>
