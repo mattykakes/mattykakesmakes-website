@@ -96,3 +96,6 @@ All written content, photos, and branding in `content/`, `assets/` and `static/`
 
 ### Trademarks  
 "Matty Kakes Makes" and its associated logos are trademarks of Matthew Miller.
+
+### Additional Information
+For more information on copyright and licencing, please see this [NOTICE](./NOTICE.md).

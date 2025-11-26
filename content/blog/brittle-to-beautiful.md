@@ -347,7 +347,7 @@ The first step in preventing brittle state management in a reactive browser-base
 * No single source of truth
 * Poor separation of concerns
 
-Uncontrolled subscriptions occur when components or services subscribe to multiple observables without clear boundaries or coordination. This can happen in one of two ways: when stream driven states are combine with states from event-driven updates in a careless way, or when objects listen to their observables independently. An example would be when states depend on multiple streams without the use of stream operators like `combineLatest`, `merge`, or `switchMap`. Subscriptions begin to compete with one another, triggering overlapping events and inconsistent UI updates.
+Uncontrolled subscriptions occur when components or services subscribe to multiple observables without clear boundaries or coordination. This can happen in one of two ways: when stream driven states are combined with states from event-driven updates in a careless way, or when objects listen to their observables independently. An example would be when states depend on multiple streams without the use of stream operators like `combineLatest`, `merge`, or `switchMap`. Subscriptions begin to compete with one another, triggering overlapping events and inconsistent UI updates.
 
 Many times, state brittleness can come from not maintaining a single source of truth. This happens when states are split, or modified, across multiple services which leads to an unpredictable state model with no defined direction -- for example, when a shopping cart’s contents are updated in one service but another service still reads an outdated version, causing items to appear duplicated or missing in the UI.
 
