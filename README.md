@@ -2,10 +2,10 @@ The Matty Kakes Makes static website repo using [Hugo](https://gohugo.io/) stati
 
 
 ## Prerequisite Software
-* [Go v1.24](https://go.dev/doc/install)
-* [NodeJS v22.14.0](https://nodejs.org/en/download)
+* [Go v1.25](https://go.dev/doc/install)
+* [NodeJS v24.12.0](https://nodejs.org/en/download)
     * Recommend using a version manager like NVM, fnm, or Volta
-* [Hugo](https://gohugo.io/about/introduction/) [v0.148](https://gohugo.io/installation/)
+* [Hugo](https://gohugo.io/about/introduction/) [v0.152](https://gohugo.io/installation/)
 
 
 ## Development
