@@ -21,30 +21,40 @@ if (window.lazyVideoInitialized) {
         // 2. FEATURE DETECTION: Check if the browser supports IntersectionObserver.
         if ("IntersectionObserver" in window) {
             const videoObserver = new IntersectionObserver((entries) => {
-                entries.forEach((video) => {
+                entries.forEach((entry) => {
                     
                     // 3. VISIBILITY CHECK: Is the video nearing the viewport?
-                    if (video.isIntersecting) {
+                    if (entry.isIntersecting) {
+                        const video = entry.target;
                         
                         // 4. SOURCE SWAP: Iterate through the <source> tags.
                         // We use Array.from() so we can use modern .forEach on the children.
-                        Array.from(video.target.children).forEach((videoSource) => {
-                            if (videoSource.tagName === "SOURCE" && videoSource.dataset.src) {
-                                // Move the URL from data-src (inactive) to src (active)
-                                videoSource.src = videoSource.dataset.src;
+                        const sources = video.querySelectorAll("source");
+                        sources.forEach((source) => {
+                            if (source.dataset.src) {
+                                source.src = source.dataset.src;
                             }
                         });
 
                         // 5. TRIGGER DOWNLOAD: Tell the browser to notice the new sources.
-                        video.target.load(); 
+                        video.load();
+
+                        // 6. WAIT for the video to actually start before removing blur
+                        video.addEventListener('playing', () => {
+                            // Remove the inline blur and transition style
+                            video.style.removeProperty("filter");
+
+                            // Remove transition after blur is gone to save GPU
+                            setTimeout(() => video.style.removeProperty("transition"), 1000);
+                        }, { once: true }); // Important: Only run this once per video load
                         
-                        // 6. CLEANUP: Remove the class and stop watching this video.
-                        video.target.classList.remove("lazy-video");
-                        videoObserver.unobserve(video.target);
+                        // 7. CLEANUP: Remove the class and stop watching this video.
+                        video.classList.remove("lazy-video");
+                        videoObserver.unobserve(video);
                     }
                 });
             }, {
-                // 7. BUFFER: "500px" means "start loading when the video is 200px below the screen."
+                // 8. BUFFER: "500px" means "start loading when the video is 500px below the screen."
                 // This makes the load feel instant to the user.
                 rootMargin: "0px 0px 500px 0px" 
             });
@@ -55,7 +65,7 @@ if (window.lazyVideoInitialized) {
     };
 
     /**
-     * 8. EXECUTION TIMING:
+     * 9. EXECUTION TIMING:
      * If the script is 'deferred' or 'async', it might arrive after the page is ready.
      * We check 'readyState' to ensure the script runs immediately if the page is already 
      * loaded, otherwise it waits for the 'DOMContentLoaded' event.

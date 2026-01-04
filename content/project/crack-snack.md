@@ -39,7 +39,7 @@ What makes this system truely unique, aside from it being a work of art, is that
 ## Safety First
 The idea for safety system emerged during a crack climbing training session using Jason's machines. As we discussed the inherent dangers of a machine that moves under its own power, the need to protect users became obvious.
 
-{{< videoloop mp4="videos/pages/project/crack-snack/crack-moving.mp4" >}}
+{{< videoloop mp4="videos/pages/project/crack-snack/crack-moving.mp4" poster="videos/pages/project/crack-snack/posters/crack-moving.jpg" >}}
 
 The danger stems from the need to provide a realistic climbing experience. Climbers generate significant compressive force through hand and foot wedging techniques; if the system isn't sufficiently rigid, these forces will either [deflect](https://en.wikipedia.org/wiki/Deflection_(engineering)) the crack volumes or [backdrive](https://www.linearmotiontips.com/what-is-back-driving-and-why-is-it-important/) the linear motion assembly.
 
@@ -47,7 +47,7 @@ It was paramount we minimize system displacement under load. When crack climbing
 
 Unfortunately for us, linear systems with high backdrive force generally produce strong driving forces due to the same mechanical principles that resist backdriving. In our application, users would be sticking their hands inside of something that both moves on its own and produces... a lot of force...
 
-[{{< videoloop mp4="videos/pages/project/crack-snack/a-new-hope-trash-compactor.mp4" >}}](https://www.imdb.com/title/tt0076759/)
+[{{< videoloop mp4="videos/pages/project/crack-snack/a-new-hope-trash-compactor.mp4" poster="videos/pages/project/crack-snack/posters/a-new-hope-trash-compactor.jpg" >}}](https://www.imdb.com/title/tt0076759/)
 
 We decided having a multi-layered approach to safety would be best, which we broke out into the following high-level requirements:
 
