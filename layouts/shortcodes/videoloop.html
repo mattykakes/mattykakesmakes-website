@@ -1,0 +1,31 @@
+{{/* 
+Usage: {{< videoloop mp4="videos/promo.mp4" webm="videos/promo.webm" >}}
+Note: Files must be located in the /assets/ directory.
+*/}}
+
+{{ $mp4Path := .Get "mp4" }}
+{{ $webmPath := .Get "webm" }}
+
+<video 
+  class="lazy-video"   {{/* Targeted by JavaScript to start the load process */}}
+  autoplay
+  loop
+  muted
+  playsinline
+  preload="none"       {{/* Extra hint to browsers: "Don't touch this file yet" */}}
+  style="width: 100%;"
+>
+  {{/* Process MP4 with fingerprinting */}}
+  {{ with resources.Get $mp4Path }}
+    {{ $video := . | fingerprint }}
+    <source src="{{ $video.RelPermalink }}" type="video/mp4">
+  {{ end }}
+
+  {{/* Process WebM with fingerprinting */}}
+  {{ with resources.Get $webmPath }}
+    {{ $video := . | fingerprint }}
+    <source src="{{ $video.RelPermalink }}" type="video/webm">
+  {{ end }}
+  
+  Your browser does not support the video tag.
+</video>
