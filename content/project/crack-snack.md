@@ -64,7 +64,31 @@ To minimize complexity and accelerate our time to delivery, we initially planned
 To discuss the complexities of this control system, it’s easiest to break it down into individual sections. This approach is a practical way to understand the system at a high level.
 
 ### Human Machine Interface
-buttons and use, two hand control and user feedback -- stitch two gifs side by side - blinking async and blinking sync
+The sign of a truly intuitive user interface is one that is so clear and self-explanatory that users don't need instructions. Users should be able to understand a device's function and operate it through familiarity and visual cues alone -- at least... as much as possible.
+
+Operating a Crack Snack needed to balance safety without creating barriers that could compromise ease of use.
+
+For safety, we borrowed a _two hand operation_ approach from industrial equipment. Machines like [power presses](https://en.wikipedia.org/wiki/Machine_press) and [stamping machines](https://en.wikipedia.org/wiki/Stamping_press) often require two hand controls to reduce the risk of the operator's hand being in the danger zone during operation. By placing buttons on either side of the device, users cannot stick their hands in the device during adjustment, which they might be tempted to do when sizing the crack.
+
+{{< imgc src="pages/project/crack-snack/crack-control.png" alt="Crack Snack Control" quality="55" >}}
+
+But how to make the two handed operation intuitive with the buttons so far apart?
+
+* __Place buttons at an equal and ergonomic height__ -- By placing the buttons in a consistent and visible place, it will indicate that the buttons are meant for operation.
+* __Use buttons that are inviting__ -- Some buttons, like [emergency stop switches](https://en.wikipedia.org/wiki/Kill_switch), are designed to discourage casual use. [Arcade](https://en.wikipedia.org/wiki/Arcade_cabinet)-style buttons carry a friendly and established history. Leveraging this familiarity signals to users that these buttons are intended as primary inputs.
+* __Matching button colors__ -- With matching colors on each panel, it suggests to users that buttons are pressed together. This leverages the [Gestalt Principle](https://en.wikipedia.org/wiki/Principles_of_grouping) known as the [Law of Similarity](https://www.interaction-design.org/literature/article/the-law-of-similarity-gestalt-principles-1?srsltid=AfmBOoq7ZvdV5Hkll3MGwS7QdHUPgu60-oKwq-WLZX3k86Rqlxsj9hSE).
+* __Selecting familiar colors__ -- Use universal standards to make operation intuitive. While red and green typically mean stop and go, pairing red with a neutral color like blue creates clear movement cues. In this context, red leverages its association with "danger" to signal that it closes the device.
+* __Use buttons for feedback__ -- The buttons already have the user's attention. By illuminating the buttons in different patterns, they can be used to communicate the status of the device without needing a separate screen.
+
+{{< videoloop mp4="videos/pages/project/crack-snack/button-blink.mp4" poster="videos/pages/project/crack-snack/posters/button-blink.jpg" >}}
+
+Even blinking patterns can be leveraged to provide sophisticated feedback. Flashing lights are often used to signal something has gone wrong or that a system is active. In our case we utilize separate patterns to convey different states:
+
+* In a fault state, the button pairs blink synchronously to alert the user to an error.
+* During standard operation, the buttons being pressed blink to signal input is being received, providing real-time confirmation of movement. 
+* A brief blink sequence upon startup serves as a "heartbeat" to signal the device is active and ready for use.
+
+Through this intentional design, the Crack Snack provides both an intuitive and safe user interface that meets our two-hand control and status feedback requirements.
 
 ### Control Logic
 state diagram, talk about finite state machine (in chunks (use obstruction vaguely)), what happens during an obstruction but refer to obstruction as "enter a safe state". Obstruction actions can be talked about in the next section.
