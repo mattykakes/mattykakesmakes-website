@@ -718,6 +718,8 @@ video {
   margin-top: 0;
   margin-bottom: 0.8888889em;
   line-height: 1.1111111;
+  padding-bottom: 0.55em;
+  border-bottom: 0.09375em solid color-mix(in oklch, currentColor, transparent 70%);
 }
 
 .prose :where(h1 strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
@@ -732,6 +734,8 @@ video {
   margin-top: 2em;
   margin-bottom: 1em;
   line-height: 1.3333333;
+  padding-bottom: 0.3em;
+  border-bottom: 0.0625em solid color-mix(in oklch, currentColor, transparent 70%);
 }
 
 .prose :where(h2 strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
