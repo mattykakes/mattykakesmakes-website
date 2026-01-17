@@ -143,6 +143,8 @@
   margin-top: 2rem;
   margin-bottom: 1rem;
   line-height: 1.1111111;
+  padding-bottom: 0.55rem;
+  border-bottom: 0.09375rem solid color-mix(in oklch, currentColor, transparent 70%);
 }
 
 .prose h2 {
@@ -152,6 +154,8 @@
   margin-top: 1.8rem;
   margin-bottom: 0.8rem;
   line-height: 1.3333333;
+  padding-bottom: 0.3rem;
+  border-bottom: 0.0625rem solid color-mix(in oklch, currentColor, transparent 70%);
 }
 
 .prose h3 {
