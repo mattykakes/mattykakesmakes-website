@@ -26,7 +26,7 @@ Historically, gyms have tried to accomodate crack climbing practice by using scr
 This is not only due to the natural variation in outdoor rock features, but also differences in hand and foot sizes across people. What may be considered a perfect or easy sized crack for one person may be awkward and difficult for another. Hence the need for an adjustable crack climbing trainer.
 
 ## Enter, the Crack Snack
-Our solution, which appeared publicaly in March of 2023, was to make a fully adjustable crack climbing trainer that could be mounted to a tilt board for maximum versatility. This would allow climbers to practice techniques at a variety of sizes and angles. Most of what they would encounter outside could now be simulated indoors.
+Our solution, which appeared publicaly in __March of 2023__, was to make a fully adjustable crack climbing trainer that could be mounted to a tilt board for maximum versatility. This would allow climbers to practice techniques at a variety of sizes and angles. Most of what they would encounter outside could now be simulated indoors.
 
 [{{< imgc src="pages/project/crack-snack/crack-snack-matt-jason.jpg" alt="Crack Snack Creators" quality="47" >}}](https://www.instagram.com/p/CpixfHdPPM_/)
 
@@ -36,7 +36,7 @@ The idea behind the [Crack Snack](https://crackableclimbing.com/) belongs to my 
 What makes this system truely unique, aside from it being a work of art, is that it moves under its own power. This brought with it its own list of challenges. A dedicated safety system being of utmost importance -- _which is where my contribution comes into play_.
 
 
-## Safety First
+## Safety First {#safety}
 The idea for safety system emerged during a crack climbing training session using Jason's machines. As we discussed the inherent dangers of a machine that moves under its own power, the need to protect users became obvious.
 
 {{< videoloop mp4="videos/pages/project/crack-snack/crack-moving.mp4" poster="videos/pages/project/crack-snack/posters/crack-moving.jpg" >}}
@@ -70,7 +70,7 @@ Operating a Crack Snack needed to balance safety without creating barriers that 
 
 For safety, we borrowed a _two hand operation_ approach from industrial equipment. Machines like [power presses](https://en.wikipedia.org/wiki/Machine_press) and [stamping machines](https://en.wikipedia.org/wiki/Stamping_press) often require two hand controls to reduce the risk of the operator's hand being in the danger zone during operation. By placing buttons on either side of the device, users cannot stick their hands in the device during adjustment, which they might be tempted to do when sizing the crack.
 
-{{< imgc src="pages/project/crack-snack/crack-control.png" alt="Crack Snack Control" quality="55" >}}
+{{< imgc src="pages/project/crack-snack/crack-control.png" alt="Crack Snack Control" quality="60" >}}
 
 But how to make the two handed operation intuitive with the buttons so far apart?
 
@@ -84,19 +84,50 @@ But how to make the two handed operation intuitive with the buttons so far apart
 
 Even blinking patterns can be leveraged to provide sophisticated feedback. Flashing lights are often used to signal something has gone wrong or that a system is active. In our case we utilize separate patterns to convey different states:
 
-* In a fault state, the button pairs blink synchronously to alert the user to an error.
-* During standard operation, the buttons being pressed blink to signal input is being received, providing real-time confirmation of movement. 
-* A brief blink sequence upon startup serves as a "heartbeat" to signal the device is active and ready for use.
+* __Fault state__ -- the button pairs blink synchronously to alert the user to an error and that operation is disabled.
+* __Standard operation__ -- the pressed button pair (<span style="color: #D20A2E;">red</span> _or_ <span style="color: #1591EA;">blue</span>) blink to signal input is being received, providing real-time confirmation of movement. 
+* __Startup__ -- A brief blink sequence upon startup serves as a "heartbeat" to signal the device is active and ready for use.
 
 Through this intentional design, the Crack Snack provides both an intuitive and safe user interface that meets our two-hand control and status feedback requirements.
 
-### Control Logic
-state diagram, talk about finite state machine (in chunks (use obstruction vaguely)), what happens during an obstruction but refer to obstruction as "enter a safe state". Obstruction actions can be talked about in the next section.
-
 ### Obstruction Sensing
-light wall vs load cells. 
-polling rate and how the sensors actively check themselves
-What happens when an obstruction happens closing vs opening
+As mentioned in the [safety section](#safety), any electromechanical crack climbing trainer will need some level of obstruction sensing to be considered truly safe -- due to the forces in play. The Crack Snack was no exception. Our first task was to select a sensing technology. To guide our choice, we again looked toward industrial equipment for a solution which left us with a myraid of options that could be split into two destinct categories: _proximity_ and _contact_ sensing.
+
+We ruled out proximity sensing for a few reasons... Proximity sensing can become computationally heavy and is often susceptible to environmental noise, which means more time spent on filtering and fine-tuning. Since I was designing the control system hardware myself, opting for contact sensing helped us hit our deadline by avoiding the headache of potential rework and keeping the required hardware simple.
+
+Eventually, we decided to use [load cells](https://en.wikipedia.org/wiki/Load_cell) for contact sensing. Load cells are immune to the EMI issues that often plague [capacitive sensing](https://en.wikipedia.org/wiki/Capacitive_sensing) -- a significant advantage given the concerns over using large areas of foil behind the crack decks. Furthermore, they offer significantly higher resolution than typical motor [current sensing](https://en.wikipedia.org/wiki/Current_sensing), allowing for the detection of minute changes in force that would otherwise go unnoticed. This sensitivity allows the load cells to detect spikes in force caused by mechanical misalignment, poor installation, or structural damage -- offering two-for-one diagnostic capabilities that would not be possible with most other sensing technologies.
+
+We designed the system to detect obstructions in real-time by monitoring load cell data for any readings exceeding preset thresholds, whether the interference originates from the interior or exterior of the crack. To ensure total system integrity, sensor data is polled 15 times per second via an [ISR](https://en.wikipedia.org/wiki/Interrupt_handler). This routine acts as a hardware watchdog. if the [ADC](https://en.wikipedia.org/wiki/Analog-to-digital_converter)s fail to report within a strict timing window, or if the system fails to detect the expected force deviations while in motion, it assumes hardware damage or sensor failure. In either case, the Crack Snack immediately enters a fault state and initiates a safety lockout to prevent unsafe movement.
+
+__DISCLAIMER:__ ⚠️ DO NOT try to crush yourself with the Crack Snack. Any intentional action you take to test the system on your own is strictly at your own risk. ⚠️
+
+### Control Logic
+The system operates as a [finite state machine](https://en.wikipedia.org/wiki/Finite-state_machine), where the transition between states is governed by user input and sensor feedback. To ensure operational safety, the logic is split into two primary modes: __Normal Operation__ (where the system responds to manual extension and retraction) and __Fault Recovery__ (where the system locks down following a detected obstruction or hardware failure). While this is not shown in the table, these modes are separated by [bitmasks](https://en.wikipedia.org/wiki/Mask_(computing)) which act as logical gatekeepers. The system must satisfy `MASK_STATE_OK` bitwise check before it will process any movement commands. If a fault is detected, the system shifts to a state covered by the `MASK_STATE_FAULT` bitmask, effectively locking the machine out of its standard operational loop until a manual reset sequence is successfully completed.
+
+The table below outlines the behavior of the system once it has successfully passed its power-on self-test.
+
+| Logical State | Trigger / Entry Condition | Hardware Action | LED Behavior | Exit / Next State |
+| ------------- | ------------------------- | --------------- | ------------ | ----------------- |
+| STATE_IDLE    | No buttons pressed OR Fault cleared | All signals INACTIVE | LEDs OFF | EXTEND or RETRACT on button press. |
+| STATE_EXTEND  | Blue buttons pressed + Threshold OK | EXTEND_SIGNAL Active | Blue Blink |  IDLE on release or JAM_ON_EXTEND |
+| STATE_RETRACT | Red buttons pressed + Threshold OK | RETRACT_SIGNAL Active | Red Blink | IDLE on release or JAM_ON_RETRACT |
+| STATE_JAM_ON_EXTEND | Blue buttons + Extend threshold exceeded | INACTIVE -- Stops all movement | OFF | Auto-transitions to WAIT_FOR_CLEAR |
+| STATE_JAM_ON_RETRACT | Red buttons + Retract threshold exceeded | Safety Rescue: Brief extend move then INACTIVE -- Stops all movement | OFF | Auto-transitions to WAIT_FOR_CLEAR |
+| STATE_LOAD_CELL_FAULT | Failed post-run sensor check | INACTIVE | OFF | Auto-transitions to WAIT_FOR_CLEAR |
+| STATE_WAIT_FOR_CLEAR | Triggered by any Fault state | INACTIVE | Both Blink | FAULT_CLEARED after both buttons held for 10s |
+| STATE_FAULT_CLEARED | Both buttons held for 10s | INACTIVE | Both Solid ON | IDLE after both buttons are released for 10s |
+
+-- Figure out how to wrap this up --
+
+Although it appears simple -- the decision on how the reset works is very intentional. 
+
+vvv make this below have the tone of the above ^^^
+
+This architecture is very "fail-safe." By requiring both buttons to be held for 10 seconds to clear a fault, you’ve ensured that an operator must be physically present and making a conscious effort to reset the wall after a jam.
+
+??? 
+
+The architecture is fundamentally 'fail-safe' by design. The requirement that both buttons be held for a full ten seconds to clear a fault is a highly intentional safety constraint; it ensures that an operator is not only physically present but is making a sustained, conscious effort to reset the system. This prevents accidental restarts and mandates a level of situational awareness before the wall can return to motion.
 
 ### Diagnostics
 talk about the need to run diagnostics and the repo I used. Not sharing
