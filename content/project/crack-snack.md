@@ -102,7 +102,7 @@ We designed the system to detect obstructions in real-time by monitoring load ce
 __DISCLAIMER:__ ⚠️ DO NOT try to crush yourself with the Crack Snack. Any intentional action you take to test the system on your own is strictly at your own risk. ⚠️
 
 ### Control Logic
-The system operates as a [finite state machine](https://en.wikipedia.org/wiki/Finite-state_machine), where the transition between states is governed by user input and sensor feedback. To ensure operational safety, the logic is split into two primary modes: __Normal Operation__ (where the system responds to manual extension and retraction) and __Fault Recovery__ (where the system locks down following a detected obstruction or hardware failure). While this is not shown in the table, these modes are separated by [bitmasks](https://en.wikipedia.org/wiki/Mask_(computing)) which act as logical gatekeepers. The system must satisfy `MASK_STATE_OK` bitwise check before it will process any movement commands. If a fault is detected, the system shifts to a state covered by the `MASK_STATE_FAULT` bitmask, effectively locking the machine out of its standard operational loop until a manual reset sequence is successfully completed.
+The system operates as a [finite state machine](https://en.wikipedia.org/wiki/Finite-state_machine), where the transition between states is governed by user input and sensor feedback. To ensure operational safety, the logic is split into two primary modes: __Standard Operation__ (where the system responds to user input through extension and retraction of the volume) and a __Fault State__ (where the system locks down following a detected obstruction or hardware failure). While this is not shown in the table, these modes are separated by [bitmasks](https://en.wikipedia.org/wiki/Mask_(computing)) which act as logical gatekeepers. The system must satisfy `MASK_STATE_OK` bitwise check before it will process any movement commands. If a fault is detected, the system shifts to a state covered by the `MASK_STATE_FAULT` bitmask, effectively locking the machine out of its standard operational loop until a manual reset sequence is successfully completed.
 
 The table below outlines the behavior of the system once it has successfully passed its power-on self-test.
 
@@ -117,23 +117,16 @@ The table below outlines the behavior of the system once it has successfully pas
 | STATE_WAIT_FOR_CLEAR | Triggered by any Fault state | INACTIVE | Both Blink | FAULT_CLEARED after both buttons held for 10s |
 | STATE_FAULT_CLEARED | Both buttons held for 10s | INACTIVE | Both Solid ON | IDLE after both buttons are released for 10s |
 
--- Figure out how to wrap this up --
-
-Although it appears simple -- the decision on how the reset works is very intentional. 
-
-vvv make this below have the tone of the above ^^^
-
-This architecture is very "fail-safe." By requiring both buttons to be held for 10 seconds to clear a fault, you’ve ensured that an operator must be physically present and making a conscious effort to reset the wall after a jam.
-
-??? 
-
-The architecture is fundamentally 'fail-safe' by design. The requirement that both buttons be held for a full ten seconds to clear a fault is a highly intentional safety constraint; it ensures that an operator is not only physically present but is making a sustained, conscious effort to reset the system. This prevents accidental restarts and mandates a level of situational awareness before the wall can return to motion.
+This design ensures the system remains in a predictable state at all times. By requiring a deliberate reset, the control logic removes the risk of accidental restarts. The decision to resume operation is an explicit decision by the operator. The result is a system that prioritizes mechanical preservation and user safety above all else.
 
 ### Diagnostics
-talk about the need to run diagnostics and the repo I used. Not sharing
+To build and diagnose issues with the system, we needed robust diagnostic abilities. For this, I developed a simple command utility I called the [Serial Command Coordinator](https://github.com/mattykakes/SerialCommandCoordinator), which maps specific system functions to serial inputs. This allowed me to build a dedicated interface for direct hardware interaction, serving three critical roles:
 
+* __Calibration__ -- It allows for the precise zeroing and scaling of the load cells, which is essential for accurate obstruction detection across installations.
+* __Monitoring__ -- The ability to stream raw sensor daya allows us to observe the _noise floor_ of the system; which lets us adjust sensor thresholds as well as inspect the system for wear, damage, or misalignment.
+* __Testing__ -- During development or maintenance, the utility provides the ability to boot into different operating modes. These modes allow for manual movement, verbose logging, and stress testing without the constraints of the standard safety loop.
 
-
+USB connectivity is disabled during normal operation for safety -- these commands are inaccessible to the end user; however, this transparency ensures that proper diagnostics can be performed during maintenance and development. Without it, quantifying and correcting anomalies would be impossible.
 
 ## Custom Hardware
 this is where we can put the hardware diagram to start this section. This will show where the PCB exists, what is cots and what is not
