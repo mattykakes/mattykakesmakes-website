@@ -60,7 +60,7 @@ We decided having a multi-layered approach to safety would be best, which we bro
 
 To minimize complexity and accelerate our time to delivery, we initially planned to rely on [COTS](https://en.wikipedia.org/wiki/Commercial_off-the-shelf) equipment for as much as possible. However, during planning, we quickly found that forcing off-the-shelf controllers to handle our specific integration requirements to be both cost prohibitive and unnecessarily complex. Instead I elected to design custom hardware tailored to communicate directly with a COTS linear motion system to handle user input and safety.
 
-## Control System
+## Control System {#control}
 To discuss the complexities of this control system, it’s easiest to break it down into individual sections. This approach is a practical way to understand the system at a high level.
 
 ### Human Machine Interface
@@ -129,12 +129,38 @@ To build and diagnose issues with the system, we needed robust diagnostic abilit
 USB connectivity is disabled during normal operation for safety -- these commands are inaccessible to the end user; however, this transparency ensures that proper diagnostics can be performed during maintenance and development. Without it, quantifying and correcting anomalies would be impossible.
 
 ## Custom Hardware
-this is where we can put the hardware diagram to start this section. This will show where the PCB exists, what is cots and what is not
+The brain of the Crack Snack resides in its custom safety module. This [PCB](https://en.wikipedia.org/wiki/Printed_circuit_board) is responsible for integrating the COTS modules and various inputs into a unified system. Not only does the safety module run the [control system](#control) from the previous section -- it also extends the safety system to be redundant through the hardware itself.
 
-Like all prototypes, the safety system began as a rats-nest of an arduino...
-{{< imgc src="pages/project/crack-snack/crack-control-heinous-prototype.jpg" alt="Prototype Rat's Nest" quality="30" >}}
+{{< imgc src="pages/project/crack-snack/crack-module-diagram.png" alt="Crack Module Diagram" quality="83" >}}
 
-Good enough to run early 3d printers, had plenty of power to do what we needed
+From a hardware perspective, the safety module acts as the interface between the user and the device as a whole. It samples the analog signals from the load cells and monitors the control buttons, translating these inputs into coordinated signals that drive the motor controller and LED indicators. Since I optimized the design to minimize computational complexity, a standard 8-bit microcontroller could provide more than enough headroom to handle these tasks. This allowed focus to shift toward the physical robustness of the module.
 
-talk about pcb design, burning fuses, benifits to having it a board with both assembly time, robustness, testing. Hurtles finding parts. Small batch pricing. Design for part availability (in house parts), software written for chips, etc..
+However, no product starts in its final form; the journey to a polished board is paved with iterations. The Crack Snack, like many hardware projects, began its life as a **_heinous_** [Arduino](https://www.arduino.cc/) based prototype to prove the concept and work out kinks. This early version was a chaotic collection of relays and breakout modules. While fragile, it validated the core logic of the state machine and let us work through mechanical changes. 
 
+{{< imgc src="pages/project/crack-snack/crack-control-heinous-prototype.jpg" alt="Heinous Prototype" quality="30" >}}
+
+The next step was to actually design the PCB... something I had never done before before. Even with a degree in Computer Engineering, I really only had a starting point in theoretical circuit design and analysis. To move into the manufactured realm, I had to teach myself an entirely new set of [EDA](https://en.wikipedia.org/wiki/Electronic_design_automation) toolchains, industry best practices, and various manufacturing constraints -- the latter being the biggest surprise of the whole design process.
+
+To make the safety module economical, I needed to outsource the assembly. Outsourcing wasn't just to cut down on Crack Snack assembly time; more importantly, it was about leveraging professional quality control. Services like automated optical inspection and probe testing are nearly impossible to replicate without factory automation.
+
+Since we didn't plan on mass-producing after the prototype stage, we needed a service focused on small batches. The goal was to find a low-cost, _prototype-focused_ manufacturer with a fast turnaround. However, I quickly learned a key constraint: while these shops can source parts, it is much more efficient and cost effective to choose a manufacturer first and then design the board specifically around their in-stock inventory.
+
+This is where the inventory constraints really came into play. For the prototype, I used the Avia HX711 ADC because it was [readily available](https://www.sparkfun.com/sparkfun-load-cell-amplifier-hx711.html) in a [breakout board](https://www.pcbasic.com/blog/breakout_board.html) form factor. My design paired it with an [Arduino AVR core](https://github.com/arduino/ArduinoCore-avr) compatible microcontroller, allowing me to use an already available [HX711 library](https://github.com/bogde/HX711) instead of writing my own. To stay on schedule, I also wanted to avoid learning yet another toolchain, so staying in the Arduino ecosystem saved me the headache. Consequently, my search for a manufacturer centered on finding one that could reliably source these two specific chips; the rest of my components were generic enough that a variant would be available in stock anywhere.
+
+> An aside -- I wasn't concerned about using the Arduino toolchain for this product; it has a proven track record in early 3D printers and other niche control systems. The time saved far outweighed the negligible overhead of the library. It wouldn't impact the system's responsiveness in any perceivable way.
+
+At the time, the HX711 was difficult to find in domestic inventories so I had to look abroad. I landed on using [JLCPCB](https://jlcpcb.com/) and desiged a 2-layer board tailored to their component stock. As part of their service they included a [DFM](https://en.wikipedia.org/wiki/Design_for_manufacturability) review that even caught a few issues before production. Pictured below is version 3 of the finished safety module next to its snap-together 3D printed enclosure.
+{{< imgc src="pages/project/crack-snack/crack-control-safety-module.png" alt="Safety Module v3" quality="65" >}}
+
+
+
+Safety features built into the board
+
+
+
+## Wrapping Up
+In spending hours thumbing through search results, reading books, watching YouTube tutorials, these are the resources I found to be the most useful in designing my own custon PCB board:
+* [KiCAD](https://www.kicad.org/) -- An open-source EDA software suite. It's a professional grade tool for designing schematics and PCBs.
+* [Electronic Component Search Engine](https://componentsearchengine.com/) -- A free resource for downloading 3D models, footprints, and schematic symbols for electronic components. 
+* [Practical Electronics for Inventors](https://www.barnesandnoble.com/w/practical-electronics-for-inventors-fourth-edition-paul-scherz/1122324251) -- An excellent reference book for practical circuit design and analysis.
+* [Electrical Engineering Stack Exchange](https://electronics.stackexchange.com/) -- A Q&A site where engineers and hobbists help eachother with technical problems related to electronics design. It has a lot of PCB design best-practices and recommendations.
