@@ -19,6 +19,11 @@
     {{ $js := resources.Get "js/darkmode.js" | js.Build | minify | fingerprint }}
     <script defer src="{{ $js.RelPermalink }}"></script>
     {{ end }}
+
+    {{ if .HasShortcode "videoloop" }}
+    {{ $videoJs := resources.Get "js/lazyvideo.js" | js.Build | minify | fingerprint }}
+    <script defer src="{{ $videoJs.RelPermalink }}"></script>
+    {{ end }}
 </body>
 
 </html>

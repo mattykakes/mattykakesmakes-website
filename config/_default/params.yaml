@@ -34,13 +34,13 @@ social_media:
     enabled: true
     url: 'https://www.printables.com/@mattykakes_3056026'
   bluesky:
-    enabled: false
-    url: 'https://bsky.app/profile/matty-kakes.bsky.social'
+    enabled: true
+    url: 'https://bsky.app/profile/mattykakesmakes.com'
   facebook:
     enabled: false
     url: ''
   instagram:
-    enabled: true
+    enabled: false
     url: 'https://instagram.com/matty.kakes.makes/'
   twitter:
     enabled: false

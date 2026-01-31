@@ -17,7 +17,7 @@
 */}}
 
 {{- /* Responsive image sizes (in px) */ -}}
-{{- $respSizes := slice "300" "450" "600" "750" "900" "1050" -}}
+{{- $respSizes := slice "450" "600" "900" "1200" "1500" "1800" -}}
 
 {{- /* Base path for assets */ -}}
 {{- $imgBase := "images/" -}}
@@ -29,7 +29,8 @@
 
 {{- /* Styling classes */ -}}
 {{- $imgClass := "w-full h-auto animate-fade" -}}
-{{- $sizes := "(min-width: 1024px) 100vw, 50vw" -}}
+{{- /* Constrain large screen size to blog container limit, on small screens use 100vw */ -}}
+{{- $sizes := "(min-width: 800px) 800px, 100vw" -}}
 
 {{- /* Low-quality placeholder (LQIP) */ -}}
 {{- $lqip := $src.Resize (printf "20x q%s jpg" $quality) | fingerprint -}}
@@ -37,7 +38,7 @@
 {{- $bgStyle := printf "background:url(data:image/jpeg;base64,%s);background-size:cover;background-repeat:no-repeat;" $lqipB64 -}}
 
 {{- /* Fallback image */ -}}
-{{- $fallback := $src.Resize (printf "600x q%s jpg" $quality) | fingerprint -}}
+{{- $fallback := $src.Resize (printf "800x q%s jpg" $quality) | fingerprint -}}
 
 {{- /* CSP-safe option for Cloudflare Pages */ -}}
 {{- $hash := md5 $src -}}
