@@ -1,6 +1,6 @@
 ---
 title: "Crack Snack"
-date: 2025-12-20T11:04:36-04:00
+date: 2026-01-30T11:10:36-04:00
 draft: false
 featured_image: images/pages/project/crack-snack/crack-snack-mak.png
 featured_image_quality: 65
