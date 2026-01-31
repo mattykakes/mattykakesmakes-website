@@ -1,73 +1,76 @@
 /**
- * Lazy Video Loader - Fail-Safe Edition
- * Forces activation as soon as the buffer is hit.
+ * Lazy Video Loader - Powered by Lozad.js
+ * Handles: Lazy loading, play/pause on scroll, and blur-to-clear transitions.
  */
+import lozad from 'lozad';
 
 if (window.lazyVideoInitialized) {
     console.log("Lazy video script already running.");
 } else {
     window.lazyVideoInitialized = true;
 
-    const initLazyVideos = () => {
-        const lazyVideos = document.querySelectorAll("video.lazy-video");
-
-        if ("IntersectionObserver" in window) {
-            const videoObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    const video = entry.target;
-                    
-                    // Logic: If it's intersecting the rootMargin (buffer), ACTIVATE it.
-                    if (entry.isIntersecting) {
-                        
-                        // PHASE 1: FORCE SOURCE LOAD
-                        if (video.dataset.activated !== "true") {
-                            const sources = video.querySelectorAll("source");
-                            sources.forEach((source) => {
-                                if (source.dataset.src) {
-                                    source.src = source.dataset.src;
-                                }
-                            });
-                            video.load();
-                            video.dataset.activated = "true";
-
-                            video.addEventListener('playing', () => {
-                                video.style.removeProperty("filter");
-                            }, { once: true });
-                        }
-
-                        // PHASE 2: VISIBILITY CHECK FOR PLAYBACK
-                        // We check the raw coordinates. 
-                        // If top is less than bottom of screen AND bottom is greater than top of screen.
-                        const rect = entry.boundingClientRect;
-                        const trulyVisible = rect.top < window.innerHeight && rect.bottom > 0;
-
-                        if (trulyVisible) {
-                            video.play().catch(() => {});
-                        } else {
-                            video.pause();
-                        }
-                    } else {
-                        // PHASE 3: OFF-SCREEN
-                        // Video has left the 500px buffer entirely.
-                        if (video.dataset.activated === "true") {
-                            video.pause();
-                        }
-                    }
-                });
-            }, {
-                rootMargin: "0px 0px 500px 0px",
-                // We use 0 specifically so it triggers the INSTANT the buffer is touched.
-                threshold: [0, 0.25, 0.5, 0.75, 1] 
+    const observer = lozad('.lozad', {
+        rootMargin: '500px 0px', // Buffer: Starts loading 500px before entry
+        threshold: 0,            // Trigger as soon as the first pixel enters the buffer
+        load: function(el) {
+            /**
+             * PHASE 1: INITIAL LOAD
+             * Lozad handles the source swapping automatically, but we call el.load()
+             * to ensure the browser realizes new sources are available.
+             */
+            const sources = el.querySelectorAll("source");
+            sources.forEach((source) => {
+                if (source.dataset.src) {
+                    source.src = source.dataset.src;
+                }
             });
+            el.load();
+            el.dataset.activated = "true";
 
-            lazyVideos.forEach((v) => videoObserver.observe(v));
+            // PHASE 2: VISIBLE-ONLY POLLING
+            // We check for playback/blur removal only when the video is actually seen
+            let blurCheck = setInterval(() => {
+                const rect = el.getBoundingClientRect();
+                const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+
+                // Only remove blur if it's on screen AND has started moving
+                if (inViewport && el.currentTime > 0 && !el.paused) {
+                    el.style.removeProperty("filter");
+                    setTimeout(() => el.style.removeProperty("transition"), 1000);
+                    clearInterval(blurCheck);
+                }
+            }, 250);
+            
+            setTimeout(() => clearInterval(blurCheck), 4000);
+        },
+        loaded: function(el) {
+            /**
+             * PHASE 3: PLAYBACK
+             * Attempt to play as soon as Lozad marks the element as loaded.
+             */
+            el.play().catch(() => {
+                console.warn("Autoplay prevented for video:", el);
+            });
         }
-    };
+    });
 
-    // Immediate execution check
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initLazyVideos);
-    } else {
-        initLazyVideos();
-    }
+    observer.observe();
+
+    /**
+     * PHASE 4: PAUSE ON SCROLL
+     * Lozad focuses on loading; we handle the power-saving pause/play toggle here.
+     */
+    window.addEventListener('scroll', () => {
+        document.querySelectorAll('video.lazy-video').forEach(video => {
+            const rect = video.getBoundingClientRect();
+            // Use the standard AND logic for viewport overlap
+            const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+            
+            if (inViewport && video.dataset.activated === "true") {
+                video.play().catch(() => {});
+            } else if (video.dataset.activated === "true") {
+                video.pause();
+            }
+        });
+    }, { passive: true });
 }
