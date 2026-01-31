@@ -47,7 +47,7 @@ It was paramount we minimize system displacement under load. When crack climbing
 
 Unfortunately for us, linear systems with high backdrive force generally produce strong driving forces due to the same mechanical principles that resist backdriving. In our application, users would be sticking their hands inside of something that both moves on its own and produces... a lot of force...
 
-[{{< videoloop mp4="videos/pages/project/crack-snack/a-new-hope-trash-compactor.mp4" poster="videos/pages/project/crack-snack/posters/a-new-hope-trash-compactor.jpg" >}}](https://www.imdb.com/title/tt0076759/)
+{{< videoloop mp4="videos/pages/project/crack-snack/a-new-hope-trash-compactor.mp4" poster="videos/pages/project/crack-snack/posters/a-new-hope-trash-compactor.jpg" >}}
 
 We decided having a multi-layered approach to safety would be best, which we broke out into the following high-level requirements:
 
