@@ -1,6 +1,6 @@
 /**
  * Lazy Video Loader - Powered by Lozad.js
- * Handles: Lazy loading, play/pause on scroll, and blur-to-clear transitions.
+ * Optimized for Firefox iOS and high-speed scrolling.
  */
 import lozad from 'lozad';
 
@@ -10,13 +10,12 @@ if (window.lazyVideoInitialized) {
     window.lazyVideoInitialized = true;
 
     const observer = lozad('.lozad', {
-        rootMargin: '500px 0px', // Buffer: Starts loading 500px before entry
-        threshold: 0,            // Trigger as soon as the first pixel enters the buffer
+        rootMargin: '500px 0px', 
+        threshold: 0,
         load: function(el) {
             /**
-             * PHASE 1: INITIAL LOAD
-             * Lozad handles the source swapping automatically, but we call el.load()
-             * to ensure the browser realizes new sources are available.
+             * PHASE 1: INITIAL ACTIVATION
+             * Swap data-src to src and call load().
              */
             const sources = el.querySelectorAll("source");
             sources.forEach((source) => {
@@ -26,30 +25,32 @@ if (window.lazyVideoInitialized) {
             });
             el.load();
             el.dataset.activated = "true";
-
-            // PHASE 2: VISIBLE-ONLY POLLING
-            // We check for playback/blur removal only when the video is actually seen
-            let blurCheck = setInterval(() => {
-                const rect = el.getBoundingClientRect();
-                const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
-
-                // Only remove blur if it's on screen AND has started moving
-                if (inViewport && el.currentTime > 0 && !el.paused) {
-                    el.style.removeProperty("filter");
-                    setTimeout(() => el.style.removeProperty("transition"), 1000);
-                    clearInterval(blurCheck);
-                }
-            }, 250);
-            
-            setTimeout(() => clearInterval(blurCheck), 4000);
         },
         loaded: function(el) {
             /**
-             * PHASE 3: PLAYBACK
-             * Attempt to play as soon as Lozad marks the element as loaded.
+             * PHASE 2: BLUR REMOVAL & PLAYBACK
+             * 'loaded' is called by Lozad as soon as the element is handled.
              */
+            
+            // Function to reveal the video
+            const revealVideo = () => {
+                el.style.removeProperty("filter");
+                // Using a slight delay to ensure the transition feels smooth
+                setTimeout(() => el.style.removeProperty("transition"), 1000);
+            };
+
+            // If the video is already ready to play, reveal it immediately
+            if (el.readyState >= 3) {
+                revealVideo();
+            } else {
+                // Otherwise, wait for the 'canplay' event
+                el.addEventListener('canplay', revealVideo, { once: true });
+            }
+
             el.play().catch(() => {
-                console.warn("Autoplay prevented for video:", el);
+                // Fail-safe: if autoplay is blocked, we should still remove the blur 
+                // so the user sees the poster clearly and can click to play.
+                revealVideo();
             });
         }
     });
@@ -57,19 +58,20 @@ if (window.lazyVideoInitialized) {
     observer.observe();
 
     /**
-     * PHASE 4: PAUSE ON SCROLL
-     * Lozad focuses on loading; we handle the power-saving pause/play toggle here.
+     * PHASE 3: GLOBAL SCROLL LISTENER
+     * Handles the play/pause toggle based on viewport presence.
      */
     window.addEventListener('scroll', () => {
         document.querySelectorAll('video.lazy-video').forEach(video => {
-            const rect = video.getBoundingClientRect();
-            // Use the standard AND logic for viewport overlap
-            const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
-            
-            if (inViewport && video.dataset.activated === "true") {
-                video.play().catch(() => {});
-            } else if (video.dataset.activated === "true") {
-                video.pause();
+            if (video.dataset.activated === "true") {
+                const rect = video.getBoundingClientRect();
+                const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (inViewport) {
+                    video.play().catch(() => {});
+                } else {
+                    video.pause();
+                }
             }
         });
     }, { passive: true });
