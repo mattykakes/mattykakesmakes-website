@@ -1,0 +1,43 @@
+{{/* 
+Usage: {{< videoloop mp4="videos/promo.mp4" webm="videos/promo.webm" poster="videos/posters/promo.jpg" >}}
+Note: Files must be located in the /assets/ directory.
+*/}}
+
+{{ $mp4Path := .Get "mp4" }}
+{{ $webmPath := .Get "webm" }}
+{{ $posterPath := .Get "poster" }}
+{{ $optimizedPoster := ""}}
+
+{{/* Only process the poster if the parameter is provided */}}
+{{ with resources.Get $posterPath }}
+    {{/* q20 is very aggressive, but works great since you are using a blur! */}}
+    {{ $optimizedPoster = .Process "webp q10 hint=photo" | fingerprint }}
+{{ end }}
+
+{{/* This wrapper crops the blur bleed */}}
+<div class="video-wrapper" style="overflow: hidden; width: 100%; height: auto;">
+  <video 
+    class="lazy-video"   {{/* Targeted by JavaScript to start the load process */}}
+    {{ with $optimizedPoster }} poster="{{ .RelPermalink }}" {{ end }}
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="none"       {{/* Extra hint to browsers: "Don't touch this file yet" */}}
+    style="width: 100%; filter: blur(15px) brightness(0.9); transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1);" {{/* Inline styling: Blur starts at 20px, removed by lazyvideo.js*/}}
+  >
+    {{/* Process MP4 with fingerprinting */}}
+    {{ with resources.Get $mp4Path }}
+      {{ $video := . | fingerprint }}
+      <source data-src="{{ $video.RelPermalink }}" type="video/mp4">
+    {{ end }}
+
+    {{/* Process WebM with fingerprinting */}}
+    {{ with resources.Get $webmPath }}
+      {{ $video := . | fingerprint }}
+      <source data-src="{{ $video.RelPermalink }}" type="video/webm">
+    {{ end }}
+    
+    Your browser does not support the video tag.
+  </video>
+</div>

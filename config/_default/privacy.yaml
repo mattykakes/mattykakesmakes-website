@@ -1,19 +1,21 @@
 disqus:
-  disable: false
+  disable: true
 googleAnalytics:
   disable: false
-  respectDoNotTrack: false
+  anonymizeIP: true
+  respectDoNotTrack: true
+  useSessionStorage: true
 instagram:
   disable: false
-  simple: false
+  simple: true
 x:
   disable: false
-  enableDNT: false
+  enableDNT: true
   simple: false
   disableInlineCSS: false
 vimeo:
   disable: false
-  enableDNT: false
+  enableDNT: true
   simple: false
 youtube:
   disable: false
