@@ -1,6 +1,6 @@
 /**
- * Lazy Video Loader - Optimized for Hugo ESBuild
- * Handles: Lazy loading, play/pause on scroll, and blur-to-clear transitions.
+ * Lazy Video Loader - Fail-Safe Edition
+ * Forces activation as soon as the buffer is hit.
  */
 
 if (window.lazyVideoInitialized) {
@@ -16,63 +16,55 @@ if (window.lazyVideoInitialized) {
                 entries.forEach((entry) => {
                     const video = entry.target;
                     
-                    // Foolproof Visibility Check: 
-                    // This determines if ANY part of the video is currently in the window.
-                    const rect = entry.boundingClientRect;
-                    const inViewport = rect.top < window.innerHeight || rect.bottom > 0;
+                    // Logic: If it's intersecting the rootMargin (buffer), ACTIVATE it.
+                    if (entry.isIntersecting) {
+                        
+                        // PHASE 1: FORCE SOURCE LOAD
+                        if (video.dataset.activated !== "true") {
+                            const sources = video.querySelectorAll("source");
+                            sources.forEach((source) => {
+                                if (source.dataset.src) {
+                                    source.src = source.dataset.src;
+                                }
+                            });
+                            video.load();
+                            video.dataset.activated = "true";
 
-                    /**
-                     * PHASE 1: INITIAL LOAD
-                     * Use the 500px rootMargin to trigger the source swap early.
-                     */
-                    if (entry.isIntersecting && video.dataset.activated !== "true") {
-                        const sources = video.querySelectorAll("source");
-                        sources.forEach((source) => {
-                            if (source.dataset.src) {
-                                source.src = source.dataset.src;
-                            }
-                        });
+                            video.addEventListener('playing', () => {
+                                video.style.removeProperty("filter");
+                            }, { once: true });
+                        }
 
-                        video.load();
-                        video.dataset.activated = "true";
+                        // PHASE 2: VISIBILITY CHECK FOR PLAYBACK
+                        // We check the raw coordinates. 
+                        // If top is less than bottom of screen AND bottom is greater than top of screen.
+                        const rect = entry.boundingClientRect;
+                        const trulyVisible = rect.top < window.innerHeight && rect.bottom > 0;
 
-                        video.addEventListener('playing', () => {
-                            video.style.removeProperty("filter");
-                            setTimeout(() => video.style.removeProperty("transition"), 1000);
-                        }, { once: true });
-                    }
-
-                    /**
-                     * PHASE 2: PLAYBACK CONTROL
-                     * We toggle playback based on actual viewport presence, regardless of the 'isIntersecting' 
-                     * state (which includes the 500px buffer).
-                     */
-                    if (video.dataset.activated === "true") {
-                        if (inViewport) {
-                            // Video is on screen: attempt to play
-                            const playPromise = video.play();
-                            if (playPromise !== undefined) {
-                                playPromise.catch(() => {
-                                    // Handle cases where browser blocks autoplay
-                                });
-                            }
+                        if (trulyVisible) {
+                            video.play().catch(() => {});
                         } else {
-                            // Video is off screen: force pause
+                            video.pause();
+                        }
+                    } else {
+                        // PHASE 3: OFF-SCREEN
+                        // Video has left the 500px buffer entirely.
+                        if (video.dataset.activated === "true") {
                             video.pause();
                         }
                     }
                 });
             }, {
                 rootMargin: "0px 0px 500px 0px",
-                // Passing multiple thresholds ensures the observer wakes up more often 
-                // during the scroll, catching fast 'away-and-back' movements.
-                threshold: [0, 0.25, 0.5, 0.75, 1.0] 
+                // We use 0 specifically so it triggers the INSTANT the buffer is touched.
+                threshold: [0, 0.25, 0.5, 0.75, 1] 
             });
 
-            lazyVideos.forEach((lazyVideo) => videoObserver.observe(lazyVideo));
+            lazyVideos.forEach((v) => videoObserver.observe(v));
         }
     };
 
+    // Immediate execution check
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", initLazyVideos);
     } else {
