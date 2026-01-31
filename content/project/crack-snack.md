@@ -17,33 +17,33 @@ Before discussing the project at hand, it's important to start by framing the ne
 ## The Need for an Adjustable Crack
 Arguably, the most popular and glamorized form of outdoor climbing is known as [free climbing](https://en.wikipedia.org/wiki/Free_climbing). While outdoor enthusiasts have been treating climbing as a distinct sport since the early 20th century, rock climbing as we know it today took form in the 1970s. This movement of [clean climbing](https://en.wikipedia.org/wiki/Clean_climbing) brought safety and sustainability to the activity paving the way for mainstream adoption.
 
-Outdoor climbing's rise in popularity eventually fueled [demand for indoor climbing gyms](https://outdoors.stackexchange.com/questions/19915/when-did-indoor-climbing-gyms-start-to-become-popular). These indoor gyms provided a level of accessibility to specialized training equipment previously reserved for those who built their own. However, of the three categories of modern free climbing -- [bouldering](https://en.wikipedia.org/wiki/Bouldering), [sport climbing](https://en.wikipedia.org/wiki/Sport_climbing), and [trad climbing](https://en.wikipedia.org/wiki/Traditional_climbing) -- only techniques rooted in trad climbing remained difficult to learn indoors, namely [crack climbing](https://en.wikipedia.org/wiki/Crack_climbing).
+Outdoor climbing's rise in popularity eventually fueled [demand for indoor climbing gyms](https://outdoors.stackexchange.com/questions/19915/when-did-indoor-climbing-gyms-start-to-become-popular). These indoor gyms provided a level of accessibility to specialized training equipment previously reserved for those who built their own setups. However, of the three categories of modern free climbing -- [bouldering](https://en.wikipedia.org/wiki/Bouldering), [sport climbing](https://en.wikipedia.org/wiki/Sport_climbing), and [trad climbing](https://en.wikipedia.org/wiki/Traditional_climbing) -- only techniques rooted in trad climbing remained difficult to learn indoors, namely [crack climbing](https://en.wikipedia.org/wiki/Crack_climbing).
 
-Historically, gyms have tried to accomodate crack climbing practice by using screw-on [volumes](https://en.wikipedia.org/wiki/Glossary_of_climbing_terms#volume_hold) (left) or by building their own custom crack into the wall itself (right). While this provides an introduction to crack climbing indoors, it does not -- and can not -- account for the range of sizes needed for a variety of climbers to train all the hand and foot sizes they may experience outdoors.
+Historically, gyms have tried to accommodate crack climbing practice by using screw-on [volumes](https://en.wikipedia.org/wiki/Glossary_of_climbing_terms#volume_hold) (left) or by building their own custom crack into the wall itself (right). While this provides an introduction to crack climbing indoors, it does not -- and can not -- account for the range of sizes needed for a variety of climbers to train all the hand and foot sizes they may experience outdoors.
 
 {{< imgc src="pages/project/crack-snack/gym-cracks.png" alt="Gym Crack Examples" quality="45" >}}
 
 This is not only due to the natural variation in outdoor rock features, but also differences in hand and foot sizes across people. What may be considered a perfect or easy sized crack for one person may be awkward and difficult for another. Hence the need for an adjustable crack climbing trainer.
 
 ## Enter, the Crack Snack
-Our solution, which appeared publicaly in __March of 2023__, was to make a fully adjustable crack climbing trainer that could be mounted to a tilt board for maximum versatility. This would allow climbers to practice techniques at a variety of sizes and angles. Most of what they would encounter outside could now be simulated indoors.
+Our solution, which appeared publicaly in __March of 2023__, was to make a fully adjustable crack climbing trainer that could be mounted to a tilt board for maximum versatility. This would allow climbers to practice techniques at a variety of sizes and angles. Most of what they would encounter outside could now be simulated indoors!
 
 [{{< imgc src="pages/project/crack-snack/crack-snack-matt-jason.jpg" alt="Crack Snack Creators" quality="47" >}}](https://www.instagram.com/p/CpixfHdPPM_/)
 
 The idea behind the [Crack Snack](https://crackableclimbing.com/) belongs to my long-time climbing friend Jason. Its physical design is the result of his many experiments building climbing trainers for personal use coupled with his experience designing high-quality custom installations at [Urban Tree](https://pittsburghurbantree.com/). 
 
 
-What makes this system truely unique, aside from it being a work of art, is that it moves under its own power. This brought with it its own list of challenges. A dedicated safety system being of utmost importance -- _which is where my contribution comes into play_.
+What makes this system truly unique, aside from it being a work of art, is that it moves under its own power. This brought with it its own list of challenges. A dedicated safety system being of utmost importance -- _which is where my contribution comes into play_.
 
 
 ## Safety First {#safety}
-The idea for safety system emerged during a crack climbing training session using Jason's machines. As we discussed the inherent dangers of a machine that moves under its own power, the need to protect users became obvious.
+The idea for a safety system emerged during a crack climbing training session using Jason's machines. As we discussed the inherent dangers of a machine that moves under its own power, the need to protect users became obvious.
 
 {{< videoloop mp4="videos/pages/project/crack-snack/crack-moving.mp4" poster="videos/pages/project/crack-snack/posters/crack-moving.jpg" >}}
 
 The danger stems from the need to provide a realistic climbing experience. Climbers generate significant compressive force through hand and foot wedging techniques; if the system isn't sufficiently rigid, these forces will either [deflect](https://en.wikipedia.org/wiki/Deflection_(engineering)) the crack volumes or [backdrive](https://www.linearmotiontips.com/what-is-back-driving-and-why-is-it-important/) the linear motion assembly.
 
-It was paramount we minimize system displacement under load. When crack climbing, any movement in the system feels amplified. Less than an 1/8th of an inch difference (~3.2 mm) can change the technique used to stay wedged in a crack.
+It was paramount we minimize system displacement under load. When crack climbing, any movement in the system feels amplified. Less than an 1/8 of an inch difference (~3.2 mm) can change the technique used to stay wedged in a crack.
 
 Unfortunately for us, linear systems with high backdrive force generally produce strong driving forces due to the same mechanical principles that resist backdriving. In our application, users would be sticking their hands inside of something that both moves on its own and produces... a lot of force...
 
@@ -76,7 +76,7 @@ But how to make the two handed operation intuitive with the buttons so far apart
 
 * __Place buttons at an equal and ergonomic height__ -- By placing the buttons in a consistent and visible place, it will indicate that the buttons are meant for operation.
 * __Use buttons that are inviting__ -- Some buttons, like [emergency stop switches](https://en.wikipedia.org/wiki/Kill_switch), are designed to discourage casual use. [Arcade](https://en.wikipedia.org/wiki/Arcade_cabinet)-style buttons carry a friendly and established history. Leveraging this familiarity signals to users that these buttons are intended as primary inputs.
-* __Matching button colors__ -- With matching colors on each panel, it suggests to users that buttons are pressed together. This leverages the [Gestalt Principle](https://en.wikipedia.org/wiki/Principles_of_grouping) known as the [Law of Similarity](https://www.interaction-design.org/literature/article/the-law-of-similarity-gestalt-principles-1?srsltid=AfmBOoq7ZvdV5Hkll3MGwS7QdHUPgu60-oKwq-WLZX3k86Rqlxsj9hSE).
+* __Matching button colors__ -- With matching colors on each panel, the design suggests to users that buttons are operated by being pressed together. This leverages the [Gestalt Principle](https://en.wikipedia.org/wiki/Principles_of_grouping) known as the [Law of Similarity](https://www.interaction-design.org/literature/article/the-law-of-similarity-gestalt-principles-1?srsltid=AfmBOoq7ZvdV5Hkll3MGwS7QdHUPgu60-oKwq-WLZX3k86Rqlxsj9hSE).
 * __Selecting familiar colors__ -- Use universal standards to make operation intuitive. While red and green typically mean stop and go, pairing red with a neutral color like blue creates clear movement cues. In this context, red leverages its association with "danger" to signal that it closes the device.
 * __Use buttons for feedback__ -- The buttons already have the user's attention. By illuminating the buttons in different patterns, they can be used to communicate the status of the device without needing a separate screen.
 
@@ -97,7 +97,7 @@ We ruled out proximity sensing for a few reasons... Proximity sensing can become
 
 Eventually, we decided to use [load cells](https://en.wikipedia.org/wiki/Load_cell) for contact sensing. Load cells are immune to the EMI issues that often plague [capacitive sensing](https://en.wikipedia.org/wiki/Capacitive_sensing) -- a significant advantage given the concerns over using large areas of foil behind the crack decks. Furthermore, they offer significantly higher resolution than typical motor [current sensing](https://en.wikipedia.org/wiki/Current_sensing), allowing for the detection of minute changes in force that would otherwise go unnoticed. This sensitivity allows the load cells to detect spikes in force caused by mechanical misalignment, poor installation, or structural damage -- offering two-for-one diagnostic capabilities that would not be possible with most other sensing technologies.
 
-We designed the system to detect obstructions in real-time by monitoring load cell data for any readings exceeding preset thresholds, whether the interference originates from the interior or exterior of the crack. To ensure total system integrity, sensor data is polled 15 times per second via an [ISR](https://en.wikipedia.org/wiki/Interrupt_handler). This routine acts as a hardware watchdog. if the [ADC](https://en.wikipedia.org/wiki/Analog-to-digital_converter)s fail to report within a strict timing window, or if the system fails to detect the expected force deviations while in motion, it assumes hardware damage or sensor failure. In either case, the Crack Snack immediately enters a fault state and initiates a safety lockout to prevent unsafe movement.
+We designed the system to detect obstructions in real-time by monitoring load cell data for any readings exceeding preset thresholds, whether the interference originates from the interior or exterior of the crack. To ensure total system integrity, sensor data is polled 15 times per second via an [ISR](https://en.wikipedia.org/wiki/Interrupt_handler). This routine acts as a hardware watchdog. If the [ADC](https://en.wikipedia.org/wiki/Analog-to-digital_converter)s fail to report within a strict timing window, or if the system fails to detect the expected force deviations while in motion, it assumes hardware damage or sensor failure. In either case, the Crack Snack immediately enters a fault state and initiates a safety lockout to prevent unsafe movement.
 
 __DISCLAIMER:__ ⚠️ DO NOT try to crush yourself with the Crack Snack. Any intentional action you take to test the system on your own is strictly at your own risk. ⚠️
 
@@ -123,7 +123,7 @@ This design ensures the system remains in a predictable state at all times. By r
 To build and diagnose issues with the system, we needed robust diagnostic abilities. For this, I developed a simple command utility I called the [Serial Command Coordinator](https://github.com/mattykakes/SerialCommandCoordinator), which maps specific system functions to serial inputs. This allowed me to build a dedicated interface for direct hardware interaction, serving three critical roles:
 
 * __Calibration__ -- It allows for the precise zeroing and scaling of the load cells, which is essential for accurate obstruction detection across installations.
-* __Monitoring__ -- The ability to stream raw sensor daya allows us to observe the _noise floor_ of the system; which lets us adjust sensor thresholds as well as inspect the system for wear, damage, or misalignment.
+* __Monitoring__ -- The ability to stream raw sensor data allows us to observe the _noise floor_ of the system; which lets us adjust sensor thresholds as well as inspect the system for wear, damage, or misalignment.
 * __Testing__ -- During development or maintenance, the utility provides the ability to boot into different operating modes. These modes allow for manual movement, verbose logging, and stress testing without the constraints of the standard safety loop.
 
 USB connectivity is disabled during normal operation for safety -- these commands are inaccessible to the end user; however, this transparency ensures that proper diagnostics can be performed during maintenance and development. Without it, quantifying and correcting anomalies would be impossible.
@@ -139,7 +139,7 @@ However, no product starts in its final form; the journey to a polished board is
 
 {{< imgc src="pages/project/crack-snack/crack-control-heinous-prototype.jpg" alt="Heinous Prototype" quality="30" >}}
 
-The next step was to actually design the PCB... something I had never done before before. Even with a degree in Computer Engineering, I really only had a starting point in theoretical circuit design and analysis. To move into the manufactured realm, I had to teach myself an entirely new set of [EDA](https://en.wikipedia.org/wiki/Electronic_design_automation) toolchains, industry best practices, and various manufacturing constraints -- the latter being the biggest surprise of the whole design process.
+The next step was to actually design the PCB... something I had never done before. Even with a degree in Computer Engineering, I really only had a starting point in theoretical circuit design and analysis. To move into the manufactured realm, I had to teach myself an entirely new set of [EDA](https://en.wikipedia.org/wiki/Electronic_design_automation) toolchains, industry best practices, and various manufacturing constraints -- the latter being the biggest surprise of the whole design process.
 
 To make the safety module economical, I needed to outsource the assembly. Outsourcing wasn't just to cut down on Crack Snack assembly time; more importantly, it was about leveraging professional quality control. Services like automated optical inspection and probe testing are nearly impossible to replicate without factory automation.
 
@@ -149,12 +149,13 @@ This is where the inventory constraints really came into play. For the prototype
 
 > An aside -- I wasn't concerned about using the Arduino toolchain for this product; it has a proven track record in early 3D printers and other niche control systems. The time saved far outweighed the negligible overhead of the library. It wouldn't impact the system's responsiveness in any perceivable way.
 
-At the time, the HX711 proved difficult to find in domestic inventories so I had to look abroad. I landed on using [JLCPCB](https://jlcpcb.com/) and desiged a 2-layer board tailored to their component stock. As part of their service they included a [DFM](https://en.wikipedia.org/wiki/Design_for_manufacturability) review that even caught a few issues before production. Pictured below is version 3 of the finished safety module next to its snap-together 3D printed enclosure.
+At the time, the HX711 proved difficult to find in domestic inventories so I had to look abroad. I landed on using [JLCPCB](https://jlcpcb.com/) and desiged a 2-layer board tailored to their component stock. As part of their service they included a [DFM](https://en.wikipedia.org/wiki/Design_for_manufacturability) review that even caught a few issues before production. This route also proved to be highly cost-effective; the boards arrived fully assembled for about $30 each. It was clear validation of the decision to go custom -- we were able to deliver a purpose-built safety system for a fraction of the cost of a less-integrated COTS alternative. Pictured below is version 3 of the finished safety module next to its snap-together 3D printed enclosure.
+
 {{< imgc src="pages/project/crack-snack/crack-control-safety-module.png" alt="Safety Module v3" quality="65" >}}
 
-The physical layout of the board continued the safety-first mindset. The power management implements a via farm beneath the voltage regulator to pull heat away from the component and into the copper plane on the back of the board. The logic is also safeguarded with transient voltage suppression and reverse polarity protection.
+The physical layout of the board continued the safety-first mindset. The power management section implements a via farm beneath the voltage regulator to pull heat away from the component and into the copper plane on the back of the board. The logic is also safeguarded with transient voltage suppression and reverse polarity protection.
 
-Above all else, the most critical safety feature in the hardware is the physical isolation of the signal that closes the crack. By using a surface mount relay in a _normally open_ configuration, the signal path to close the Crack Snack is physically disconnected from the voltage level shifter and remains grounded by default. The relay is wired directly to the retract buttons via a trace that splits at the screw terminal shared with the controller input. This hardware-level interlock means that if the board malfunctions in any way it is physically impossible for the device to send a close signal to the COTS motor controller. The signal that opens the crack is left out of the _normally open_ relay path so that if the system detects an obstruction while closing, the microcontroller can still trigger an emergency opening to release the pressure before its lockout procedure.
+Above all else, the most critical safety feature in the hardware is the physical isolation of the signal that closes the crack. By using a surface mount relay in a _normally open_ configuration, the signal path to close the Crack Snack is physically disconnected from the voltage level shifter and remains grounded by default. The relay is wired directly to the retract buttons via a trace that splits at the screw terminal shared with the controller input. This hardware-level interlock means that if the board malfunctions in any way, it is physically impossible for the device to send a close signal to the COTS motor controller. The signal that opens the crack is left out of the _normally open_ relay path so that if the system detects an obstruction while closing, the microcontroller can still trigger an emergency opening to release the pressure before its lockout procedure.
 
 
 ## Wrapping Up
@@ -164,6 +165,8 @@ If you are looking to bridge the gap between breadboard prototypes and professio
 * [KiCAD](https://www.kicad.org/) -- An open-source EDA software suite. It's a professional grade tool for designing schematics and PCBs.
 * [Electronic Component Search Engine](https://componentsearchengine.com/) -- A free resource for downloading 3D models, footprints, and schematic symbols for electronic components. 
 * [Practical Electronics for Inventors](https://www.barnesandnoble.com/w/practical-electronics-for-inventors-fourth-edition-paul-scherz/1122324251) -- An excellent reference book for practical circuit design and analysis.
-* [Electrical Engineering Stack Exchange](https://electronics.stackexchange.com/) -- A Q&A site where engineers and hobbists help eachother with technical problems related to electronics design. It has a lot of PCB design best-practices and recommendations.
+* [Electrical Engineering Stack Exchange](https://electronics.stackexchange.com/) -- A Q&A site where engineers and hobbyists help each other with technical problems related to electronics design. It has a lot of PCB design best-practices and recommendations.
 
-<div style="text-align: right;">... and if you haven't already – check out the <a href="https://crackableclimbing.com/" target="_blank" rel="noopener">Crack Snack</a>!</div>
+<p style="text-align: right;">... and if you haven't already – check out the <a href="https://crackableclimbing.com/" target="_blank" rel="noopener">Crack Snack</a>!</p>
+
+{{< youtube QKlrF5N2bq4 >}}
