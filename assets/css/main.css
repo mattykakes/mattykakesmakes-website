@@ -364,7 +364,7 @@
 }
 
 .dark .prose pre {
-  color: transparent;
+  color: var(--color-indigo-400);
   background-color: var(--color-zinc-800);
 }
 
