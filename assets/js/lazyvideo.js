@@ -16,74 +16,63 @@ if (window.lazyVideoInitialized) {
                 entries.forEach((entry) => {
                     const video = entry.target;
                     
-                    // Check if the video is actually inside the physical viewport
+                    // Foolproof Visibility Check: 
+                    // This determines if ANY part of the video is currently in the window.
                     const rect = entry.boundingClientRect;
-                    const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+                    const inViewport = rect.top < window.innerHeight || rect.bottom > 0;
 
-                    if (entry.isIntersecting) {
-                        /**
-                         * PHASE 1: INITIAL LOAD
-                         * If the video hasn't been "activated" yet, swap data-src to src.
-                         * This triggers early due to the 500px rootMargin.
-                         */
-                        if (video.dataset.activated !== "true") {
-                            const sources = video.querySelectorAll("source");
-                            sources.forEach((source) => {
-                                if (source.dataset.src) {
-                                    source.src = source.dataset.src;
-                                }
-                            });
+                    /**
+                     * PHASE 1: INITIAL LOAD
+                     * Use the 500px rootMargin to trigger the source swap early.
+                     */
+                    if (entry.isIntersecting && video.dataset.activated !== "true") {
+                        const sources = video.querySelectorAll("source");
+                        sources.forEach((source) => {
+                            if (source.dataset.src) {
+                                source.src = source.dataset.src;
+                            }
+                        });
 
-                            video.load();
-                            video.dataset.activated = "true";
+                        video.load();
+                        video.dataset.activated = "true";
 
-                            // Only remove blur once the video is actually moving
-                            video.addEventListener('playing', () => {
-                                video.style.removeProperty("filter");
-                                // Clean up transition to free up GPU resources
-                                setTimeout(() => video.style.removeProperty("transition"), 1000);
-                            }, { once: true });
-                        }
+                        video.addEventListener('playing', () => {
+                            video.style.removeProperty("filter");
+                            setTimeout(() => video.style.removeProperty("transition"), 1000);
+                        }, { once: true });
+                    }
 
-                        /**
-                         * PHASE 2: PLAYBACK
-                         * Play the video when it enters the viewport.
-                         * Logic fix: Only call .play() if it's actually in the viewport to avoid 
-                         * mobile browsers "freezing" the stream before it's seen.
-                         */
+                    /**
+                     * PHASE 2: PLAYBACK CONTROL
+                     * We toggle playback based on actual viewport presence, regardless of the 'isIntersecting' 
+                     * state (which includes the 500px buffer).
+                     */
+                    if (video.dataset.activated === "true") {
                         if (inViewport) {
+                            // Video is on screen: attempt to play
                             const playPromise = video.play();
                             if (playPromise !== undefined) {
                                 playPromise.catch(() => {
-                                    // Autoplay was prevented by browser policy
-                                    console.warn("Autoplay prevented for video:", video);
+                                    // Handle cases where browser blocks autoplay
                                 });
                             }
-                        }
-
-                    } else {
-                        /**
-                         * PHASE 3: PAUSE
-                         * Stop the video when it leaves the viewport to save CPU/Battery.
-                         * Only pause if the video has already been activated.
-                         */
-                        if (video.dataset.activated === "true") {
+                        } else {
+                            // Video is off screen: force pause
                             video.pause();
                         }
                     }
                 });
             }, {
-                // Buffer: Starts loading 500px before entry, but toggles play/pause accurately
                 rootMargin: "0px 0px 500px 0px",
-                // Added 0 to threshold to ensure the observer fires as soon as the rootMargin is hit
-                threshold: [0, 0.1] 
+                // Passing multiple thresholds ensures the observer wakes up more often 
+                // during the scroll, catching fast 'away-and-back' movements.
+                threshold: [0, 0.25, 0.5, 0.75, 1.0] 
             });
 
             lazyVideos.forEach((lazyVideo) => videoObserver.observe(lazyVideo));
         }
     };
 
-    // Execution Timing
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", initLazyVideos);
     } else {
