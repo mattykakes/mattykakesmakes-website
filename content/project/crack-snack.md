@@ -149,18 +149,21 @@ This is where the inventory constraints really came into play. For the prototype
 
 > An aside -- I wasn't concerned about using the Arduino toolchain for this product; it has a proven track record in early 3D printers and other niche control systems. The time saved far outweighed the negligible overhead of the library. It wouldn't impact the system's responsiveness in any perceivable way.
 
-At the time, the HX711 was difficult to find in domestic inventories so I had to look abroad. I landed on using [JLCPCB](https://jlcpcb.com/) and desiged a 2-layer board tailored to their component stock. As part of their service they included a [DFM](https://en.wikipedia.org/wiki/Design_for_manufacturability) review that even caught a few issues before production. Pictured below is version 3 of the finished safety module next to its snap-together 3D printed enclosure.
+At the time, the HX711 proved difficult to find in domestic inventories so I had to look abroad. I landed on using [JLCPCB](https://jlcpcb.com/) and desiged a 2-layer board tailored to their component stock. As part of their service they included a [DFM](https://en.wikipedia.org/wiki/Design_for_manufacturability) review that even caught a few issues before production. Pictured below is version 3 of the finished safety module next to its snap-together 3D printed enclosure.
 {{< imgc src="pages/project/crack-snack/crack-control-safety-module.png" alt="Safety Module v3" quality="65" >}}
 
+The physical layout of the board continued the safety-first mindset. The power management implements a via farm beneath the voltage regulator to pull heat away from the component and into the copper plane on the back of the board. The logic is also safeguarded with transient voltage suppression and reverse polarity protection.
 
-
-Safety features built into the board
-
+Above all else, the most critical safety feature in the hardware is the physical isolation of the signal that closes the crack. By using a surface mount relay in a _normally open_ configuration, the signal path to close the Crack Snack is physically disconnected from the voltage level shifter and remains grounded by default. The relay is wired directly to the retract buttons via a trace that splits at the screw terminal shared with the controller input. This hardware-level interlock means that if the board malfunctions in any way it is physically impossible for the device to send a close signal to the COTS motor controller. The signal that opens the crack is left out of the _normally open_ relay path so that if the system detects an obstruction while closing, the microcontroller can still trigger an emergency opening to release the pressure before its lockout procedure.
 
 
 ## Wrapping Up
-In spending hours thumbing through search results, reading books, watching YouTube tutorials, these are the resources I found to be the most useful in designing my own custon PCB board:
+Reflecting on this project, the journey from an idea during a training session to a finished product that included a custom manufactured PCB felt like a real, high-level circuit design course. Having a hard deadline and a critical safety goal forced me out of my comfort zone to learn an entirely new set of skills by diving head-first into the realities electronics manufacturing -- let alone taking part in every step required to launch a product, which was exciting on its own. If nothing else this was a rad, practical engineering experience that I couldn't replicate in any sort of classroom setting, and I'm happy Jason trusted me to do my part 🙂.
+
+If you are looking to bridge the gap between breadboard prototypes and professional hardware, these are the resources I found to be the most invaluable during the design phase of the safety module:
 * [KiCAD](https://www.kicad.org/) -- An open-source EDA software suite. It's a professional grade tool for designing schematics and PCBs.
 * [Electronic Component Search Engine](https://componentsearchengine.com/) -- A free resource for downloading 3D models, footprints, and schematic symbols for electronic components. 
 * [Practical Electronics for Inventors](https://www.barnesandnoble.com/w/practical-electronics-for-inventors-fourth-edition-paul-scherz/1122324251) -- An excellent reference book for practical circuit design and analysis.
 * [Electrical Engineering Stack Exchange](https://electronics.stackexchange.com/) -- A Q&A site where engineers and hobbists help eachother with technical problems related to electronics design. It has a lot of PCB design best-practices and recommendations.
+
+<div style="text-align: right;">... and if you haven't already – check out the <a href="https://crackableclimbing.com/" target="_blank" rel="noopener">Crack Snack</a>!</div>
