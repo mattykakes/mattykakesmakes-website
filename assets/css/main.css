@@ -87,6 +87,7 @@
   --color-zinc-950: oklch(14.1% 0.005 285.823);
 
   /* Indigo color scale with OKLCH (previously indigo & primary - hyperlink color */
+  --color-indigo: oklch(54% 0.13 200);
   --color-indigo-50: oklch(92% 0.02 200);
   --color-indigo-100: oklch(85% 0.04 200);
   --color-indigo-200: oklch(78% 0.06 200);
@@ -277,6 +278,22 @@
   line-height: 1.7142857;
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  /* Ensure the container itself is visible */
+  display: block; 
+}
+
+.prose .table-wrapper table {
+  min-width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .prose thead {
