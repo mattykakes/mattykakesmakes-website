@@ -1,6 +1,22 @@
 {{- $title := cond .IsHome .Site.Title (printf "%s | %s" .Title .Site.Title) -}}
 {{- $desc  := .Description | default .Summary | default .Site.Params.description -}}
-{{- $ogImage := (.Params.featured_image | default .Site.Params.og_image) | absURL -}}
+
+{{- /* Logic to process the image: convert to JPG and fingerprint */ -}}
+{{- $ogImageURL := "" -}}
+{{- $imagePath := .Params.featured_image | default .Site.Params.og_image -}}
+
+{{- if $imagePath -}}
+    {{- /* Attempt to find the image in resources (Page Bundle or Assets) */ -}}
+    {{- $res := (.Resources.GetMatch $imagePath) | default (resources.Get $imagePath) -}}
+    {{- if $res -}}
+        {{- /* Convert to JPG, resize to 1200x630, and fingerprint for cache-busting */ -}}
+        {{- $processed := $res.Fill "1200x630 jpg q85" | fingerprint -}}
+        {{- $ogImageURL = $processed.Permalink -}}
+    {{- else -}}
+        {{- /* Fallback to absolute URL if resource processing isn't possible */ -}}
+        {{- $ogImageURL = $imagePath | absURL -}}
+    {{- end -}}
+{{- end -}}
 
 <title>{{ if .IsHome }}{{ .Site.Params.description }} | {{ .Site.Title }}{{ else }}{{ partial "taxonomy-term-title.html" . }} | {{ .Site.Title }}{{ end }}</title>
 <meta name="description" content="{{ $desc }}">
@@ -12,13 +28,13 @@
 <meta property="og:site_name" content="{{ .Site.Title }}">
 <meta property="og:locale" content="en">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
-<meta property="og:image" content="{{ $ogImage }}">
+{{ with $ogImageURL }}<meta property="og:image" content="{{ . }}">{{ end }}
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ $title }}">
 <meta name="twitter:description" content="{{ $desc }}">
-<meta name="twitter:image" content="{{ $ogImage }}">
+{{ with $ogImageURL }}<meta name="twitter:image" content="{{ . }}">{{ end }}
 
 <meta itemprop="name" content="{{ $title }}">
 <meta itemprop="description" content="{{ $desc }}">
-<meta itemprop="image" content="{{ $ogImage }}">
+{{ with $ogImageURL }}<meta itemprop="image" content="{{ . }}">{{ end }}
