@@ -1,11 +1,26 @@
+{{/* layouts/partials/meta.html */}}
+
+{{- /* Compute title and description */ -}}
 {{- $title := cond .IsHome .Site.Title (printf "%s | %s" .Title .Site.Title) -}}
 {{- $desc  := .Description | default .Summary | default .Site.Params.description -}}
-{{- $ogImage := $.Scratch.Get "ogImage" | default .Site.Params.og_image | absURL -}}
 
 <title>{{ if .IsHome }}{{ .Site.Params.description }} | {{ .Site.Title }}{{ else }}{{ partial "taxonomy-term-title.html" . }} | {{ .Site.Title }}{{ end }}</title>
 <meta name="description" content="{{ $desc }}">
 <meta name="application-name" content="{{ $title }}">
 
+{{- /* Compute OG image from featured_image in assets, resize & fingerprint */ -}}
+{{- $ogImage := "" -}}
+{{- with .Params.featured_image }}
+    {{- with resources.Get . }}
+        {{- $featured := (.Resize "1200x630 webp q75") | fingerprint }}
+        {{- $ogImage = $featured.Permalink }}
+    {{- end }}
+{{- end }}
+{{- if not $ogImage }}
+    {{- $ogImage = .Site.Params.og_image | absURL }}
+{{- end }}
+
+{{/* Open Graph Meta Tags */}}
 <meta property="og:title" content="{{ $title }}">
 <meta property="og:description" content="{{ $desc }}">
 <meta property="og:url" content="{{ .Permalink }}">
@@ -14,11 +29,13 @@
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:image" content="{{ $ogImage }}">
 
+{{/* Twitter Cards */}}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ $title }}">
 <meta name="twitter:description" content="{{ $desc }}">
 <meta name="twitter:image" content="{{ $ogImage }}">
 
+{{/* Schema.org / Google */}}
 <meta itemprop="name" content="{{ $title }}">
 <meta itemprop="description" content="{{ $desc }}">
 <meta itemprop="image" content="{{ $ogImage }}">

@@ -20,7 +20,6 @@
           {{ $small := (.Resize (printf "400x webp q%d" $quality)).RelPermalink }}
           {{ $medium := (.Resize (printf "600x webp q%d" $quality)).RelPermalink }}
           {{ $featuredResource := (.Resize (printf "800x webp q%d" $quality)) }}
-          {{ $.Scratch.Set "ogImage" $featuredResource.Permalink }}
 
           <img src="{{ $featuredResource.RelPermalink }}" srcset="
             {{- with $small -}}, {{.}} 400w{{- end -}}
