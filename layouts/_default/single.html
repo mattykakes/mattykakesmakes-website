@@ -1,4 +1,4 @@
-{{define "main"}}
+{{ define "main" }}
 <article class="flex-1">
   <!-- save the page context -->
   {{ $page := . }} 
@@ -16,23 +16,26 @@
 
       {{ with $page.Params.featured_image }}
         {{ with resources.Get . }}
+          <!-- Compute resized images once and save the main one in Scratch for OG -->
           {{ $small := (.Resize (printf "400x webp q%d" $quality)).RelPermalink }}
           {{ $medium := (.Resize (printf "600x webp q%d" $quality)).RelPermalink }}
-          {{ $featuredimage := (.Resize (printf "800x webp q%d" $quality)).RelPermalink }}
+          {{ $featuredResource := (.Resize (printf "800x webp q%d" $quality)) }}
+          {{ $.Scratch.Set "ogImage" $featuredResource.Permalink }}
 
-          <img src="{{ $featuredimage }}" srcset="
+          <img src="{{ $featuredResource.RelPermalink }}" srcset="
             {{- with $small -}}, {{.}} 400w{{- end -}}
             {{- with $medium -}}, {{.}} 600w{{- end -}}
-            {{- with $featuredimage -}}, {{.}} 800w{{- end -}}"
-           class="object-fill overflow-hidden rounded-lg ring-4 shadow-lg ring-zinc-300/40 dark:ring-gray-900/40 shadow-neutral-100/20 dark:shadow-neutral-800/40"
+            {{- with $featuredResource.RelPermalink -}}, {{.}} 800w{{- end -}}"
+            class="object-fill overflow-hidden rounded-lg ring-4 shadow-lg ring-zinc-300/40 dark:ring-gray-900/40 shadow-neutral-100/20 dark:shadow-neutral-800/40"
             width="100%" alt="{{ $page.Title }}" />
         {{ end }}
       {{ end }}
     </div>
   </div>
-  <!-- " {{.Content}}" pulls from the markdown content of the corresponding _index.md -->
+
+  <!-- Markdown content -->
   <div class="px-6 pt-6 pb-16 mx-auto prose prose-h1:text-2xl dark:text-white">
-    {{.Content}}
+    {{ .Content }}
   </div>
 </article>
-{{end}}
+{{ end }}

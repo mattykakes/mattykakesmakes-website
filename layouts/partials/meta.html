@@ -1,12 +1,6 @@
 {{- $title := cond .IsHome .Site.Title (printf "%s | %s" .Title .Site.Title) -}}
 {{- $desc  := .Description | default .Summary | default .Site.Params.description -}}
-
-{{- $ogImage := "" -}}
-{{- with .Resources.GetMatch .Params.featured_image -}}
-  {{- $ogImage = .Permalink -}}
-{{- else -}}
-  {{- $ogImage = .Site.Params.og_image | absURL -}}
-{{- end -}}
+{{- $ogImage := $.Scratch.Get "ogImage" | default .Site.Params.og_image | absURL -}}
 
 <title>{{ if .IsHome }}{{ .Site.Params.description }} | {{ .Site.Title }}{{ else }}{{ partial "taxonomy-term-title.html" . }} | {{ .Site.Title }}{{ end }}</title>
 <meta name="description" content="{{ $desc }}">
