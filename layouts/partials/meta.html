@@ -2,11 +2,11 @@
 {{- $desc  := .Description | default .Summary | default .Site.Params.description -}}
 
 {{- $ogImage := "" -}}
-{{ with .Resources.GetMatch (.Params.featured_image) }}
-  {{ $ogImage := .Permalink }}
-{{ else }}
-  {{ $ogImage := .Site.Params.og_image | absURL }}
-{{ end }}
+{{- with .Resources.GetMatch .Params.featured_image -}}
+  {{- $ogImage = .Permalink -}}
+{{- else -}}
+  {{- $ogImage = .Site.Params.og_image | absURL -}}
+{{- end -}}
 
 <title>{{ if .IsHome }}{{ .Site.Params.description }} | {{ .Site.Title }}{{ else }}{{ partial "taxonomy-term-title.html" . }} | {{ .Site.Title }}{{ end }}</title>
 <meta name="description" content="{{ $desc }}">
