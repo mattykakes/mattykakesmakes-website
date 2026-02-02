@@ -12,7 +12,7 @@
 {{- $ogImage := "" -}}
 {{- with .Params.featured_image }}
     {{- with resources.Get . }}
-        {{- $featured := (.Resize "1200x630 webp q75") | fingerprint }}
+        {{- $featured := (.Fill "1200x630 webp q70 center") | fingerprint }}
         {{- $ogImage = $featured.Permalink }}
     {{- end }}
 {{- end }}
