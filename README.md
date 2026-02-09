@@ -1,4 +1,4 @@
-The Matty Kakes Makes static website repo using [Hugo](https://gohugo.io/) static website generator and [forked](https://github.com/mattrussmill/tailbliss) [tailbliss](https://github.com/nusserstudios/tailbliss) theme. However, the forked theme does not include all of the changes used in this website; only the contributions made to the original theme repository.
+The Matty Kakes Makes static website repo using [Hugo](https://gohugo.io/) static website generator and forked [tailbliss](https://github.com/nusserstudios/tailbliss) theme. However, the forked theme does not include all of the changes used in this website; only the contributions made to the original theme repository.
 
 
 ## Prerequisite Software
