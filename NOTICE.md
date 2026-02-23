@@ -28,7 +28,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ## 2. Third-Party and Upstream Attributions
 
-Some files in this repository are derived from or incorporate work originally developed by **Nusser Studios**, and are used under the terms of the Apache License, Version 2.0.
+Some files in this repository are derived from or incorporate work originally developed by [**Nusser Studios**](https://nusserstudios.com), and are used under the terms of the Apache License, Version 2.0.
 
 These include, but may not be limited to:
 
