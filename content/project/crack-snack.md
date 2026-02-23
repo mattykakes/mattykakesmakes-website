@@ -135,7 +135,7 @@ The brain of the Crack Snack resides in its custom safety module. This [PCB](htt
 
 From a hardware perspective, the safety module acts as the interface between the user and the device as a whole. It samples the analog signals from the load cells and monitors the control buttons, translating these inputs into coordinated signals that drive the motor controller and LED indicators. Since I optimized the design to minimize computational complexity, a standard 8-bit microcontroller could provide more than enough headroom to handle these tasks. This allowed focus to shift toward the physical robustness of the module.
 
-However, no product starts in its final form; the journey to a polished board is paved with iterations. The Crack Snack, like many hardware projects, began its life as a **_heinous_** [Arduino](https://www.arduino.cc/) based prototype to prove the concept and work out kinks. This early version was a chaotic collection of relays and breakout modules. While fragile, it validated the core logic of the state machine and let us work through mechanical changes. 
+However, no product starts in its final form; the road to a polished board is paved with iterations. The Crack Snack, like many hardware projects, began its life as a **_heinous_** [Arduino](https://www.arduino.cc/) based prototype to prove the concept and work out kinks. This early version was a chaotic collection of relays and breakout modules. While fragile, it validated the core logic of the state machine and let us work through mechanical changes. 
 
 {{< imgc src="pages/project/crack-snack/crack-control-heinous-prototype.jpg" alt="Heinous Prototype" quality="30" >}}
 
