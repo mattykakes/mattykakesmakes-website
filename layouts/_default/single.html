@@ -8,18 +8,16 @@
       {{ $page := . }} 
 
       {{ with $page.Params.summary }}
-      <div class="pt-6 pb-2 text-center prose dark:text-white max-w-none">
+      <div class="max-w-3xl mx-auto pt-6 pb-2 text-center prose dark:text-white">
         <i>{{ . }}</i>
       </div>
       {{ end }}
 
-      <div class="max-w-3xl mx-auto mt-8 mb-2">
-        <div class="">
+      <div class="max-w-3xl mx-auto mt-8 mb-2 px-6">
           {{ $quality := $page.Params.featured_image_quality | default 75 }}
 
           {{ with $page.Params.featured_image }}
             {{ with resources.Get . }}
-              <!-- Compute resized images once and save the main one in Scratch for OG -->
               {{ $small := (.Resize (printf "400x webp q%d" $quality)).RelPermalink }}
               {{ $medium := (.Resize (printf "600x webp q%d" $quality)).RelPermalink }}
               {{ $featuredResource := (.Resize (printf "800x webp q%d" $quality)) }}
@@ -28,14 +26,13 @@
                 {{- with $small -}}, {{.}} 400w{{- end -}}
                 {{- with $medium -}}, {{.}} 600w{{- end -}}
                 {{- with $featuredResource.RelPermalink -}}, {{.}} 800w{{- end -}}"
-                class="object-fill overflow-hidden rounded-lg ring-4 shadow-lg ring-zinc-300/40 dark:ring-gray-900/40 shadow-neutral-100/20 dark:shadow-neutral-800/40"
-                width="100%" alt="{{ $page.Title }}" />
+                class="w-full h-auto rounded-lg ring-4 shadow-lg ring-zinc-300/40 dark:ring-gray-900/40 shadow-neutral-100/20 dark:shadow-neutral-800/40"
+                alt="{{ $page.Title }}" />
             {{ end }}
           {{ end }}
-        </div>
       </div>
 
-      <div id="blog-content" class="pt-6 pb-16 mx-auto prose dark:text-white max-w-3xl">
+      <div id="blog-content" class="max-w-3xl mx-auto pt-6 pb-16 px-6 prose dark:prose-invert">
         {{ .Content }}
       </div>
     </article>
