@@ -1,4 +1,8 @@
 {{ define "main" }}
+<div class="fixed top-0 left-0 w-full h-1 z-[60] bg-transparent pointer-events-none block xl:hidden">
+  <div id="progress-bar" class="h-full bg-primary-500 transition-all duration-150 ease-out w-0 shadow-[0_0_8px_rgba(var(--color-primary-500),0.6)]" style="will-change: width;"></div>
+</div>
+
 <div class="max-w-7xl mx-auto px-6">
   <div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
     
@@ -45,4 +49,30 @@
 
   </div>
 </div>
+
+<script>
+  function updateProgressBar() {
+    const content = document.getElementById('blog-content');
+    const bar = document.getElementById('progress-bar');
+
+    // Safety check: Don't run if element doesn't exist or is hidden on desktop
+    if (!content || !bar || window.getComputedStyle(bar.parentElement).display === 'none') return;
+
+    // content.offsetTop: distance from top of page to start of article
+    // content.scrollHeight: total height of the article text
+    // window.innerHeight: height of the visible screen
+    const totalHeight = content.scrollHeight - window.innerHeight;
+    const progress = (window.scrollY - content.offsetTop) / totalHeight;
+    
+    // Clamp between 0% and 100%
+    const width = Math.max(0, Math.min(100, progress * 100));
+    
+    bar.style.width = `${width}%`;
+  }
+
+  // Ensure it fires on all three critical events
+  window.addEventListener('scroll', updateProgressBar);
+  window.addEventListener('DOMContentLoaded', updateProgressBar);
+  window.addEventListener('resize', updateProgressBar);
+</script>
 {{ end }}
