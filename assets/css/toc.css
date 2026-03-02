@@ -19,11 +19,11 @@ aside.fixed {
 /* Container Reset */
 .toc-nav #TableOfContents > ul {
   padding: 0;
-  margin: 0;
+  margin: 0 0 0 0.5rem;
   list-style: none;
 }
 
-/* Vertical line for nested sections (H2, H3, etc.) */
+/* Vertical line for nested sections (H3, etc.) */
 .toc-nav #TableOfContents ul ul {
   padding-left: 1rem;
   margin-left: 0.5rem;
@@ -64,11 +64,6 @@ aside.fixed {
   padding-left: 0.75rem;
   /* Pull back to align with the hierarchy line */
   margin-left: -1.0625rem; 
-}
-
-/* Adjust margin for the very top-level (H1) active state */
-.toc-nav #TableOfContents > ul > li > a.active {
-  margin-left: -2px;
 }
 
 .dark .toc-nav a.active {
