@@ -14,29 +14,29 @@ tags: [Documentation, Product, Project, Technical, Writing]
 
 Clear, well-written requirements are the foundation of a successful system. They define what needs to be built, ensure alignment among stakeholders, and help teams deliver a product that meets user needs. To ensure requirements are clear they must be properly scoped, structured effectively, and maintain the right level of formality.
 
-# Scoping Requirements
+## Scoping Requirements
 
 For requirements to be affective they must be properly scoped. For products and systems, requirements generally fall under two separate categories: __Functional Requirements__ and __Implementation Requirements__. It is important that these two categories of requirements do not overlap as they serve different purposes, but work together at the same time to define a system.
 
-## Functional Requirements
+### Functional Requirements
 
 Functional requirements define what a system should do or what it needs to achieve -- its behaviors, operations, and interactions with users or other systems. They describe the intended functionality of the system without specifying how it should be implemented.
 
-#### Examples:
+**Examples:**
 * `A user shall be able to log in using an email and password.`
 * `The system shall send an email notification when a user completes a purchase to the user who completed said purchase.`
 * `A patient’s medical record must be retrievable using their patient UUID.`
 
-## Implementation Requirements
+### Implementation Requirements
 
 Implementation requirements define how the system should be built -- specific technologies, tools, constraints, or design decisions that guide implementation. They focus on technical details rather than high-level functionality.
 
-#### Examples:
+**Examples:**
 * `The data layer shall be implemented using PostgreSQL as the database.`
 * `The client facing application must be developed using Angular and NgRx for state management.`
 * `Data must be encrypted using AES-256 before being stored.`
 
-## Key Differences
+### Key Differences
 
 |        | Functional Requirements | Implementation Requirements |
 | ------ | ----------------------- | --------------------------- |
@@ -45,7 +45,7 @@ Implementation requirements define how the system should be built -- specific te
 | __Example__ | "Users shall be able to reset their password via email." | "Password reset emails must be sent using AWS SES." |
 
 
-# Formality Reference
+## Formality Reference
 To write formal requirements, one must ensure clarity, specificity, and use precise language by defining each
 requirement with a clear action, outcome, and acceptance criteria, identifying key stakeholders when
 possible, outlining the project scope, and using consistent terminology throughout the document; always

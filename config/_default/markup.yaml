@@ -30,3 +30,7 @@ goldmark:
     hardWraps: false
     unsafe: true
     xhtml: false
+tableOfContents:
+  endLevel: 3
+  ordered: false
+  startLevel: 2

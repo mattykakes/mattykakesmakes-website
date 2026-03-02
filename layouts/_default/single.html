@@ -1,4 +1,8 @@
 {{ define "main" }}
+
+<div class="relative max-w-7xl mx-auto flex justify-center"></div>
+{{ partial "toc.html" . }}
+
 <article class="flex-1">
   <!-- save the page context -->
   {{ $page := . }} 
@@ -33,8 +37,11 @@
   </div>
 
   <!-- Markdown content -->
-  <div class="px-6 pt-6 pb-16 mx-auto prose prose-h1:text-2xl dark:text-white">
+  <div id="blog-content" class="px-6 pt-6 pb-16 mx-auto prose prose-h1:text-2xl dark:text-white">
     {{ .Content }}
   </div>
 </article>
+
+</div>
+
 {{ end }}

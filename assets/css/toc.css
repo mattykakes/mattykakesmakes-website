@@ -1,0 +1,76 @@
+aside.fixed {
+  /* top-32 is 8rem. We subtract 10rem (top + bottom padding) 
+     from the viewport height to keep it contained. */
+  max-height: calc(100vh - 10rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.toc-nav {
+  /* Allows the navigation list to scroll if it's too long */
+  overflow-y: auto;
+  padding-right: 0.5rem; /* Space for the scrollbar */
+  
+  /* Custom Scrollbar for a cleaner look */
+  scrollbar-width: thin;
+}
+
+
+/* Container Reset */
+.toc-nav #TableOfContents > ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* Vertical line for nested sections (H2, H3, etc.) */
+.toc-nav #TableOfContents ul ul {
+  padding-left: 1rem;
+  margin-left: 0.5rem;
+  border-left: 1px solid var(--color-zinc-200);
+  list-style: none;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.dark .toc-nav #TableOfContents ul ul {
+  border-left-color: var(--color-zinc-700);
+}
+
+/* Link Base Styles */
+.toc-nav a {
+  display: block;
+  padding: 0.2rem 0;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  color: var(--color-zinc-500);
+  border-left: 2px solid transparent; /* Prevents layout shift on active */
+}
+
+.dark .toc-nav a {
+  color: var(--color-zinc-400);
+}
+
+.toc-nav a:hover {
+  color: var(--color-primary-500);
+}
+
+/* Scroll-Spy Active State */
+.toc-nav a.active {
+  color: var(--color-primary-600) !important;
+  font-weight: 700;
+  border-left-color: var(--color-primary-500);
+  padding-left: 0.75rem;
+  /* Pull back to align with the hierarchy line */
+  margin-left: -1.0625rem; 
+}
+
+/* Adjust margin for the very top-level (H1) active state */
+.toc-nav #TableOfContents > ul > li > a.active {
+  margin-left: -2px;
+}
+
+.dark .toc-nav a.active {
+  color: var(--color-primary-400);
+}

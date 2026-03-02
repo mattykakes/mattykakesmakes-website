@@ -60,3 +60,21 @@
 	
   <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
 {{ end }}
+
+{{ if .IsPage }}
+  {{/* Determine if TOC file exists in Vite manifest or falling back to Hugo */}}
+  {{ $tocCSS := index .Site.Data.manifest "toc.css" }} 
+  
+  {{ if $tocCSS }}
+    <link rel="stylesheet" href="/css/{{ $tocCSS }}">
+  {{ else }}
+    {{/* Hugo fallback processing */}}
+    {{ $styles := resources.Get "css/toc.css" | postCSS }}
+    {{ if hugo.IsProduction }}
+      {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
+    {{ else }}
+      {{ $styles = $styles | fingerprint | resources.PostProcess }}
+    {{ end }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
+  {{ end }}
+{{ end }}

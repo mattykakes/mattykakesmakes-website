@@ -16,8 +16,13 @@
 
     {{/* Load JavaScript asynchronously to prevent main thread blocking */}}
     {{ if not .Site.Params.Disable_theme_toggle }}
-    {{ $js := resources.Get "js/darkmode.js" | js.Build | minify | fingerprint }}
-    <script defer src="{{ $js.RelPermalink }}"></script>
+    {{ $darkmodeJs := resources.Get "js/darkmode.js" | js.Build | minify | fingerprint }}
+    <script defer src="{{ $darkmodeJs.RelPermalink }}"></script>
+    {{ end }}
+
+    {{ if .IsPage }}
+    {{ $scrollspyJs := resources.Get "js/scrollspy.js" | js.Build | minify | fingerprint }}
+    <script defer src="{{ $scrollspyJs.RelPermalink }}"></script>
     {{ end }}
 
     {{ if .HasShortcode "videoloop" }}

@@ -34,7 +34,7 @@ In the absence of efficiency data, it is normal to lean on manufacturers’ mark
 
 HP's [Ultimate Guide to Choosing the Right Computer Display](https://www.hp.com/us-en/shop/tech-takes/what-are-typical-monitor-sizes) highlights market trends by outlining common size ranges for typical use cases and recommending resolutions for specific screen sizes. These recommendations align closely with those provided by other leading manufacturers:
 
-#### Standard Monitor Sizes as defined by HP
+**Standard Monitor Sizes as defined by HP**
 | Size Range    |	Typical Uses  | 
 | ------------- | --------------- |
 | 19-21 inches  | Compact displays for basic tasks and small spaces |
@@ -42,7 +42,7 @@ HP's [Ultimate Guide to Choosing the Right Computer Display](https://www.hp.com/
 | 27-32 inches 	| Ideal for gaming, graphic design, and multitasking |
 | 34+ inches 	| Ultrawide monitors for immersive experiences and professional use |
 
-#### Common Monitor Resolutions as defined by HP
+**Common Monitor Resolutions as defined by HP**
 * __1920 x 1080__ (Full HD): __Most common, suitable for 22-27 inch monitors__
 * 2560 x 1440 (QHD): Popular for 27-32 inch monitors, offers sharper images
 * 3840 x 2160 (4K UHD): High-resolution option for 27 inches and above
@@ -50,7 +50,7 @@ HP's [Ultimate Guide to Choosing the Right Computer Display](https://www.hp.com/
 
 Another metric to consider, in the age of remote work, is laptop screen sizes. HP's [How to Choose the Best Laptop Screen Size for Your Needs](https://www.hp.com/us-en/shop/tech-takes/choosing-the-best-laptop-screen-size) guide shows that laptops with screens 15 inches and smaller remain popular for portable general computing: 
 
-#### Common Laptop Screen Sizes as defined by HP
+**Common Laptop Screen Sizes as defined by HP**
 * 11 to 12 inches: Ultraportable laptops
 * 13 to 14 inches: Thin and light laptops
 * __15 to 16 inches: Standard/mainstream laptops__
@@ -58,7 +58,7 @@ Another metric to consider, in the age of remote work, is laptop screen sizes. H
 
 Even in today's market, standard HD screens remain popular. Based on the tables above, the correlating HD screen size and use case is consistent with the somewhat dated report from the Bureau of Labor Statistics on the [most common use cases for computers at work](https://www.bls.gov/opub/ted/2005/aug/wk5/art05.htm) news release from 2005 (USDL 05-1457) in the table below:
 
-#### Types of Computer Activity Work, Oct 2003
+**Types of Computer Activity Work, Oct 2003**
 
 | Occupation and industry | Percent |
 | ----------------------- | ------- |
