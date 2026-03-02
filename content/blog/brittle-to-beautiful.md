@@ -371,7 +371,7 @@ For components that must communicate laterally, or in a one-to-many  state distr
 
 The important part of these restrictions is that services are kept private to each feature module. They should not reach across or extend beyond their designated boundary. This restriction prevents broadly scoped lateral one-to-many relationships - maintaining the separation of concerns.
 
-### Global State asdfjhasdkjh lksajdhklf ahsdkfhaskldjf das asdf 
+### Global State
 
 For any external (beyond one or two levels vertically) and lateral state sharing, we must default to the second category: global state sharing -- using a strong state management pattern. For enterprise applications, this often means using Redux (e.g. [Angular](https://ngrx.io/) / [React](https://redux.js.org/)) to update and distribute global state to subscribers. However, there are plenty of alternatives that require less boilerplate code depending on project requirements (e.g. [MobX](https://mobx.js.org/README.html) and [Akita](https://opensource.salesforce.com/akita/)).
 
