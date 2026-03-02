@@ -34,7 +34,7 @@ In my time working with front-end frameworks, I've identified these six pain poi
 Having a plan to mitigate these six bullet points is essential to prevent the compounding effect of technical debt over time.
 
 
-# Poor Encapsulation {#poor-encapsulation}
+## Poor Encapsulation {#poor-encapsulation}
 The concept encapsulation is pretty straightforward. Encapsulation is used to reduce the shared state from external modification.
 
 ```
@@ -209,7 +209,7 @@ root.render(<App />);</code></pre>
 
 It happens when an overabundance of modules are imported at the root level. Not only does this break component encapsulation, but it can also cause unintended root scoping of private services. Caution must be used to import modules only where they are consumed, preserving a well-structured dependency tree.
 
-# Undefined Semantic Structure {#undefined-structure}
+## Undefined Semantic Structure {#undefined-structure}
 
 Having an undefined or un-agreed upon semantic project structure can cause problems, too. Without it:
 
@@ -325,7 +325,7 @@ Directory prefixes within a large directory like `features/` help us infer how a
 
 Additionally, consistent naming like sticking to either camel or kebab case, helps with directory tree readability and further enhances organization.
 
-# Unscoped State Distribution {#unscoped-state}
+## Unscoped State Distribution {#unscoped-state}
 
 Before understanding the importance of scoped state management in browser-based applications, we need to understand the differences between [event-driven programming](https://en.wikipedia.org/wiki/Event-driven_programming) and [reactive programming](https://en.wikipedia.org/wiki/Reactive_programming). This includes why a reactive programming model might be preferable in larger applications and what additional challenges are introduced.
 
@@ -383,7 +383,7 @@ Additionally, using a top-down state management paradigm prevents the implementa
 
 [Prop drilling](https://www.geeksforgeeks.org/reactjs/what-is-prop-drilling-and-how-to-avoid-it/) is a lazy way to obtain the same vertical reach as Redux’s top-down state distribution. Objects pass a prop, or bind properties, through multiple intermediary components to a deeply nested component that actually needs the data - sometimes even passing data up the dependency tree and back down another branch.
 
-# State Object Mutability {#object-mutability}
+## State Object Mutability {#object-mutability}
 
 For a strict state management plan to succeed, there is one more issue that must be accounted for - maintaining immutability.
 
@@ -401,7 +401,7 @@ A bug is raised in component 3 because of a change to this referenced object -- 
 
 The point is, once state mutability and unclear ownership are introduced, the entire data flow becomes opaque. Debugging shifts from following clear, intentional state transitions to untangling side effects that ripple unpredictably across the application. Maintaining immutability and well-defined ownership of state is foundational for predictable and maintainable software.
 
-# Loose Rule-Based Compliance {#loose-compliance}
+## Loose Rule-Based Compliance {#loose-compliance}
 
 It’s common in the enterprise software world to work within large, shared repositories. Occasionally, developers from other teams need to modify code in projects they depend on but don’t directly own.
 
@@ -421,7 +421,7 @@ As an added bonus, some tools even provide basic architecture enforcement as a p
 
 Remember, rule based compliance isn't about control -- it's about providing long-term predictability. Sustainable products require strong conventions.
 
-# No Software Blueprint {#no-blueprint}
+## No Software Blueprint {#no-blueprint}
 
 How long after a project begins does it take to turn into a house of cards? Four years? Eight? As soon as the engineer maintaining the project leaves for another job?
 
@@ -437,7 +437,7 @@ Before beginning development, create an architecture document tailored to the pr
 
 This document should live in a place that’s easily accessible to contributors, whether that’s within a company wiki or as a markdown file in the project repository. The important part is that it’s easy to find and reference, ensuring everyone can align on the same architectural vision as the project evolves.
 
-# Conclusion
+## Conclusion
 
 Browser frameworks often tout _flexibility_ as a feature or an incentive to promote adoption. In reality, this design philosophy is not what you want at the forefront of a framework to build robust, enterprise software.
 
