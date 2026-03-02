@@ -1,47 +1,51 @@
 {{ define "main" }}
+<div class="max-w-7xl mx-auto px-6">
+  <div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+    
+    <div class="hidden xl:block xl:col-span-2"></div>
 
-<div class="relative max-w-7xl mx-auto flex justify-center"></div>
-{{ partial "toc.html" . }}
+    <article class="xl:col-span-8">
+      {{ $page := . }} 
 
-<article class="flex-1">
-  <!-- save the page context -->
-  {{ $page := . }} 
-
-  {{ $summary := $page.Params.summary }}
-  {{ if $summary }}
-  <div class="px-6 pt-6 pb-2 mx-auto text-center prose prose-h1:text-2xl dark:text-white">
-    <i>{{ $summary }}</i>
-  </div>
-  {{ end }}
-
-  <div class="max-w-3xl mx-auto mt-8 mb-2">
-    <div class="px-6">
-      {{ $quality := $page.Params.featured_image_quality | default 75 }}
-
-      {{ with $page.Params.featured_image }}
-        {{ with resources.Get . }}
-          <!-- Compute resized images once and save the main one in Scratch for OG -->
-          {{ $small := (.Resize (printf "400x webp q%d" $quality)).RelPermalink }}
-          {{ $medium := (.Resize (printf "600x webp q%d" $quality)).RelPermalink }}
-          {{ $featuredResource := (.Resize (printf "800x webp q%d" $quality)) }}
-
-          <img src="{{ $featuredResource.RelPermalink }}" srcset="
-            {{- with $small -}}, {{.}} 400w{{- end -}}
-            {{- with $medium -}}, {{.}} 600w{{- end -}}
-            {{- with $featuredResource.RelPermalink -}}, {{.}} 800w{{- end -}}"
-            class="object-fill overflow-hidden rounded-lg ring-4 shadow-lg ring-zinc-300/40 dark:ring-gray-900/40 shadow-neutral-100/20 dark:shadow-neutral-800/40"
-            width="100%" alt="{{ $page.Title }}" />
-        {{ end }}
+      {{ with $page.Params.summary }}
+      <div class="pt-6 pb-2 text-center prose dark:text-white max-w-none">
+        <i>{{ . }}</i>
+      </div>
       {{ end }}
-    </div>
-  </div>
 
-  <!-- Markdown content -->
-  <div id="blog-content" class="px-6 pt-6 pb-16 mx-auto prose prose-h1:text-2xl dark:text-white">
-    {{ .Content }}
-  </div>
-</article>
+      <div class="max-w-3xl mx-auto mt-8 mb-2">
+        <div class="">
+          {{ $quality := $page.Params.featured_image_quality | default 75 }}
 
+          {{ with $page.Params.featured_image }}
+            {{ with resources.Get . }}
+              <!-- Compute resized images once and save the main one in Scratch for OG -->
+              {{ $small := (.Resize (printf "400x webp q%d" $quality)).RelPermalink }}
+              {{ $medium := (.Resize (printf "600x webp q%d" $quality)).RelPermalink }}
+              {{ $featuredResource := (.Resize (printf "800x webp q%d" $quality)) }}
+
+              <img src="{{ $featuredResource.RelPermalink }}" srcset="
+                {{- with $small -}}, {{.}} 400w{{- end -}}
+                {{- with $medium -}}, {{.}} 600w{{- end -}}
+                {{- with $featuredResource.RelPermalink -}}, {{.}} 800w{{- end -}}"
+                class="object-fill overflow-hidden rounded-lg ring-4 shadow-lg ring-zinc-300/40 dark:ring-gray-900/40 shadow-neutral-100/20 dark:shadow-neutral-800/40"
+                width="100%" alt="{{ $page.Title }}" />
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+
+      <div id="blog-content" class="pt-6 pb-16 mx-auto prose dark:text-white max-w-3xl">
+        {{ .Content }}
+      </div>
+    </article>
+
+    <aside class="hidden xl:block xl:col-span-2 relative">
+      <div class="fixed top-32 w-64">
+        {{ partial "toc.html" . }}
+      </div>
+    </aside>
+
+  </div>
 </div>
-
 {{ end }}
