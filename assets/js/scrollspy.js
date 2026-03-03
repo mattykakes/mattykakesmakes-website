@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
   let activeId = null;
-  let scrollTimeout = null; // Holder for the debounce timer
+  let scrollTimeout = null;
   const blogContent = document.getElementById('blog-content');
   const tocNav = document.querySelector('.toc-nav');
   
@@ -8,17 +8,23 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const TOP_OFFSET = 100; 
 
-  const handleScroll = () => {
-    // 1. Clear the timeout on every scroll event
-    if (scrollTimeout) {
-      clearTimeout(scrollTimeout);
-    }
-
-    // 2. Perform the standard position check
+  // 1. Move the logic into a standalone function
+  const calculateActiveSection = () => {
     const headings = Array.from(blogContent.querySelectorAll('h2, h3'));
-    const currentHeading = headings
-      .filter(h => h.getBoundingClientRect().top <= TOP_OFFSET + 5)
-      .pop();
+    if (headings.length === 0) return;
+
+    // Check if we are at the bottom of the page
+    const isAtBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 25);
+    
+    let currentHeading;
+
+    if (isAtBottom) {
+      currentHeading = headings[headings.length - 1];
+    } else {
+      currentHeading = headings
+        .filter(h => h.getBoundingClientRect().top <= TOP_OFFSET + 5)
+        .pop();
+    }
 
     if (currentHeading) {
       const id = currentHeading.getAttribute('id');
@@ -27,19 +33,15 @@ window.addEventListener('DOMContentLoaded', () => {
         updateActiveLink(id);
       }
     }
+  };
 
-    // 3. Set a "trailing" timer to catch the very end of the scroll
-    scrollTimeout = setTimeout(() => {
-      // Re-run the check one last time after scrolling stops
-      const finalHeadings = Array.from(blogContent.querySelectorAll('h2, h3'));
-      const finalHeading = finalHeadings
-        .filter(h => h.getBoundingClientRect().top <= TOP_OFFSET + 5)
-        .pop();
-        
-      if (finalHeading) {
-        updateActiveLink(finalHeading.getAttribute('id'));
-      }
-    }, 100); // 100ms delay is usually imperceptible but saves frames
+  const handleScroll = () => {
+    // Run immediately for responsiveness
+    calculateActiveSection();
+
+    // Debounce a final check to catch the "end" of the scroll momentum
+    if (scrollTimeout) clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(calculateActiveSection, 150);
   };
 
   function updateActiveLink(id) {
@@ -50,9 +52,9 @@ window.addEventListener('DOMContentLoaded', () => {
     
     if (targetLink) {
       targetLink.classList.add('active');
-      
       const parentLi = targetLink.closest('li');
       if (parentLi) {
+        // Only scroll the TOC if it's actually overflowing
         tocNav.scrollTo({
           top: parentLi.offsetTop - (tocNav.clientHeight / 2),
           behavior: 'smooth'
@@ -62,11 +64,5 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll();
-
-  // Cleanup for peace of mind
-  window.addEventListener('unload', () => {
-    window.removeEventListener('scroll', handleScroll);
-    if (scrollTimeout) clearTimeout(scrollTimeout);
-  }, { once: true });
+  calculateActiveSection(); // Run once on load
 });
