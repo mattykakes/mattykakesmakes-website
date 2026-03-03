@@ -3,13 +3,15 @@
   <div id="progress-bar" class="h-full bg-primary-500 transition-all duration-150 ease-out w-0 shadow-[0_0_8px_rgba(var(--color-primary-500),0.6)]" style="will-change: width;"></div>
 </div>
 
-<div class="max-w-7xl mx-auto px-6">
+<div class="max-w-7xl mx-auto">
   <div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
     
     <div class="hidden xl:block xl:col-span-2"></div>
 
     <article class="xl:col-span-8">
       {{ $page := . }} 
+
+      <h1 class="sr-only">{{ .Title }}</h1>
 
       {{ with $page.Params.summary }}
       <div class="max-w-3xl mx-auto px-6 pt-6 pb-2 text-center prose dark:text-white">
@@ -42,7 +44,7 @@
     </article>
 
     <aside class="hidden xl:block xl:col-span-2 relative">
-      <div class="fixed top-32 w-64">
+      <div class="fixed top-32 w-56 2xl:w-64 -ml-4">
         {{ partial "toc.html" . }}
       </div>
     </aside>
