@@ -28,37 +28,22 @@
             </p>
         </div>
 
-        <div class="mt-6">
-            <div class="flex items-start font-medium text-gray-900 dark:text-gray-200 text-md">
-                <span class="pr-2 font-black whitespace-nowrap">Tags:</span>
-                
-                <div class="flex flex-wrap gap-0.5 flex-1">
-                    {{ range $elem_index, $elem_val := (.GetTerms "tags") }}
-                    <a href="{{ .Permalink }}"
-                        class="inline-flex items-center px-2.5 py-0.5 text-sm font-medium text-gray-900 capitalize bg-gray-300 rounded-md hover:bg-primary-200 hover:text-black">
-                        {{ strings.TrimPrefix "Tags/" .LinkTitle }}
-                    </a>
-                    {{- end -}}
-                </div>
+        <div class="flex items-center mt-6">
+            <div class="flex-shrink-0">
+                {{ with .Params.authorimage }}
+                {{ with resources.Get . }}
+                {{ $authorimage := (.Resize "40x webp").RelPermalink }}
+                <img class="w-10 h-10 rounded-full" src="{{ $authorimage }}" alt="">
+                {{ end }}
+                {{ end }}
             </div>
-
-            <div class="flex items-center mt-6">
-                <div class="flex-shrink-0">
-                    {{ with .Params.authorimage }}
-                    {{ with resources.Get . }}
-                    {{ $authorimage := (.Resize "40x webp").RelPermalink }}
-                    <img class="w-10 h-10 rounded-full" src="{{ $authorimage }}" alt="">
-                    {{ end }}
-                    {{ end }}
-                </div>
-                <div class="pt-1 ml-3">
-                    <p class="text-sm font-medium text-gray-900 dark:text-white">
-                        {{ .Params.author }}
-                    </p>
-                    <div class="flex space-x-1 text-sm text-gray-500 dark:text-white">
-                        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
-                        <span>&middot; {{ math.Round (div (countwords .Content) 220.0) }} min read</span>
-                    </div>
+            <div class="pt-1 ml-3">
+                <p class="text-sm font-medium text-gray-900 dark:text-white">
+                    {{ .Params.author }}
+                </p>
+                <div class="flex space-x-1 text-sm text-gray-500 dark:text-white">
+                    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+                    <span>&middot; {{ math.Round (div (countwords .Content) 220.0) }} min read</span>
                 </div>
             </div>
         </div>
