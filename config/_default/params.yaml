@@ -15,7 +15,7 @@ og_image: /images/og/mkm_og_logo.png
 
 # Section Toggles
 disable_theme_toggle: false
-disable_p2: false
+disable_p2: true
 disable_stay_uptodate: true
 
 # Colors
@@ -70,7 +70,7 @@ p1:
   image_quality: 78
   image_width: 600
   content:
-    - text: "The goal isn’t always to make something perfect — it’s to use building as a creative outlet, a way to express ideas in physical form. Sometimes that means making something surprisingly useful, other times it means creating something delightfully absurd. Either way, every build is a chance to experiment, learn, and turn imagination into something you can actually hold in your hands."
+    - text: "Building things is my primary creative outlet. It’s a way to think laterally about solving problems — sometimes by creating something highly functional, and other times, something delightfully absurd. Every build is an opportunity to experiment, learn, and translate an idea into a tangible result."
     - text: "Engineering Projects - From software to hardware, this is where code, circuits, and machines collide. Expect projects that range from practical tools to strange experiments that maybe shouldn’t work… but somehow do."
     - text: "Technical Blogs - Deep dives, lessons learned, and professional opinions. These posts are equal parts documentation, storytelling, and lessons learn from both personal and professional experiences."
     - text: "Creative Builds - This is where ideas take a playful detour. Some projects are practical, others are purely for fun, and a few land somewhere in between."
@@ -81,9 +81,7 @@ p2:
   image_quality: 45
   image_width: 600
   content:
-    - text: "Because every project is a bit like a cake: you start with a recipe, throw in your own flavor, and hope it doesn’t collapse in the oven. And if it does? Well, that’s part of the fun."
-    - text: "Mistakes aren’t just inevitable — they’re the secret ingredient. Every time something wobbles, sparks, or fails spectacularly, it leaves behind a lesson. Maybe it’s about how something actually works (or doesn’t), maybe it’s about why that “clever shortcut” wasn’t so clever after all. Either way, those stumbles are where the real learning happens."
-    - text: "The truth is, nothing creative comes out perfect the first time. Trial and error isn’t just normal — it’s the engine that drives better ideas. The failures shape the successes, and the detours often lead to the most interesting results."
+    - text: "Moved to the about page LOL"
 
 p3:
     heading: "Recent Posts"

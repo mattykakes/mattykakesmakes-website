@@ -3,9 +3,9 @@ title: "About"
 date: 2025-08-09T11:10:36+08:00
 draft: false
 description: About Matt
-featured_image: images/pages/matt_reykjavik_2022.jpg
-featured_image_quality: 40
-summary: A bit about me and why I started this website.
+featured_image: images/pages/matt_saas_almagel_2024.jpg
+featured_image_quality: 60
+summary: Some bits and bytes about me and the website.
 author: Matthew Miller
 authorimage: images/global/author.webp
 categories: [Personal, Hobbies, Opinion]
@@ -25,3 +25,16 @@ In doing so I want to highlight the biggest trend in my work experience -- adapt
 I’ve built greenfield products, expanded and maintained legacy systems, and worked across multiple industries. These experiences have given me confidence in navigating complex challenges and delivering solutions that are both robust and user-focused.
 
 Feel free to check out the public version of [my resume](https://docs.google.com/document/d/e/2PACX-1vQIi5vr8oQk_QLGVmndMCnHl0u9XlKVtp-eSQoz2HVeaH3mH-Sx96-0vwVCPi4QLyNBUNN5ejcWQpQP/pub) or get in touch through {{< sociallink network="linkedin" text="LinkedIn" >}} for any professional inquiries.
+
+## Matty "Kakes"?
+I don't enjoy baking, but I do enjoy when intimidating tasks feel more approachable after breaking them down into sub-tasks -- kind of like a recipe.
+
+In that sense, every project is a bit like a cake: you start with a recipe, throw in your own flavor, and hope it doesn’t collapse in the oven. And if it does? Well, that’s part of the learning experience every expert goes through.
+
+Documenting my mistakes is just as important to me as documenting the wins. I choose to share my failures openly to keep the design process honest and approachable. By giving myself the grace to fail, I hope to remind myself (and others) that "expert" is a title for someone who has failed enough times to figure it out.
+
+{{< imgc src="pages/mkm_broken_cake_1.png" alt="Broken Cake" quality="47" >}}
+
+The truth is, nothing creative comes out perfect the first time. Trial and error isn’t just normal -- it’s the engine that drives better ideas. The failures shape the successes, and the detours often lead to the most interesting results.
+
+<p style="text-align: right;"> <span title="Too Long; Didn't Read">TLDR<span> -- it sets a light hearted tone and has a good ring to it ;)</p>
