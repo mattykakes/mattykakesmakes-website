@@ -27,7 +27,7 @@ I’ve built greenfield products, expanded and maintained legacy systems, and wo
 Feel free to check out the public version of [my resume](https://docs.google.com/document/d/e/2PACX-1vQIi5vr8oQk_QLGVmndMCnHl0u9XlKVtp-eSQoz2HVeaH3mH-Sx96-0vwVCPi4QLyNBUNN5ejcWQpQP/pub) or get in touch through {{< sociallink network="linkedin" text="LinkedIn" >}} for any professional inquiries.
 
 ## Matty "Kakes"?
-I don't enjoy baking, but I do enjoy when intimidating tasks feel more approachable after breaking them down into sub-tasks -- kind of like a recipe.
+I don't enjoy baking, but I do enjoy when intimidating work feels more approachable after breaking it down into sub-tasks -- kind of like a recipe.
 
 In that sense, every project is a bit like a cake: you start with a recipe, throw in your own flavor, and hope it doesn’t collapse in the oven. And if it does? Well, that’s part of the learning experience every expert goes through.
 
