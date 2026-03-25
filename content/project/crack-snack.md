@@ -149,9 +149,19 @@ This is where the inventory constraints really came into play. For the prototype
 
 > An aside -- I wasn't concerned about using the Arduino toolchain for this product; it has a proven track record in early 3D printers and other niche control systems. The time saved far outweighed the negligible overhead of the library. It wouldn't impact the system's responsiveness in any perceivable way.
 
-At the time, the HX711 proved difficult to find in domestic inventories so I had to look abroad. I landed on using [JLCPCB](https://jlcpcb.com/) and desiged a 2-layer board tailored to their component stock. As part of their service they included a [DFM](https://en.wikipedia.org/wiki/Design_for_manufacturability) review that even caught a few issues before production. This route also proved to be highly cost-effective; the boards arrived fully assembled for about $30 each. It was clear validation of the decision to go custom -- we were able to deliver a purpose-built safety system for a fraction of the cost of a less-integrated COTS alternative. Pictured below is version 3 of the finished safety module next to its snap-together 3D printed enclosure.
+At the time, the HX711 proved difficult to find in domestic inventories so I had to look abroad. I landed on using [JLCPCB](https://jlcpcb.com/) and desiged a 2-layer board tailored to their component stock. As part of their service they included a [DFM](https://en.wikipedia.org/wiki/Design_for_manufacturability) review that even caught a few issues before production. This route also proved to be highly cost-effective; the boards arrived fully assembled for about $30 each. It was clear validation of the decision to go custom -- we were able to deliver a purpose-built safety system for a fraction of the cost of a less-integrated COTS alternative. Pictured below is version 3 of the finished safety module. Click the text below to see it within its snap-together 3D printed enclosure.
 
-{{< imgc src="pages/project/crack-snack/crack-control-safety-module.png" alt="Safety Module v3" quality="65" >}}
+<div class="pcb-toggle">
+  <div class="pcb" style="display:block">
+    {{< imgc  src="pages/project/crack-snack/crack-control-safety-module.png" alt="Safety Module v3" quality="65" >}}
+  </div>
+  <div class="enclosure" style="display:none">
+    {{< imgc class="enclosure" src="pages/project/crack-snack/crack-control-safety-module-enclosure.png" alt="Safety Module v3" quality="65" >}}
+  </div>
+  <div style="text-align:right;">
+    <a href="javascript:void(0);" class="toggle-link">Show With Enclosure</a>
+  </div>
+</div>
 
 The physical layout of the board continued the safety-first mindset. The power management section implements a via farm beneath the voltage regulator to pull heat away from the component and into the copper plane on the back of the board. The logic is also safeguarded with transient voltage suppression and reverse polarity protection.
 
@@ -170,3 +180,25 @@ If you are looking to bridge the gap between breadboard prototypes and professio
 <p style="text-align: right;">... and if you haven't already – check out the <a href="https://crackableclimbing.com/" target="_blank" rel="noopener">Crack Snack</a>!</p>
 
 {{< youtube QKlrF5N2bq4 >}}
+
+<script>
+document.querySelectorAll('.pcb-toggle').forEach(toggle => {
+  const link = toggle.querySelector('.toggle-link');
+  const pcbImg = toggle.querySelector('.pcb');
+  const enclosureImg = toggle.querySelector('.enclosure');
+  let showingPcb = true;
+
+  link.addEventListener('click', () => {
+    if (showingPcb) {
+      pcbImg.style.display = 'none';
+      enclosureImg.style.display = 'block';
+      link.textContent = 'Show Without Enclosure';
+    } else {
+      pcbImg.style.display = 'block';
+      enclosureImg.style.display = 'none';
+      link.textContent = 'Show With Enclosure';
+    }
+    showingPcb = !showingPcb;
+  });
+});
+</script>
