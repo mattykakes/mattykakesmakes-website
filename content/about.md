@@ -35,6 +35,6 @@ Documenting my mistakes is just as important to me as documenting the wins. I ch
 
 {{< imgc src="pages/mkm_broken_cake_1.png" alt="Broken Cake" quality="47" >}}
 
-The truth is, nothing creative comes out perfect the first time. Trial and error isn’t just normal -- it’s the engine that drives better ideas. The failures shape the successes, and the detours often lead to the most interesting results.
+The truth is, nothing creative comes out perfect the first time. Trial and error isn’t just normal -- it’s the engine that drives innovation.
 
 <p style="text-align: right;"> <span title="Too Long; Didn't Read">TLDR<span> -- it sets a light hearted tone and has a good ring to it ;)</p>
