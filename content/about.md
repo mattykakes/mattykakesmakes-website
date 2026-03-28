@@ -37,4 +37,4 @@ Documenting my mistakes is just as important to me as documenting the wins. I ch
 
 The truth is, nothing creative comes out perfect the first time. Trial and error isn’t just normal -- it’s the engine that drives innovation.
 
-<p style="text-align: right;"> <span title="Too Long; Didn't Read">TLDR<span> -- it sets a light hearted tone and has a good ring to it ;)</p>
+<p style="text-align: right;"> <span title="Too Long; Didn't Read">TLDR<span> -- the name sets a light hearted tone and has a good ring to it ;)</p>
