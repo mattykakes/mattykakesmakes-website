@@ -19,8 +19,8 @@ disable_p2: true
 disable_stay_uptodate: true
 
 # Colors
-theme_color: "#a2d3db"
-background_color: "#ffffff"
+theme_color: "#222222"
+background_color: "#222222"
 
 # Social Media
 social_media:
