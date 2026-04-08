@@ -12,8 +12,10 @@
             return;
         }
 
-        const isDark = localStorage.getItem('color-theme') === 'dark' || 
-                      (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        // Makes Dark the default fallback
+        const isDark = localStorage.getItem('color-theme') !== 'light' && 
+              (localStorage.getItem('color-theme') === 'dark' || 
+               !window.matchMedia('(prefers-color-scheme: light)').matches);
 
         // Set initial icon state
         themeToggleLightIcon.classList.toggle('hidden', !isDark);
