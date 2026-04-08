@@ -20,7 +20,7 @@ disable_stay_uptodate: true
 
 # Colors
 theme_color: "#222222"
-background_color: "#222222"
+background_color: "#ffffff"
 
 # Social Media
 social_media:

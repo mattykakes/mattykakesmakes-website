@@ -39,12 +39,11 @@ aside.fixed {
   border-left: 2px solid transparent;
 }
 
-.dark .toc-nav a { color: var(--color-zinc-400); }
+.dark .toc-nav a { color: var(--color-zinc-500); }
 
-.toc-nav a:hover { color: var(--color-primary-500); }
+.toc-nav a:hover { color: var(--color-primary-600); }
 
-.dark .toc-nav a:hover { color: var(--color-primary-400); }
-
+.dark .toc-nav a:hover { color: var(--color-primary-500); }
 
 /* Scroll-Spy Active State - Preserving your specific "Push" logic */
 .toc-nav a.active {
