@@ -41,10 +41,6 @@ aside.fixed {
 
 .dark .toc-nav a { color: var(--color-zinc-400); }
 
-.toc-nav a:hover { color: var(--color-primary-600); }
-
-.dark .toc-nav a:hover { color: var(--color-primary-500); }
-
 /* Scroll-Spy Active State - Preserving your specific "Push" logic */
 .toc-nav a.active {
   color: var(--color-primary-600);
@@ -59,3 +55,9 @@ aside.fixed {
   color: var(--color-primary-500);
   border-left-color: var(--color-primary-500);
 }
+
+.toc-nav a.active a:hover,
+.toc-nav a:hover { color: var(--color-primary-500); }
+
+.dark .toc-nav a.active a:hover,
+.dark .toc-nav a:hover { color: var(--color-primary-400); }
