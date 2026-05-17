@@ -10,6 +10,9 @@ author: Matthew Miller
 authorimage: images/global/author.webp
 categories: [Embedded]
 tags: [KiCAD, C++, Embedded, Hardware, PCB, Control, Climbing]
+license:
+  title: "CC BY-NC-SA 4.0"
+  url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 Before discussing the project at hand, it's important to start by framing the need for a safety device. For that, we'll need to understand what the heck a [_Crack Snack_](https://crackableclimbing.com/) is, what problem it solves, and what about this problem is unique in the rock climbing space.

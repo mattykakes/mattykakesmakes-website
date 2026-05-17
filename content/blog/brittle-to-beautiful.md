@@ -10,6 +10,9 @@ author: Matthew Miller
 authorimage: images/global/author.webp
 categories: [Software, Design]
 tags: [Enterprise, Reactive, Browser, Application, Frontend]
+license:
+  title: "CC BY 4.0"
+  url: "https://creativecommons.org/licenses/by/4.0/"
 ---
 
 Have you ever worked on a large or long-running enterprise browser-based front-end that became a bear to maintain -- one that became brittle and frustrating to work on as it grew?

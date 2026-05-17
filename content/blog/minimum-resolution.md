@@ -10,6 +10,9 @@ author: Matthew Miller
 authorimage: images/global/author.webp
 categories: [Software, Design]
 tags: [UX, UI, Screen, Monitor, Application, Frontend]
+license:
+  title: "CC BY 4.0"
+  url: "https://creativecommons.org/licenses/by/4.0/"
 ---
 
 In today’s wide range of monitor configurations, it can be difficult to define clear requirements for officially supported hardware when building an application. The most important step is knowing your audience. Broadly, desktop applications fall into two categories: _niche_ and _general_ computing.

@@ -10,6 +10,9 @@ author: Matthew Miller
 authorimage: images/global/author.webp
 categories: [Project Management, Product Owner, Writing]
 tags: [Documentation, Product, Project, Technical, Writing]
+license:
+  title: "CC BY 4.0"
+  url: "https://creativecommons.org/licenses/by/4.0/"
 ---
 
 Clear, well-written requirements are the foundation of a successful system. They define what needs to be built, ensure alignment among stakeholders, and help teams deliver a product that meets user needs. To ensure requirements are clear they must be properly scoped, structured effectively, and maintain the right level of formality.

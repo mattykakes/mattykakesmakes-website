@@ -54,8 +54,14 @@ All written content, photos, and branding found in:
     static/
     assets/images/
 
-are **proprietary** and **not licensed under the Apache License**.  
-These works are © Matthew Miller 2025 and may **not be copied, redistributed, or reused** without prior written permission.
+are **proprietary** and **All Rights Reserved** by default.
+
+### Conditional Creative Commons Licensing
+Individual articles, tutorials, or media files may be explicitly designated as licensed under various **Creative Commons International Licenses** (for example, via a notice on the published webpage or within the file's front matter metadata). 
+
+*   **The Fallback Rule:** If an article or media asset does **not** explicitly display or specify a Creative Commons designation, it remains strictly proprietary and may not be copied, redistributed, or reused without prior written permission.
+*   **The Designated Terms:** When a specific Creative Commons license is designated (e.g., CC BY 4.0, CC BY-NC-SA 4.0), the terms of that specific license apply solely to the designated work.
+*   **Photography Exception:** Notwithstanding any global or article-level Creative Commons designations, all original photographs containing the physical likeness or identity of Matthew Miller are strictly excluded from Creative Commons licensing and remain **All Rights Reserved**.
 
 ---
 
@@ -76,9 +82,9 @@ Use of these marks without permission is strictly prohibited.
 | `assets/**/*.css`             | Apache-2.0     | Matthew Miller / Nusser Studios |
 | `assets/**/*.js`              | Apache-2.0     | Matthew Miller / Nusser Studios |
 | `config/**`                   | Apache-2.0     | Matthew Miller               |
-| `content/**`                  | Proprietary    | Matthew Miller © 2025        |
-| `static/**`                   | Proprietary    | Matthew Miller © 2025        |
-| `assets/images/**`            | Proprietary    | Matthew Miller © 2025        |
+| `content/**`                  | **Proprietary / Creative Commons (Conditional)** | Matthew Miller © 2025-2026   |
+| `static/**`                   | **Proprietary / Creative Commons (Conditional)** | Matthew Miller © 2025-2026   |
+| `assets/images/**`            | **Proprietary / Creative Commons (Conditional)** | Matthew Miller © 2025-2026   |
 
 ---
 

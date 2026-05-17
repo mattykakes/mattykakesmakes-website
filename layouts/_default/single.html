@@ -37,10 +37,29 @@
             {{ end }}
           {{ end }}
       </div>
+      
+      {{ $hasLicense := false }}
+      {{ with .Params.license }}
+        {{ if and .title .url }}
+          {{ $hasLicense = true }}
+        {{ end }}
+      {{ end }}
 
-      <div id="blog-content" class="max-w-3xl mx-auto pt-6 pb-16 px-6 prose dark:prose-invert">
+      {{ $paddingClass := cond $hasLicense "mb-8" "pb-16" }}
+      <div id="blog-content" class="max-w-3xl mx-auto pt-6 {{ $paddingClass }} px-6 prose dark:prose-invert">
         {{ .Content }}
       </div>
+
+      {{ if $hasLicense }}
+      <div id="license-notice" class="max-w-3xl mx-auto px-6 pb-12 text-center text-sm text-zinc-500 dark:text-zinc-400">
+        This work is licensed under 
+        <a href="{{ .Params.license.url }}" 
+           class="underline decoration-zinc-300 dark:decoration-zinc-700 hover:text-zinc-800 dark:hover:text-zinc-200" 
+           target="_blank" 
+           rel="noopener">
+          {{ .Params.license.title }}</a>.
+      </div>
+      {{ end }}
     </article>
 
     <aside class="hidden xl:block xl:col-span-2 relative">
