@@ -43,9 +43,9 @@ aside.fixed {
 
 /* Scroll-Spy Active State - Preserving your specific "Push" logic */
 .toc-nav a.active {
-  color: var(--color-primary-600);
+  color: var(--color-indigo-600);
   font-weight: 700;
-  border-left-color: var(--color-primary-600);
+  border-left-color: var(--color-indigo-600);
   padding-left: 0.75rem;
   /* Standardizing pull-back to align with the hierarchy line */
   margin-left: -1.0625rem; 
@@ -57,7 +57,7 @@ aside.fixed {
 }
 
 .toc-nav a.active a:hover,
-.toc-nav a:hover { color: var(--color-primary-500); }
+.toc-nav a:hover { color: var(--color-indigo-500); }
 
 .dark .toc-nav a.active a:hover,
 .dark .toc-nav a:hover { color: var(--color-primary-400); }

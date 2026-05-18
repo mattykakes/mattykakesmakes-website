@@ -346,11 +346,11 @@
 }
 
 .dark .prose a {
-  color: var(--color-indigo-400);
+  color: var(--color-primary-500);
 }
 
 .dark .prose a:hover {
-  color: var(--color-indigo-300);
+  color: var(--color-primary-400);
 }
 
 .dark .prose blockquote {
@@ -359,17 +359,17 @@
 }
 
 .dark .prose code {
-  color: var(--color-indigo-400);
+  color: var(--color-primary-500);
   background-color: var(--color-zinc-800);
 }
 
 .dark .prose pre {
-  color: var(--color-indigo-400);
+  color: var(--color-primary-500);
   background-color: var(--color-zinc-800);
 }
 
 .dark .prose pre code {
-  color: var(--color-indigo-400);
+  color: var(--color-primary-500);
 }
 
 .dark .prose thead {
