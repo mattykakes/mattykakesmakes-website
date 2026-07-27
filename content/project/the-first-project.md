@@ -16,7 +16,7 @@ license:
 ---
 
 ## Changing My Trajectory
-__The year was 2018__ -- I spent the first few years of my career writing requirements for nuclear I&C system hardware. Important as it was, building a career in IBM Rational DOORS and Microsoft Word is not what I had envisioned for myself. However, the clock was ticking. Each passing week, I felt more removed from my education and passion for building things. It had become obvious that I would compete against applicants who spent 40 hours a week writing software while I was writing government letters for review. The longer I waited, the harder it would be to get hired doing something that could satisfy me. I was desperate for experience to make myself marketable. I needed a portfolio piece…
+__The year was 2017__ -- I spent the first few years of my career writing requirements for nuclear I&C system hardware. Important as it was, building a career in IBM Rational DOORS and Microsoft Word is not what I had envisioned for myself. However, the clock was ticking. Each passing week, I felt more removed from my education and passion for building things. It had become obvious that I would compete against applicants who spent 40 hours a week writing software while I was writing government letters for review. The longer I waited, the harder it would be to get hired doing something that could satisfy me. I was desperate for experience to make myself marketable. I needed a portfolio piece…
 
 ## Design Criteria
 I put together loose requirements to make myself marketable upon completing this journey. My portfolio piece must demonstrate an understanding of:
