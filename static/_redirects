@@ -1,3 +1,0 @@
-# Redirect the public root pages.dev domain to the custom domain
-# This explicitly includes the hostname so it ignores branch preview subdomains
-https://mattykakesmakes-website.pages.dev/* https://mattykakesmakes.com/:splat 301!
