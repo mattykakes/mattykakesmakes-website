@@ -1,4 +1,9 @@
 # Image processing defaults
-quality: 85
-resampleFilter: Lanczos
 anchor: Smart
+resampleFilter: Lanczos
+jpeg:
+    quality: 85
+webp:
+    quality: 85
+avif:
+    quality: 65

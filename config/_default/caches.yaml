@@ -2,12 +2,9 @@
 assets:
   dir: :cacheDir/assets
   maxAge: 8760h # 1 year
-getcsv:
-  dir: :cacheDir/getcsv
-  maxAge: 24h # 1 day
-getjson:
-  dir: :cacheDir/getjson
-  maxAge: 24h # 1 day
+getresource:
+    dir: :cacheDir/:project
+    maxAge: 24h # 1 day
 images:
   dir: :cacheDir/images
   maxAge: 8760h # 1 year

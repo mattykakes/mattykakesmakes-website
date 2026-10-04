@@ -1,7 +1,6 @@
 baseURL: https://mattykakesmakes.com/
 title: Matty Kakes Makes
-# theme: tailbliss
-languageCode: en-us
+locale: en-us
 DefaultContentLanguage: en
 enableEmoji: true
 enableGitInfo: false

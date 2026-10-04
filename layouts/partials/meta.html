@@ -4,7 +4,7 @@
 {{- $title := cond .IsHome .Site.Title (printf "%s | %s" .Title .Site.Title) -}}
 {{- $desc  := .Description | default .Summary | default .Site.Params.description -}}
 
-<title>{{ if .IsHome }}{{ .Site.Params.description }} | {{ .Site.Title }}{{ else }}{{ partial "taxonomy-term-title.html" . }} | {{ .Site.Title }}{{ end }}</title>
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ partial "taxonomy-term-title.html" . }}{{ end }}</title>
 <meta name="description" content="{{ $desc }}">
 <meta name="application-name" content="{{ $title }}">
 

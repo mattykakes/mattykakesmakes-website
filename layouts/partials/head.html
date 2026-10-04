@@ -51,30 +51,37 @@
 {{ if $mainCSS }}
   <link rel="stylesheet" href="/css/{{ $mainCSS }}">
 {{ else }}
-  <!-- Fallback to Hugo PostCSS processing if Vite file not found -->
-  {{ $styles := resources.Get "css/main.css" | postCSS }}
+  <!-- Fallback to native Hugo processing if Vite file not found -->
+  {{ $styles := resources.Get "css/main.css" }}
   {{ if hugo.IsProduction }}
-    {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
+    {{ $styles = $styles | minify | fingerprint }}
   {{ else }}
-    {{ $styles = $styles | fingerprint | resources.PostProcess }}
+    {{ $styles = $styles | fingerprint }}
   {{ end }}
-	
+  
   <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
 {{ end }}
 
 {{ if .IsPage }}
   {{/* Determine if TOC file exists in Vite manifest or falling back to Hugo */}}
-  {{ $tocCSS := index .Site.Data.manifest "toc.css" }} 
+  {{ $tocCSS := "" }}
+  {{ range $cssFiles }}
+    {{ if strings.Contains .Name "toc." }}
+      {{ if strings.HasSuffix .Name ".css" }}
+        {{ $tocCSS = .Name }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
   
   {{ if $tocCSS }}
     <link rel="stylesheet" href="/css/{{ $tocCSS }}">
   {{ else }}
-    {{/* Hugo fallback processing */}}
-    {{ $styles := resources.Get "css/toc.css" | postCSS }}
+    {{/* Fallback to native Hugo processing */}}
+    {{ $styles := resources.Get "css/toc.css" }}
     {{ if hugo.IsProduction }}
-      {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
+      {{ $styles = $styles | minify | fingerprint }}
     {{ else }}
-      {{ $styles = $styles | fingerprint | resources.PostProcess }}
+      {{ $styles = $styles | fingerprint }}
     {{ end }}
     <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
   {{ end }}
